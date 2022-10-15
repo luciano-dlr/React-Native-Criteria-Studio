@@ -1,20 +1,34 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import React from "react";
+import { Text, View, StyleSheet, TouchableWithoutFeedback } from 'react-native';
 
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text> Mi primera app GRACIAS CRITERIA </Text>
-      <StatusBar style="auto" />
-    </View>
-  );
-}
+const App = () => {
+
+
+
+  return <View style={styles.container}>
+
+    <Text style={styles.title}>
+      Que onda la banda
+    </Text>
+
+  </View>
+
+};
+
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
     justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#292929',
+  },
+  title: {
+    color: '#fff',
+    fontSize: 25,
   },
 });
+
+export default App;
+
+//https://picsum.photos/200/300
