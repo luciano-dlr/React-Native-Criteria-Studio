@@ -1,33 +1,25 @@
 import React from "react";
-import { Text, View, StyleSheet, TouchableWithoutFeedback } from 'react-native';
+import { Text, View } from 'react-native';
+import styles from "./Styles/Styles";
+import Navigation from "./Navigation.js";
+
 
 const App = () => {
 
 
+  return <Navigation />
 
-  return <View style={styles.container}>
+  // return <View style={styles.container}>
 
-    <Text style={styles.title}>
-      Que onda la banda
-    </Text>
+  //   <Text style={styles.title}>
+  //     Que onda la banda
+  //   </Text>
 
-  </View>
+  // </View>
 
 };
 
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#292929',
-  },
-  title: {
-    color: '#fff',
-    fontSize: 25,
-  },
-});
 
 export default App;
 
