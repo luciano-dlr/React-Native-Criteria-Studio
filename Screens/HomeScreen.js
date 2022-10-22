@@ -3,12 +3,14 @@ import { Text, View } from 'react-native';
 import styles from "../Styles/Styles";
 import { useState } from "react";
 import { Input } from '@rneui/themed';
+import Navigation, { loginName } from "../Navigation";
 
 
 
 const Home = () => {
 
     const [loginName, setText] = useState('');
+
 
     return (
         <View style={styles.container}>
@@ -20,13 +22,17 @@ const Home = () => {
 
             <Input id='email' style={styles.title} placeholder='Email' />
 
-            <Text style={styles.title}> datos:{loginName}</Text>
+            <View>
+                <Text style={styles.title}> datos:{loginName}</Text>
+            </View>
+
 
 
         </View>
     )
 
 };
+
 
 
 export default Home;
