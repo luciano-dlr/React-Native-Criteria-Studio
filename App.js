@@ -10,11 +10,9 @@ const App = () => {
   return <Navigation />
 
   // return <View style={styles.container}>
-
   //   <Text style={styles.title}>
   //     Que onda la banda
   //   </Text>
-
   // </View>
 
 };
