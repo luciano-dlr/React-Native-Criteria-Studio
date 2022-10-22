@@ -1,6 +1,8 @@
 import React from "react";
 import { Text, View } from 'react-native';
 import styles from "../Styles/Styles";
+import { loginName } from "./HomeScreen";
+
 
 
 const UserScreen = () => {
@@ -10,8 +12,10 @@ const UserScreen = () => {
     return (<View style={styles.container}>
 
         <Text style={styles.title}>
-            User Scree
+            Datos de Usuario
         </Text>
+
+        <Text style={styles.title}>{loginName}</Text>
 
     </View>)
 
