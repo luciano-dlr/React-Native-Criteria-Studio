@@ -1,10 +1,11 @@
 import React from "react";
 import { Text, View } from 'react-native';
 import styles from "../Styles/Styles";
-import Home, { result } from "./HomeScreen";
+import Home, { name } from "./HomeScreen";
 
 
-const UserScreen = () => {
+
+const UserScreen = ({ name, email }) => {
 
 
 
@@ -15,6 +16,12 @@ const UserScreen = () => {
         <Text style={styles.title}>
             Usuariosss
         </Text>
+        <View>
+            <Text style={styles.title} > User:{name}</Text>
+        </View>
+        <View>
+            <Text style={styles.title} > Email:{email}</Text>
+        </View>
 
 
 
