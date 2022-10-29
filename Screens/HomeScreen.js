@@ -4,6 +4,8 @@ import styles from "../Styles/Styles";
 import { Input } from '@rneui/themed';
 import { Button } from "@rneui/themed";
 import { useNavigation } from "@react-navigation/native";
+import { NavigationContainer } from '@react-navigation/native';
+
 
 
 
@@ -14,6 +16,8 @@ const HomeScreen = ({ name, setName, email, setEmail }) => {
 
     // Le doy la funcion navigation a la constante redirect para crear el boton de cambio de pantalla
     const redirect = useNavigation();
+    let datos = {};
+
 
     return (
 
@@ -28,9 +32,18 @@ const HomeScreen = ({ name, setName, email, setEmail }) => {
             <View >
                 <Button onPress={() => { redirect.navigate("User") }} type="clear" styles={styles.buttonContainer} >
 
-                    <Text style={styles.titleButton} >Ingresar Cuenta</Text>
+                    <Text style={styles.titleButton} >Ingresar</Text>
 
                 </Button>
+                <Button
+                    //type="outline"
+                    title='Ingresar'
+                    titleStyle={{ color: '#065555', fontSize: 20 }}
+                    onPress={() => { redirect.navigate("User") }} type="clear" styles={styles.buttonContainer}>
+
+                </Button>
+
+
             </View>
 
         </View >

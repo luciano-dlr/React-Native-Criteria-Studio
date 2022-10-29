@@ -13,6 +13,11 @@ import UserScreen from "./Screens/UserScreen";
 
 //creo la constante tab = funcion de navigation,  para crear los componentes tab.(propiedades de la libreria navigation)
 
+// nombre de funtion 
+
+//TODO MY TABS RESPETAR EL NOMBRE DE ARCHIVO 
+
+
 const tab = createBottomTabNavigator();
 
 function MyTabs() {
@@ -31,6 +36,17 @@ function MyTabs() {
             <tab.Navigator screenOptions={({ route }) => ({
 
                 // Utilizo la constante tab parausar la funcion importada navigator, y crear el componente tab.navigator
+
+                //resumir la app en app.js por screen 
+                // CREAR UN arry VACIO DESDE APP en el boton Y RECIBIRLO COMO PROPS A USER,
+                //USE EFECT QUE CONTROLE EL ESTADO QUE PASE MINUSCULA en imputs
+
+
+                // ROUTE.PARAMS.CATEGORY 
+                //USE CONTEXTX HOOK 
+
+
+
 
                 tabBarIcon: ({ focused, color, size }) => {
 
