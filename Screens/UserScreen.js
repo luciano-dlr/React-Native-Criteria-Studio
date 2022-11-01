@@ -4,12 +4,13 @@ import styles from "../Styles/Styles";
 import { Button } from "@rneui/themed";
 import { useNavigation } from "@react-navigation/native";
 
-// Una vez en UserScreen traigo las props de navigation.js para renderizarlos nuevamente
+// Una vez en UserScreen traigo las props de app.js 
 
-const UserScreen = ({ name, email }) => {
+const UserScreen = ({ name, email, array }) => {
 
-    // Denomino la funcion navigation a la constante redirect para crear el boton de cambio de pantalla
     const redirect = useNavigation();
+
+    console.warn({ array })
 
     return (<View style={styles.containerUser}>
 
