@@ -4,29 +4,15 @@ import styles from "../Styles/Styles";
 import { Input } from '@rneui/themed';
 import { Button } from "@rneui/themed";
 import { useNavigation } from "@react-navigation/native";
-import { useEffect } from "react";
-
-
-
-
 
 
 // Denomino las props a los imputs
 
-const HomeScreen = ({ name, setName, email, setEmail, array }) => {
+const HomeScreen = ({ states }) => {
 
     const redirect = useNavigation();
 
-    useEffect(() => {
-
-        // const lowerCase = array.map((item) => {
-        //     item = item.toLowerCase();
-        // })
-
-    }, [array])
-
-
-    // console.log({ array });
+    const [name, email] = states;
 
     return (
 
@@ -34,24 +20,25 @@ const HomeScreen = ({ name, setName, email, setEmail, array }) => {
 
             <Image source={require('../assets/logoCriteria.jpg')} style={styles.imagen} />
 
-            <Input id='name' style={styles.imputs} placeholder='Ingresar Nombre' onChangeText={newName => setName(newName)} defaultValue={name} />
+            <Input id='name' style={styles.imputs} placeholder='Ingresar Nombre' defaultValue={name.value} onChangeText={(value) => name.setValue(value)} />
 
-            <Input id='email' style={styles.imputs} placeholder='Ingresar Email' onChangeText={newEmail => setEmail(newEmail)} defaultValue={email} />
+            <Input id='email' style={styles.imputs} placeholder='Ingresar Email' defaultValue={email.value} onChangeText={(value) => email.setValue(value)} />
 
             <View >
-                <Button onPress={() => { redirect.navigate("User") }} type="clear" styles={styles.buttonContainer} >
+                <Button
+                    onPress={() => { redirect.navigate("User") }}
+                    type="clear" styles={styles.buttonContainer} >
 
                     <Text style={styles.titleButton} >Ingresar</Text>
+                    {/* {() => { states }} */}
 
                 </Button>
-                <Button
+                {/* <Button
                     //type="outline"
                     title='Ingresar'
-                    titleStyle={{ color: '#065555', fontSize: 20 }}
+                    titleStyle={{ color: '#fff', fontSize: 20 }}
                     onPress={() => { redirect.navigate("User") }} type="clear" styles={styles.buttonContainer}>
-                    {() => { array }}
-                </Button>
-
+                </Button> */}
 
             </View>
 

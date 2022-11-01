@@ -15,10 +15,10 @@ const App = () => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
 
-  const array = [{ usuario: name }, { email: email }];
+  // const array = [{ usuario: name, email: email }];
 
 
-  // console.warn({ array })
+
 
 
   return (
@@ -26,14 +26,22 @@ const App = () => {
     <NavigationContainer styles={styles.displayNone}>
       <Stack.Navigator initialRouteName="Home" >
 
-        <Stack.Screen name='Home' styles={styles.displayNone}>
+        {/* <Stack.Screen name='Home' styles={styles.displayNone}>
           {() => <HomeScreen name={name} setName={setName} email={email} setEmail={setEmail} array={array} />}
         </Stack.Screen>
 
         <Stack.Screen name='User' styles={styles.displayNone}>
           {() => <UserScreen name={name} email={email} array={array} />}
         </Stack.Screen>
+ */}
 
+        <Stack.Screen name='Home' styles={styles.displayNone}>
+          {() => <HomeScreen states={[{ name: "nombre", value: name, setValue: setName }, { name: "Email", value: email, setValue: setEmail }]} />}
+        </Stack.Screen>
+
+        <Stack.Screen name='User' styles={styles.displayNone}>
+          {() => <UserScreen states={[name, email]} />}
+        </Stack.Screen>
       </Stack.Navigator>
     </NavigationContainer>
 
