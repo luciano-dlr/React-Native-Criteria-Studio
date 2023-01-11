@@ -15,10 +15,26 @@ const App = () => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
 
-  // const array = [{ usuario: name, email: email }];
 
 
+  //1 instalar firebase npm firebae, en el proyecto
 
+  // Crear una cuenta en firebase 
+
+  // firebase web, (no firebase hosting) 
+
+  // firebase.js
+
+  // documentacion de firebase, autentication de usuarios, crear usuario, (web)
+
+  //importar el auth del archivo del ale
+
+  // utentication de 0 
+
+  // quest, login y registrer con firebase, utilizar la autentication 
+
+
+  //Navigation, navigate
 
 
   return (

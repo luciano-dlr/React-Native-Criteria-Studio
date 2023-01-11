@@ -54,3 +54,4 @@ export default HomeScreen;
 
 
 
+console.log("asd")

@@ -38,8 +38,10 @@ const UserScreen = ({ states }) => {
             </View>
 
             <View>
+
                 <Text style={styles.UserTitle_childs_email} >{values[1]}</Text>
             </View>
+
             <View style={styles.containerButton_user}>
 
                 <Image source={require('../assets/logoCriteria.jpg')} style={styles.imagenUser} />
@@ -51,6 +53,7 @@ const UserScreen = ({ states }) => {
                 </Button>
             </View>
         </View>
+
     )
 
 };
