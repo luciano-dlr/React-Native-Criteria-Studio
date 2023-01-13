@@ -1,12 +1,12 @@
 import { StyleSheet } from 'react-native';
-
+import { video } from "../assets/fondoapp.mp4";
 
 const styles = StyleSheet.create({
     container: {
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: 'black',
+        backgroundColor: `black`,
         paddingRight: 10,
         paddingLeft: 10,
     },
@@ -58,6 +58,7 @@ const styles = StyleSheet.create({
         borderColor: '#fff',
         borderWidth: 1,
         borderRadius: 8,
+        alignItems: 'center',
 
     },
     titleButtonUser: {

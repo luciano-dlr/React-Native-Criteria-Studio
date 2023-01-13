@@ -5,6 +5,7 @@ import { Button } from "@rneui/themed";
 import { useNavigation } from "@react-navigation/native";
 
 
+
 // Una vez en UserScreen traigo las props de app.js 
 
 const UserScreen = ({ states }) => {
