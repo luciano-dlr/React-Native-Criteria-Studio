@@ -94,3 +94,38 @@ export default HomeScreen;
 
 
 
+
+
+    // <NavigationContainer styles={styles.displayNone}>
+    //   <Stack.Navigator initialRouteName="Home" >
+
+    //     <Stack.Screen name='Home' styles={styles.displayNone}>
+    //       {() => <HomeScreen states={[{ name: "Contraseña", value: password, setValue: setPassword }, { name: "Email", value: email, setValue: setEmail }]} />}
+    //     </Stack.Screen>
+
+    //     <Stack.Screen name='User' styles={styles.displayNone}>
+    //       {() => <UserScreen states={[password, email]} />}
+    //     </Stack.Screen>
+    //   </Stack.Navigator>
+    // </NavigationContainer>
+
+    
+
+  //1 instalar firebase npm firebae, en el proyecto
+
+  // Crear una cuenta en firebase 
+
+  // firebase web, (no firebase hosting) 
+
+  // firebase.js
+
+  // documentacion de firebase, autentication de usuarios, crear usuario, (web)
+
+  //importar el auth del archivo del ale
+
+  // utentication de 0 
+
+  // quest, login y registrer con firebase, utilizar la autentication 
+
+
+  //Navigation, navigate
