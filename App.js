@@ -1,6 +1,8 @@
 
-import HomeScreen from "./Screens/HomeScreen.js";
+// import HomeScreen from "./Screens/HomeScreen.js";
 import UserScreen from "./Screens/UserScreen.js";
+// import { RegisterScreen } from './Screens/RegisterScreen';
+
 
 
 import { useNavigation } from "@react-navigation/native";
@@ -13,9 +15,7 @@ import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } f
 import { initializeApp } from "firebase/app";
 import React from "react";
 import { Text, View, Image, TouchableOpacity, Alert, TextInput, Button } from 'react-native';
-
 import { Input } from '@rneui/themed';
-import { LogBox } from 'react-native';
 
 
 
@@ -30,6 +30,7 @@ const LoginScreen = () => {
   const [email, setEmail] = useState('');
 
   const app = initializeApp(firebaseConfig);
+
   const auth = getAuth(app);
 
 
@@ -47,13 +48,16 @@ const LoginScreen = () => {
   //     })
 
   // }
+
   const ingresarCuenta = () => {
     signInWithEmailAndPassword(auth, email, password)
 
       .then(() => {
+
         const user = auth.currentUser;
+        console.log({ user });
         console.log("logeado papa!");
-        navigation.navigate("Home")
+        navigation.navigate("home")
         Alert.alert("Ya estas logueado" + " " + user.email)
 
       })
@@ -64,9 +68,6 @@ const LoginScreen = () => {
       })
   };
 
-
-
-
   return (
     <View style={styles.container}>
 
@@ -75,32 +76,17 @@ const LoginScreen = () => {
       <Input type='email' id='email' style={styles.imputs} placeholder='Ingresar Email' onChangeText={(text) => setEmail(text)} />
       <Input secureTextEntry={true} id='password' style={styles.imputs} placeholder='Ingresar Contraseña' onChangeText={(text) => setPassword(text)} />
 
-      {/* <Input placeholder="Email"
-        onChangeText={text => setEmail(text)}
-        value={email} />
-
-      <Input
-        placeholder="Password"
-        onChangeText={text => setPassword(text)}
-        value={password}
-        secureTextEntry={true}
-      /> */}
-
-
 
       <View >
-        {/* <TouchableOpacity onPress={ingresarCuenta()}>
+        <Button title="Login" onPress={ingresarCuenta} />
 
-          <Text style={styles.titleButton} >Registrarse</Text>
+      </View>
 
-        </TouchableOpacity>
-
-        <TouchableOpacity onPress={crearCuenta()} >
-          <Text style={styles.titleButton} >Loguearse</Text>
-
-        </TouchableOpacity> */}
-        <Button title="Login" onPress={ingresarCuenta()} />
-
+      <View>
+        <Button title="registerScreen" onPress={() => { navigation.navigate("registerScreen") }} >
+          <Text>Pepe
+          </Text>
+        </Button>
 
       </View>
 
@@ -112,8 +98,20 @@ const LoginScreen = () => {
 }
 
 
+const RegisterScreen = () => {
 
-const homeScreen = () => {
+  return (
+    <View>
+      <Text>
+
+      </Text>
+
+    </View>
+  )
+};
+
+
+const HomeScreen = () => {
 
   return (
     <View>
@@ -122,16 +120,21 @@ const homeScreen = () => {
   )
 }
 
+
+
+
 const App = () => {
 
   const Stack = createNativeStackNavigator();
+
 
 
   return (
     <NavigationContainer>
       <Stack.Navigator Container initialRouteName="login">
         <Stack.Screen name="login" component={LoginScreen} />
-        <Stack.Screen name="Home" component={homeScreen} />
+        <Stack.Screen name="registerScreen" component={RegisterScreen} />
+        <Stack.Screen name="home" component={HomeScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   )

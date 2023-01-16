@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import { video } from "../assets/fondoapp.mp4";
+
 
 const styles = StyleSheet.create({
     container: {
@@ -21,6 +21,7 @@ const styles = StyleSheet.create({
     title: {
         color: '#fff',
         fontSize: 25,
+        paddingTop: 50,
     },
     UserTitle: {
         color: '#fff',
