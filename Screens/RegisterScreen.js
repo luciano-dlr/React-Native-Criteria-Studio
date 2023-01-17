@@ -28,6 +28,7 @@ export const RegisterScreen = () => {
                 const user = auth.currentUser;
                 console.log(user)
                 Alert.alert("bienvenido " + user.email);
+                navigation.navigate("login")
 
             })
             .catch(() => {
