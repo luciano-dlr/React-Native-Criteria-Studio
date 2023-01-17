@@ -9,12 +9,6 @@ import React from "react";
 import { Text, View, Alert, Button } from 'react-native';
 import { Input } from '@rneui/themed';
 
-
-
-
-
-
-
 export const RegisterScreen = () => {
 
     const navigation = useNavigation();
