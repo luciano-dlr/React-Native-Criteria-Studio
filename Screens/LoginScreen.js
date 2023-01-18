@@ -1,29 +1,33 @@
 import { useNavigation } from "@react-navigation/native";
 import { useState } from "react";
-import styles from "../Styles/Styles";
 import { firebaseConfig } from "../firebase-config.js";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { initializeApp } from "firebase/app";
-import React from "react";
 import { View, Image, Alert, Button } from 'react-native';
 import { Input } from '@rneui/themed';
+import styles from "../Styles/Styles";
 
 export const LoginScreen = () => {
 
+    //Navigation para pasar de pantalla
     const navigation = useNavigation();
 
+    // Variables para ingresar
     const [password, setPassword] = useState('');
     const [email, setEmail] = useState('');
 
+    //variables para llevar la informacion a firebase
     const app = initializeApp(firebaseConfig);
     const auth = getAuth(app);
 
     const ingresarCuenta = () => {
 
+        //funcion importada de firebase para login con email y password
         signInWithEmailAndPassword(auth, email, password)
 
             .then(() => {
 
+                //auth para controlar el usuario en console log
                 const user = auth.currentUser;
                 console.log({ user });
                 console.log("logeado papa!");

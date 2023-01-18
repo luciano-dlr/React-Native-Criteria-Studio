@@ -1,6 +1,6 @@
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { useState } from "react";
+
 import React from "react";
 
 // Pantallas 
@@ -13,21 +13,14 @@ const App = () => {
 
   const Stack = createNativeStackNavigator();
 
-  // const [password, setPassword] = useState('');
-  // const [email, setEmail] = useState('');
-
-  // const states = { email, password }
-  // const [email, password] = states
-
   return (
     <NavigationContainer>
       <Stack.Navigator Container initialRouteName="login">
+
         <Stack.Screen name="login" component={LoginScreen} />
-
         <Stack.Screen name="registerScreen" component={RegisterScreen} />
-        {() => <RegisterScreen states={[{ password }, { email }]} />}
-
         <Stack.Screen name="home" component={HomeScreen} />
+
       </Stack.Navigator>
     </NavigationContainer >
   )
@@ -36,7 +29,6 @@ const App = () => {
 export default App;
 
 
-// modular el proyecto en pantallas, con import de navigate
 
 // carpeta de rutas, si un suario se loguea, necesitas rutas publicas
 
