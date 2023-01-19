@@ -46,7 +46,12 @@ const styles = StyleSheet.create({
     },
     displayNone: {
         display: 'none',
-    }
+    },
+    scrollView: {
+        paddingLeft: 10,
+        paddingRight: 10,
+        color: 'black',
+    },
 });
 
 export default styles;

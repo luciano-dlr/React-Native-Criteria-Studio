@@ -1,6 +1,6 @@
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-
+import { registerRootComponent } from 'expo';
 import React from "react";
 
 // Pantallas 
@@ -14,8 +14,9 @@ const App = () => {
   const Stack = createNativeStackNavigator();
 
   return (
+
     <NavigationContainer>
-      <Stack.Navigator Container initialRouteName="login">
+      <Stack.Navigator Container initialRouteName="home">
 
         <Stack.Screen name="login" component={LoginScreen} />
         <Stack.Screen name="registerScreen" component={RegisterScreen} />
@@ -28,7 +29,9 @@ const App = () => {
 
 export default App;
 
+//exp:\192.168.0.13:19000
 
+// Los componentes que dejan renderizar web son @renui
 
 // carpeta de rutas, si un suario se loguea, necesitas rutas publicas
 
