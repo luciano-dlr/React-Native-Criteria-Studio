@@ -48,9 +48,22 @@ const styles = StyleSheet.create({
         display: 'none',
     },
     scrollView: {
+        backgroundColor: '#fff',
         paddingLeft: 10,
         paddingRight: 10,
         color: 'black',
+        tintColor: '#fff',
+    },
+    // checkbox
+    section: {
+        flexDirection: 'row',
+        alignItems: 'center',
+    },
+    paragraph: {
+        fontSize: 15,
+    },
+    checkbox: {
+        margin: 8,
     },
 });
 

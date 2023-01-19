@@ -5,6 +5,7 @@ import styles from "../Styles/Styles";
 import { Input } from '@rneui/themed';
 import { Button } from "@rneui/themed";
 import { useNavigation } from "@react-navigation/native";
+import Checkbox from 'expo-checkbox';
 
 
 
@@ -20,10 +21,14 @@ export const HomeScreen = () => {
   const [isEnabled, setIsEnabled] = useState(false);
   const toggleSwitch = () => setIsEnabled(previousState => !previousState);
 
-  console.log(isEnabled)
+  console.log(isEnabled + ' on off')
+
+  // Checkbox
+  const [isChecked, setChecked] = useState(false);
+
 
   return (
-    <SafeAreaView >
+    <SafeAreaView  >
       <ScrollView style={styles.scrollView}>
         <View >
           <Input type='email' id='email' style={styles.imputs} placeholder='Ingresar Email' />
@@ -42,6 +47,25 @@ export const HomeScreen = () => {
               </Switch>
             </Text>
 
+          </View>
+          <View >
+            <View style={styles.section}>
+              <Checkbox style={styles.checkbox} value={isChecked} onValueChange={setChecked} />
+              <Text style={styles.paragraph}>Normal checkbox</Text>
+            </View>
+            <View style={styles.section}>
+              <Checkbox
+                style={styles.checkbox}
+                value={isChecked}
+                onValueChange={setChecked}
+                color={isChecked ? '#4630EB' : undefined}
+              />
+              <Text style={styles.paragraph}>Custom colored checkbox</Text>
+            </View>
+            <View style={styles.section}>
+              <Checkbox style={styles.checkbox} disabled value={isChecked} onValueChange={setChecked} />
+              <Text style={styles.paragraph}>Disabled checkbox</Text>
+            </View>
           </View>
 
 
