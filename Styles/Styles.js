@@ -14,11 +14,31 @@ const styles = StyleSheet.create({
         fontSize: 25,
         paddingTop: 50,
     },
+    button: {
+        backgroundColor: 'white',
+        paddingRight: 20,
+        paddingLeft: 20,
+        paddingBottom: 5,
+        paddingTop: 5,
+        marginTop: 80,
+        borderRadius: 5,
+        alignItems: 'center',
+        width: '40%',
+        margin: 10,
+    },
+    subTitulo: {
+        fontSize: 16,
+        padding: 2,
+    },
+    noTienesCuenta: {
+        color: '#fff',
+        fontSize: 14,
+        marginTop: 20,
+    },
     imputs: {
         color: '#fff',
         fontSize: 18,
-        paddingBottom: 10,
-
+        padding: 10,
     },
     imagen: {
         width: 300,

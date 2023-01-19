@@ -12,7 +12,8 @@ import { useNavigation } from "@react-navigation/native";
 export const HomeScreen = () => {
 
   return (
-    <View style={styles.container}>
+    <View >
+      <Input type='email' id='email' style={styles.imputs} placeholder='Ingresar Email' onChangeText={(text) => setEmail(text)} />
       <Text>Bienvenido Usuario</Text>
     </View>
   )

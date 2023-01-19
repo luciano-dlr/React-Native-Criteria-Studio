@@ -3,7 +3,7 @@ import { useState } from "react";
 import { firebaseConfig } from "../firebase-config.js";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { initializeApp } from "firebase/app";
-import { View, Image, Alert, Button } from 'react-native';
+import { View, Image, Alert, TouchableOpacity, Text } from 'react-native';
 import { Input } from '@rneui/themed';
 import styles from "../Styles/Styles";
 
@@ -31,7 +31,11 @@ export const LoginScreen = () => {
                 const user = auth.currentUser;
                 console.log({ user });
                 console.log("logeado papa!");
+
+                // Navigation a la pantalla home
                 navigation.navigate("home")
+
+                //Alert
                 Alert.alert("Ya estas logueado" + " " + user.email)
 
             })
@@ -53,13 +57,24 @@ export const LoginScreen = () => {
 
             <View >
 
-                <Button title="Login" onPress={ingresarCuenta} />
+
+            </View>
+            <View style={styles.button}>
+                <TouchableOpacity title="Login" onPress={ingresarCuenta} >
+                    <Text style={styles.subTitulo}>
+                        Login
+                    </Text>
+                </TouchableOpacity>
 
             </View>
 
-            <View>
+            <View >
 
-                <Button title="registerScreen" onPress={() => { navigation.navigate("registerScreen") }} />
+                <TouchableOpacity title="registerScreen" onPress={() => { navigation.navigate("registerScreen") }} >
+                    <Text style={styles.noTienesCuenta}>
+                        Crear Cuenta
+                    </Text>
+                </TouchableOpacity>
 
             </View>
 

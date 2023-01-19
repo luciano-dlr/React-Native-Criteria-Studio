@@ -3,11 +3,12 @@ import { useState } from "react";
 import { firebaseConfig } from "../firebase-config.js";
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import { initializeApp } from "firebase/app";
-import { Text, View, Alert, Button } from 'react-native';
+import { Text, View, Alert, TouchableOpacity } from 'react-native';
 import { Input } from '@rneui/themed';
 import styles from "../Styles/Styles";
 
 export const RegisterScreen = () => {
+
 
     //Navigation para pasar de pantalla
     const navigation = useNavigation();
@@ -50,17 +51,25 @@ export const RegisterScreen = () => {
                 const user = auth.currentUser;
                 console.log("cuenta creada");
                 console.log(user)
-                Alert.alert("bienvenido " + user.email);
+
+                // Navigation a la pantalla login
                 navigation.navigate("login")
+
+                //Alert
+                Alert.alert("bienvenido " + user.email);
             })
             .catch(() => {
-                // console.log("error")
+
+                console.log("error al crear cuenta")
+
             })
     }
 
     return (
 
         <View style={styles.container}>
+
+
 
             <Input type='email' id='email' style={styles.imputs} placeholder='Ingresar Email' onChangeText={(text) => setEmail(text)} />
 
@@ -71,17 +80,25 @@ export const RegisterScreen = () => {
 
             <Input placeholder="Confirmar Contraseña" style={styles.imputs} value={confirmPassword} onChangeText={(text) => setConfirmPassword(text)} secureTextEntry={true} />
 
-            <View >
+            <Text style={{ color: 'white', fontSize: 12, paddingTop: 5, }}>Contraseña minimo 6 caracteres</Text>
 
-                <Text style={{ color: 'white', fontSize: 12, }}>Contraseña minimo 6 caracteres</Text>
+            <View style={styles.button} >
 
-                <Button title="Registrarse" onPress={registrase} />
+                <TouchableOpacity title="Registrarse" onPress={registrase} >
+                    <Text>
+                        Registrarse
+                    </Text>
+                </TouchableOpacity>
 
             </View>
+
             <View>
 
-                <Button title="Regresar al login " onPress={() => { navigation.navigate("login") }} ></Button>
-
+                <TouchableOpacity title="Regresar al login " onPress={() => { navigation.navigate("login") }} >
+                    <Text style={styles.noTienesCuenta}>
+                        Regresar al login
+                    </Text>
+                </TouchableOpacity>
             </View>
 
         </View>
