@@ -9,8 +9,21 @@ const styles = StyleSheet.create({
         paddingRight: 10,
         paddingLeft: 10,
     },
+    containerBlanco: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: `#fff`,
+        paddingRight: 10,
+        paddingLeft: 10,
+    },
     title: {
         color: '#fff',
+        fontSize: 25,
+        paddingTop: 50,
+    },
+    titleNegro: {
+        color: 'black',
         fontSize: 25,
         paddingTop: 50,
     },
@@ -37,6 +50,11 @@ const styles = StyleSheet.create({
     },
     imputs: {
         color: '#fff',
+        fontSize: 18,
+        padding: 10,
+    },
+    imputsBlanco: {
+        color: 'black',
         fontSize: 18,
         padding: 10,
     },
