@@ -5,12 +5,12 @@ import styles from "../Styles/Styles";
 import { Input } from '@rneui/themed';
 import { Button } from "@rneui/themed";
 import { useNavigation } from "@react-navigation/native";
-import Checkbox from 'expo-checkbox';
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { initializeApp } from "firebase/app";
 import { firebaseConfig } from "../firebase-config.js";
 import { ButtonGroup } from '@rneui/themed';
-import { Switch } from '@rneui/themed';
+import { Switch, Dialog, } from '@rneui/themed';
+import { CheckBox, Icon } from '@rneui/themed';
 
 
 
@@ -23,16 +23,24 @@ export const HomeScreen = () => {
   const criteriaEmail = user.email;
 
   //estado de los imputs 
-  const [marca,setMarca] = useState('');
-  const [rubro,setRubro] = useState('');
-  const [nombreContacto,setNombreContacto] = useState('');
-  const [apellidoContacto,setApellidoContacto] = useState('');
-  const [cargo,setCargo] = useState('');
-  const [emailContacto,setEmailContacto] = useState('');
-  const [telefonoContacto,setTelefonoContacto] = useState('')
+  const [marca, setMarca] = useState('');
+  const [rubro, setRubro] = useState('');
+  const [nombreContacto, setNombreContacto] = useState('');
+  const [apellidoContacto, setApellidoContacto] = useState('');
+  const [cargo, setCargo] = useState('');
+  const [emailContacto, setEmailContacto] = useState('');
+  const [telefonoContacto, setTelefonoContacto] = useState('')
 
 
-//intento de dropdawn 
+  //intento de pop up
+  const [visible1, setVisible1] = useState(false);
+
+  const toggleDialog1 = () => {
+    setVisible1(!visible1);
+  };
+
+  //check box dentro de popup
+  const [check2, setCheck2] = useState(false);
 
 
 
@@ -41,26 +49,42 @@ export const HomeScreen = () => {
 
 
 
-  
+
+
   const enviarFormulario = () => {
-    const formData = { marca,rubro,nombreContacto,apellidoContacto,cargo,emailContacto,telefonoContacto,criteriaEmail};
+    const formData = { marca, rubro, nombreContacto, apellidoContacto, cargo, emailContacto, telefonoContacto, criteriaEmail, check2 };
     console.log(formData);
     // Enviar petición al servidor
-}
+  }
 
 
   return (
     <SafeAreaView  >
 
       <ScrollView style={styles.scrollView}>
-      
+
         <View>
+
+          {/* pop up */}
+          <Button title="Empresas" onPress={toggleDialog1} />
+
+          {/* Contenido del pop up */}
+          <Dialog isVisible={visible1} onBackdropPress={toggleDialog1}>
+
+            <Dialog.Title title="Empresas" />
+
+            <CheckBox center title="Opcion 1 de empresa" checkedIcon="dot-circle-o" uncheckedIcon="circle-o" checked={check2} onPress={() => setCheck2(!check2)} />
+
+            <Button title="Confirmar" onPress={toggleDialog1} />
+
+          </Dialog>
+
 
           <Text style={styles.titleNegro}>Cotizacion</Text>
 
           <Input type='marca' id='marca' style={styles.imputsBlanco} placeholder='Marca' value={marca} onChangeText={(text) => setMarca(text)} />
 
-          <Input type='rubro' id='rubro' style={styles.imputsBlanco} placeholder='Rubro' value={rubro} onChangeText={(text) => setRubro(text)}/>
+          <Input type='rubro' id='rubro' style={styles.imputsBlanco} placeholder='Rubro' value={rubro} onChangeText={(text) => setRubro(text)} />
 
           <Text>Seleccionar mes estio dropdawn o pop up </Text>
 
@@ -82,9 +106,9 @@ export const HomeScreen = () => {
 
           <Text style={styles.titleNegro}>Social Media</Text>
 
-          <Button title='Cotizar' onPress={enviarFormulario}/>
+          <Button title='Cotizar' onPress={enviarFormulario} />
 
-   
+
         </View>
       </ScrollView>
     </SafeAreaView>
