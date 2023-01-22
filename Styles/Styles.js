@@ -39,6 +39,11 @@ const styles = StyleSheet.create({
         width: '40%',
         margin: 10,
     },
+    buttonApp: {
+        width: 200,
+        marginHorizontal: 50,
+        marginVertical: 10,
+    },
     subTitulo: {
         fontSize: 16,
         padding: 2,
