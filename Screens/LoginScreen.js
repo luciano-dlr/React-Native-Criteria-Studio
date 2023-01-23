@@ -33,7 +33,7 @@ export const LoginScreen = () => {
                 console.log("logeado papa!");
 
                 // Navigation a la pantalla home
-                navigation.navigate("home")
+                navigation.navigate('home');
 
                 //Alert
                 Alert.alert("Ya estas logueado" + " " + user.email)

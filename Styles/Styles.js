@@ -17,15 +17,42 @@ const styles = StyleSheet.create({
         paddingRight: 10,
         paddingLeft: 10,
     },
+    containerHome: {
+        backgroundColor: '#fff',
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center',
+
+    },
+    containerCoti: {
+        backgroundColor: '#fff',
+        marginTop: 30,
+
+
+
+    },
     title: {
         color: '#fff',
         fontSize: 25,
         paddingTop: 50,
+
     },
     titleNegro: {
         color: 'black',
         fontSize: 25,
         paddingTop: 50,
+    },
+    titleHome: {
+        textAlign: 'center',
+        color: 'black',
+        fontSize: 14,
+        padding: 10,
+    },
+    titleDerechos: {
+        textAlign: 'center',
+        color: '#fff',
+        fontSize: 14,
+        padding: 5,
     },
     button: {
         backgroundColor: 'white',
@@ -57,6 +84,13 @@ const styles = StyleSheet.create({
         color: '#fff',
         fontSize: 18,
         padding: 10,
+    },
+    imputsCotizacion: {
+        color: 'black',
+        fontSize: 18,
+        fontWeight: 'bold',
+        padding: 10,
+        borderRadius: 5,
     },
     imputsBlanco: {
         color: 'black',
