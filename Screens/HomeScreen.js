@@ -1,26 +1,13 @@
 import React from "react";
-import { useState, FC } from "react";
-import { Text, View, Image, TouchableOpacity, ScrollView, StatusBar, FlatList } from 'react-native';
+import { Text, View, Image, TouchableOpacity } from 'react-native';
 import styles from "../Styles/Styles";
-import { Input } from '@rneui/themed';
-import { Button } from "@rneui/themed";
 import { useNavigation } from "@react-navigation/native";
-import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
-import { initializeApp } from "firebase/app";
-import { firebaseConfig } from "../firebase-config.js";
-import { ButtonGroup } from '@rneui/themed';
-import { Switch, Dialog, } from '@rneui/themed';
-import { CheckBox, Icon, ActivityIndicator } from '@rneui/themed';
-
-
 
 
 export const HomeScreen = () => {
 
+  //Navigation para pasar de pantalla
   const navigation = useNavigation();
-
-
-
 
 
   return (
@@ -28,7 +15,7 @@ export const HomeScreen = () => {
     <>
       <View style={styles.containerHome} >
 
-
+        {/* Columna 1 */}
         <View >
 
           <Text style={styles.titleHome}>Clientes</Text>
@@ -54,6 +41,7 @@ export const HomeScreen = () => {
 
         </View>
 
+        {/* Columna 2 */}
         <View>
           <Text style={styles.titleHome}>Cotizacion</Text>
 

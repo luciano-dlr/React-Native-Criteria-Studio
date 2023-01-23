@@ -20,6 +20,7 @@ export const LoginScreen = () => {
     const app = initializeApp(firebaseConfig);
     const auth = getAuth(app);
 
+    //Funcion para ingresar cuenta con resultado loguearse y navegar al home
     const ingresarCuenta = () => {
 
         //funcion importada de firebase para login con email y password

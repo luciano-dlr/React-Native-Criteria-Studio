@@ -1,21 +1,47 @@
 import React from "react";
-import { useState, FC } from "react";
-import { Text, View, Image, TouchableOpacity, SafeAreaView, ScrollView, StatusBar, Alert } from 'react-native';
+import { useState, useEffect } from "react";
 import styles from "../Styles/Styles";
-import { Input } from '@rneui/themed';
-import { Button } from "@rneui/themed";
+import { Text, View, SafeAreaView, ScrollView, Alert } from 'react-native';
+import { Dialog, CheckBox, Button, Input } from '@rneui/themed';
 import { useNavigation } from "@react-navigation/native";
-import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import { getAuth } from "firebase/auth";
 import { initializeApp } from "firebase/app";
 import { firebaseConfig } from "../firebase-config.js";
-import { ButtonGroup } from '@rneui/themed';
-import { Switch, Dialog, } from '@rneui/themed';
-import { CheckBox, Icon } from '@rneui/themed';
 
 
 
 export const CotizacionScreen = () => {
 
+    const [localTime, setLocalTime] = useState('');
+    const months = [
+        'Enero',
+        'Febrero',
+        'Marzo',
+        'Abril',
+        'Mayo',
+        'Junio',
+        'Julio',
+        'Agosto',
+        'Septiembre',
+        'Octubre',
+        'Noviembre',
+        'Diciembre',
+    ];
+    useEffect(() => {
+        const intervalId = setInterval(() => {
+            const now = new Date();
+            const minuto = now.getMinutes();
+            const hora = now.getHours();
+            const day = now.getDate();
+            const month = months[now.getMonth()];
+            const year = now.getFullYear();
+            setLocalTime(`${day}-${month}-${year}-${hora + ':' + minuto + 'horas'}`);
+        }, 1000);
+        return () => clearInterval(intervalId);
+    }, []);
+
+
+    //Navigation para pasar de pantalla
     const navigation = useNavigation();
 
     //variables para traer el nombre de usuario al formulario que está cotizando 
@@ -35,25 +61,26 @@ export const CotizacionScreen = () => {
 
 
     //PopUp Meses
-    const [visible1, setVisible1] = useState(false);
+    // const [visible1, setVisible1] = useState(false);
 
-    const toggleDialog1 = () => {
-        setVisible1(!visible1);
-    };
+    // const toggleDialog1 = () => {
+    //     setVisible1(!visible1);
+    // };
 
     //check-box dentro de popup 'MES DE COTIZACION'
-    const [mesCotizacionEnero, setMesCotizacionEnero] = useState(false);
-    const [mesCotizacionFebrero, setMesCotizacionFebrero] = useState(false);
-    const [mesCotizacionMarzo, setMesCotizacionMarzo] = useState(false);
-    const [mesCotizacionAbril, setMesCotizacionAbril] = useState(false);
-    const [mesCotizacionMayo, setMesCotizacionMayo] = useState(false);
-    const [mesCotizacionJunio, setMesCotizacionJunio] = useState(false);
-    const [mesCotizacionJulio, setMesCotizacionJulio] = useState(false);
-    const [mesCotizacionAgosto, setMesCotizacionAgosto] = useState(false);
-    const [mesCotizacionSeptiembre, setMesCotizacionSeptiembre] = useState(false);
-    const [mesCotizacionOctubre, setMesCotizacionOctubre] = useState(false);
-    const [mesCotizacionNoviembre, setMesCotizacionNoviembre] = useState(false);
-    const [mesCotizacionDiciembre, setMesCotizacionDiciembre] = useState(false);
+
+    // const [mesCotizacionEnero, setMesCotizacionEnero] = useState(false);
+    // const [mesCotizacionFebrero, setMesCotizacionFebrero] = useState(false);
+    // const [mesCotizacionMarzo, setMesCotizacionMarzo] = useState(false);
+    // const [mesCotizacionAbril, setMesCotizacionAbril] = useState(false);
+    // const [mesCotizacionMayo, setMesCotizacionMayo] = useState(false);
+    // const [mesCotizacionJunio, setMesCotizacionJunio] = useState(false);
+    // const [mesCotizacionJulio, setMesCotizacionJulio] = useState(false);
+    // const [mesCotizacionAgosto, setMesCotizacionAgosto] = useState(false);
+    // const [mesCotizacionSeptiembre, setMesCotizacionSeptiembre] = useState(false);
+    // const [mesCotizacionOctubre, setMesCotizacionOctubre] = useState(false);
+    // const [mesCotizacionNoviembre, setMesCotizacionNoviembre] = useState(false);
+    // const [mesCotizacionDiciembre, setMesCotizacionDiciembre] = useState(false);
 
     //Nivel Cliente Empresa   
     const [granOrganizacion, setGranOrganizacion] = useState(false)
@@ -62,41 +89,70 @@ export const CotizacionScreen = () => {
     const [microOrganizacion, setMicroOrganizacion] = useState(false)
     const [osflOrganizacion, setOsflOrganizacion] = useState(false)
 
+
+
     //funciones de los botones de empresa para desactivar las otras
-    const granOrganizacionButton = () => {
+    const granOrganizacionButton = (isChecked) => {
         setGranOrganizacion(!granOrganizacion);
         setMedianaOrganizacion(false);
         setPequeOrganizacion(false);
         setMicroOrganizacion(false);
         setOsflOrganizacion(false);
+        if (isChecked) {
+            setGranOrganizacion(0.9);
+        } else {
+            setGranOrganizacion(0);
+        }
     }
-    const medianaOrganizacionButton = () => {
+    console.log(granOrganizacion)
+
+    const medianaOrganizacionButton = (isChecked) => {
         setGranOrganizacion(false);
         setMedianaOrganizacion(!medianaOrganizacion);
         setPequeOrganizacion(false);
         setMicroOrganizacion(false);
         setOsflOrganizacion(false);
+        if (isChecked) {
+            setMedianaOrganizacion(0.7);
+        } else {
+            setMedianaOrganizacion(0);
+        }
     }
-    const pequeOrganizacionButton = () => {
+    const pequeOrganizacionButton = (isChecked) => {
         setGranOrganizacion(false);
         setMedianaOrganizacion(false);
         setPequeOrganizacion(!pequeOrganizacion)
         setMicroOrganizacion(false);
         setOsflOrganizacion(false);
+        if (isChecked) {
+            setPequeOrganizacion(0.4);
+        } else {
+            setPequeOrganizacion(0);
+        }
     }
-    const microeOrganizacionButton = () => {
+    const microeOrganizacionButton = (isChecked) => {
         setGranOrganizacion(false);
         setMedianaOrganizacion(false);
         setPequeOrganizacion(false)
         setMicroOrganizacion(!microOrganizacion)
         setOsflOrganizacion(false);
+        if (isChecked) {
+            setMicroOrganizacion(0.2);
+        } else {
+            setMicroOrganizacion(0);
+        }
     }
-    const osflOrganizacionButton = () => {
+    const osflOrganizacionButton = (isChecked) => {
         setGranOrganizacion(false);
         setMedianaOrganizacion(false);
         setPequeOrganizacion(false);
         setMicroOrganizacion(false);
         setOsflOrganizacion(!osflOrganizacion);
+        if (isChecked) {
+            setOsflOrganizacion(0.1);
+        } else {
+            setOsflOrganizacion(0);
+        }
     }
 
     //PopUp SocialMedia
@@ -114,9 +170,16 @@ export const CotizacionScreen = () => {
 
 
     const enviarFormulario = () => {
-        const formData = { marca, rubro, nombreContacto, apellidoContacto, cargo, emailContacto, telefonoContacto, criteriaEmail, mesCotizacionEnero, pirdBasica, pirdCompleja };
+
+        //Categorizacion de data ingresada en familia, sea redes como tambien data general 
+        const formData = [localTime,
+
+            { marca, rubro, nombreContacto, apellidoContacto, cargo, emailContacto, telefonoContacto, criteriaEmail, pirdBasica, pirdCompleja },
+            { granOrganizacion, pequeOrganizacion, medianaOrganizacion, microOrganizacion, osflOrganizacion }];
+
         console.log(formData);
         Alert.alert("Cotizacion realizada por " + " " + user.email)
+        Alert.alert(localTime)
 
         // Enviar petición al servidor
     }
@@ -124,26 +187,26 @@ export const CotizacionScreen = () => {
 
     return (
         <SafeAreaView  >
-
             <ScrollView style={styles.scrollView}>
 
                 <View style={styles.containerCoti}>
+
 
                     <Input label={'Marca'} type='marca' id='marca' style={styles.imputsCotizacion} placeholder='Ingresar marca' value={marca} onChangeText={(text) => setMarca(text)} />
 
                     <Input label={'Rubro'} type='rubro' id='rubro' style={styles.imputsCotizacion} placeholder='Rubro' value={rubro} onChangeText={(text) => setRubro(text)} />
 
                     {/* pop up */}
-                    <Button title="Mes de cotizacion" onPress={toggleDialog1} titleStyle={{ color: 'black', fontSize: 18 }} containerStyle={{ marginHorizontal: 10, marginVertical: 20, color: 'black' }} buttonStyle={{
+                    {/* <Button title="Mes de cotizacion" onPress={toggleDialog1} titleStyle={{ color: 'black', fontSize: 18 }} containerStyle={{ marginHorizontal: 10, marginVertical: 20, color: 'black' }} buttonStyle={{
                         backgroundColor: 'white', borderWidth: 1, borderColor: 'black', borderRadius: 5, padding: 10
-                    }} />
+                    }} /> */}
 
                     {/* Contenido del pop up  Meses*/}
 
-                    <Dialog isVisible={visible1} onBackdropPress={toggleDialog1}>
+                    {/* <Dialog isVisible={visible1} onBackdropPress={toggleDialog1}> */}
 
-                        {/* Meses*/}
-                        <Dialog.Title title="Mes de cotizacion" />
+                    {/* Meses*/}
+                    {/* <Dialog.Title title="Mes de cotizacion" />
 
                         <CheckBox title="Enero" checkedIcon="dot-circle-o" uncheckedIcon="circle-o" checked={mesCotizacionEnero} onPress={() => setMesCotizacionEnero(!mesCotizacionEnero)} />
                         <CheckBox title="Febrero" checkedIcon="dot-circle-o" uncheckedIcon="circle-o" checked={mesCotizacionFebrero} onPress={() => setMesCotizacionFebrero(!mesCotizacionFebrero)} />
@@ -160,7 +223,7 @@ export const CotizacionScreen = () => {
 
                         <Button title="Confirmar" onPress={toggleDialog1} />
 
-                    </Dialog>
+                    </Dialog> */}
 
                     <Input label={'Nombre de Contacto'} type='contacto' id='contacto' style={styles.imputsCotizacion} placeholder='Nombre de Contacto' value={nombreContacto} onChangeText={(text) => setNombreContacto(text)} />
 
@@ -180,23 +243,23 @@ export const CotizacionScreen = () => {
                     <Button title="Micro Organizacion (5-5 empleados)" containerStyle={{ marginHorizontal: 5, marginVertical: 5, }} onPress={microeOrganizacionButton} />
                     <Button title="Particular OSFL" containerStyle={{ marginHorizontal: 5, marginVertical: 5, }} onPress={osflOrganizacionButton} />
 
-                    {granOrganizacion === true && (
+                    {granOrganizacion === 0.9 && (
                         <Input disabled label={'Factor Correccion'} type='marca' id='marca' style={styles.imputsCotizacion} placeholder='Marca' value={'0.9'} />
                     )}
 
-                    {medianaOrganizacion === true && (
-                        <Input disabled label={'Factor Correccion'} type='marca' id='marca' style={styles.imputsCotizacion} placeholder='Marca' value={'0.6'} />
+                    {medianaOrganizacion === 0.7 && (
+                        <Input disabled label={'Factor Correccion'} type='marca' id='marca' style={styles.imputsCotizacion} placeholder='Marca' value={'0.7'} />
                     )}
 
-                    {pequeOrganizacion === true && (
+                    {pequeOrganizacion === 0.4 && (
                         <Input disabled label={'Factor Correccion'} type='marca' id='marca' style={styles.imputsCotizacion} placeholder='Marca' value={'0.4'} />
                     )}
 
-                    {microOrganizacion === true && (
+                    {microOrganizacion === 0.2 && (
                         <Input disabled label={'Factor Correccion'} type='marca' id='marca' style={styles.imputsCotizacion} placeholder='Marca' value={'0.2'} />
                     )}
 
-                    {osflOrganizacion === true && (
+                    {osflOrganizacion === 0.1 && (
                         <Input disabled label={'Factor Correccion'} type='marca' id='valorOSFL' style={styles.imputsCotizacion} placeholder='Marca' value={'0.1'} />
                     )}
 
@@ -264,18 +327,14 @@ export const CotizacionScreen = () => {
 
                     <Input type='phone' id='telefono' style={styles.imputsCotizacion} placeholder='Telefono de Contacto' value={telefonoContacto} onChangeText={(text) => setTelefonoContacto(text)} />
 
-
-
-
-
                     <Button title='Cotizar' titleStyle={{ color: 'black', fontSize: 18 }} containerStyle={{ marginHorizontal: 10, marginVertical: 50, color: 'black' }} buttonStyle={{
                         backgroundColor: 'white', borderWidth: 1, borderColor: 'black', borderRadius: 5, padding: 10
                     }} onPress={() => {
                         enviarFormulario(); navigation.navigate("home")
                     }} />
 
-
                 </View>
+
             </ScrollView>
         </SafeAreaView>
     );

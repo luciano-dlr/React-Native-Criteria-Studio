@@ -9,7 +9,6 @@ import styles from "../Styles/Styles";
 
 export const RegisterScreen = () => {
 
-
     //Navigation para pasar de pantalla
     const navigation = useNavigation();
 
@@ -68,8 +67,6 @@ export const RegisterScreen = () => {
     return (
 
         <View style={styles.container}>
-
-
 
             <Input type='email' id='email' style={styles.imputs} placeholder='Ingresar Email' onChangeText={(text) => setEmail(text)} />
 
