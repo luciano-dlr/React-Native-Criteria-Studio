@@ -62,6 +62,43 @@ export const CotizacionScreen = () => {
     const [microOrganizacion, setMicroOrganizacion] = useState(false)
     const [osflOrganizacion, setOsflOrganizacion] = useState(false)
 
+    //funciones de los botones de empresa para desactivar las otras
+    const granOrganizacionButton = () => {
+        setGranOrganizacion(!granOrganizacion);
+        setMedianaOrganizacion(false);
+        setPequeOrganizacion(false);
+        setMicroOrganizacion(false);
+        setOsflOrganizacion(false);
+    }
+    const medianaOrganizacionButton = () => {
+        setGranOrganizacion(false);
+        setMedianaOrganizacion(!medianaOrganizacion);
+        setPequeOrganizacion(false);
+        setMicroOrganizacion(false);
+        setOsflOrganizacion(false);
+    }
+    const pequeOrganizacionButton = () => {
+        setGranOrganizacion(false);
+        setMedianaOrganizacion(false);
+        setPequeOrganizacion(!pequeOrganizacion)
+        setMicroOrganizacion(false);
+        setOsflOrganizacion(false);
+    }
+    const microeOrganizacionButton = () => {
+        setGranOrganizacion(false);
+        setMedianaOrganizacion(false);
+        setPequeOrganizacion(false)
+        setMicroOrganizacion(!microOrganizacion)
+        setOsflOrganizacion(false);
+    }
+    const osflOrganizacionButton = () => {
+        setGranOrganizacion(false);
+        setMedianaOrganizacion(false);
+        setPequeOrganizacion(false);
+        setMicroOrganizacion(false);
+        setOsflOrganizacion(!osflOrganizacion);
+    }
+
     //PopUp SocialMedia
     const [socialMedia, setSocialMedia] = useState(false);
 
@@ -94,7 +131,7 @@ export const CotizacionScreen = () => {
 
                     <Input label={'Marca'} type='marca' id='marca' style={styles.imputsCotizacion} placeholder='Ingresar marca' value={marca} onChangeText={(text) => setMarca(text)} />
 
-                    <Input type='rubro' id='rubro' style={styles.imputsCotizacion} placeholder='Rubro' value={rubro} onChangeText={(text) => setRubro(text)} />
+                    <Input label={'Rubro'} type='rubro' id='rubro' style={styles.imputsCotizacion} placeholder='Rubro' value={rubro} onChangeText={(text) => setRubro(text)} />
 
                     {/* pop up */}
                     <Button title="Mes de cotizacion" onPress={toggleDialog1} titleStyle={{ color: 'black', fontSize: 18 }} containerStyle={{ marginHorizontal: 10, marginVertical: 20, color: 'black' }} buttonStyle={{
@@ -125,23 +162,23 @@ export const CotizacionScreen = () => {
 
                     </Dialog>
 
-                    <Input type='contacto' id='contacto' style={styles.imputsCotizacion} placeholder='Nombre de Contacto' value={nombreContacto} onChangeText={(text) => setNombreContacto(text)} />
+                    <Input label={'Nombre de Contacto'} type='contacto' id='contacto' style={styles.imputsCotizacion} placeholder='Nombre de Contacto' value={nombreContacto} onChangeText={(text) => setNombreContacto(text)} />
 
-                    <Input type='apellidoContacto' id='apellidoContacto' style={styles.imputsCotizacion} placeholder='Apellido de Contacto' value={apellidoContacto} onChangeText={(text) => setApellidoContacto(text)} />
+                    <Input label={'Apellido Contacto'} type='apellidoContacto' id='apellidoContacto' style={styles.imputsCotizacion} placeholder='Apellido de Contacto' value={apellidoContacto} onChangeText={(text) => setApellidoContacto(text)} />
 
-                    <Input type='cargo' id='cargo' style={styles.imputsCotizacion} placeholder='Cargo' value={cargo} onChangeText={(text) => setCargo(text)} />
+                    <Input label={'Cargo'} type='cargo' id='cargo' style={styles.imputsCotizacion} placeholder='Cargo' value={cargo} onChangeText={(text) => setCargo(text)} />
 
-                    <Input type='email' id='email' style={styles.imputsCotizacion} placeholder='Email de Contacto' value={emailContacto} onChangeText={(text) => setEmailContacto(text)} />
+                    <Input label={'Email Contacto'} type='email' id='email' style={styles.imputsCotizacion} placeholder='Email de Contacto' value={emailContacto} onChangeText={(text) => setEmailContacto(text)} />
 
-                    <Input type='phone' id='telefono' style={styles.imputsCotizacion} placeholder='Telefono de Contacto' value={telefonoContacto} onChangeText={(text) => setTelefonoContacto(text)} />
+                    <Input label={'Telefono Contacto'} type='phone' id='telefono' style={styles.imputsCotizacion} placeholder='Telefono de Contacto' value={telefonoContacto} onChangeText={(text) => setTelefonoContacto(text)} />
 
                     <Text > Nivel del cliente como empresa </Text>
 
-                    <Button title="Gran Organizacion (+50 empleados)" containerStyle={{ marginHorizontal: 5, marginVertical: 5, }} onPress={() => setGranOrganizacion(!granOrganizacion)} />
-                    <Button title="Mediana Organizacion (20-50 empleados)" containerStyle={{ marginHorizontal: 5, marginVertical: 5, }} onPress={() => setMedianaOrganizacion(!medianaOrganizacion)} />
-                    <Button title="Pequeña Organizacion (5-20 empleados)" containerStyle={{ marginHorizontal: 5, marginVertical: 5, }} onPress={() => setPequeOrganizacion(!pequeOrganizacion)} />
-                    <Button title="Micro Organizacion (5-5 empleados)" containerStyle={{ marginHorizontal: 5, marginVertical: 5, }} onPress={() => setMicroOrganizacion(!microOrganizacion)} />
-                    <Button title="Particular OSFL" containerStyle={{ marginHorizontal: 5, marginVertical: 5, }} onPress={() => setOsflOrganizacion(!osflOrganizacion)} />
+                    <Button title="Gran Organizacion (+50 empleados)" containerStyle={{ marginHorizontal: 5, marginVertical: 5, }} onPress={granOrganizacionButton} />
+                    <Button title="Mediana Organizacion (20-50 empleados)" containerStyle={{ marginHorizontal: 5, marginVertical: 5, }} onPress={medianaOrganizacionButton} />
+                    <Button title="Pequeña Organizacion (5-20 empleados)" containerStyle={{ marginHorizontal: 5, marginVertical: 5, }} onPress={pequeOrganizacionButton} />
+                    <Button title="Micro Organizacion (5-5 empleados)" containerStyle={{ marginHorizontal: 5, marginVertical: 5, }} onPress={microeOrganizacionButton} />
+                    <Button title="Particular OSFL" containerStyle={{ marginHorizontal: 5, marginVertical: 5, }} onPress={osflOrganizacionButton} />
 
                     {granOrganizacion === true && (
                         <Input disabled label={'Factor Correccion'} type='marca' id='marca' style={styles.imputsCotizacion} placeholder='Marca' value={'0.9'} />
@@ -172,7 +209,7 @@ export const CotizacionScreen = () => {
                     <Input disabled label={'Vista Dolar Hoy'} type='marca' id='marca' style={styles.imputsCotizacion} placeholder='Marca' value={'www.dolarhoy.com'} />
 
 
-                    <Input type='phone' id='telefono' style={styles.imputsCotizacion} placeholder='Valor dolar BLUE' />
+                    <Input label={'Valor Dolar Blue'} type='Dolar' id='telefono' style={styles.imputsCotizacion} placeholder='Valor dolar BLUE' />
 
                     <Input disabled label={'Cotizacion Realizada por'} type='marca' id='marca' style={styles.imputsCotizacion} placeholder='Marca' value={user.email} />
 
