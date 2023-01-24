@@ -22,6 +22,7 @@ export const RegisterScreen = () => {
     const app = initializeApp(firebaseConfig);
     const auth = getAuth(app);
 
+
     // funcion para registrarse que utiliza la funcion de creacion de cuenta dentro de un else para confirmar contraseña primero
     const registrase = () => {
 
