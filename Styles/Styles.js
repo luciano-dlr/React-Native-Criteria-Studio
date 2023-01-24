@@ -1,102 +1,127 @@
 import { StyleSheet } from 'react-native';
 
-
 const styles = StyleSheet.create({
     container: {
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: 'black',
+        backgroundColor: `black`,
         paddingRight: 10,
         paddingLeft: 10,
     },
-    containerUser: {
+    containerBlanco: {
         flex: 1,
-        justifyContent: 'space-evenly',
+        justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: 'black',
+        backgroundColor: `#fff`,
         paddingRight: 10,
         paddingLeft: 10,
+    },
+    containerHome: {
+        backgroundColor: '#fff',
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center',
+
+    },
+    containerCoti: {
+        backgroundColor: '#fff',
+        marginTop: 30,
+
+
+
     },
     title: {
         color: '#fff',
         fontSize: 25,
+        paddingTop: 50,
+
     },
-    UserTitle: {
-        color: '#fff',
-        fontSize: 30,
+    titleNegro: {
+        color: 'black',
+        fontSize: 25,
+        paddingTop: 50,
+    },
+    titleHome: {
+        textAlign: 'center',
+        color: 'black',
+        fontSize: 14,
         padding: 10,
     },
-    UserTitle_childs: {
+    titleDerechos: {
+        textAlign: 'center',
         color: '#fff',
-        fontSize: 28,
-        padding: 4,
-        borderBottomColor: '#404143',
-        borderWidth: 1,
-
+        fontSize: 14,
+        padding: 5,
     },
-    UserTitle_childs_email: {
+    button: {
+        backgroundColor: 'white',
+        paddingRight: 20,
+        paddingLeft: 20,
+        paddingBottom: 5,
+        paddingTop: 5,
+        marginTop: 80,
+        borderRadius: 5,
+        alignItems: 'center',
+        width: '40%',
+        margin: 10,
+    },
+    buttonApp: {
+        width: 200,
+        marginHorizontal: 50,
+        marginVertical: 10,
+    },
+    subTitulo: {
+        fontSize: 16,
+        padding: 2,
+    },
+    noTienesCuenta: {
         color: '#fff',
-        fontSize: 24,
-        paddingTop: 40,
-
+        fontSize: 14,
+        marginTop: 20,
     },
     imputs: {
         color: '#fff',
         fontSize: 18,
-        paddingBottom: 10,
-
+        padding: 10,
     },
-    titleButton: {
-        color: '#fff',
-        fontSize: 20,
-        paddingRight: 10,
-        paddingLeft: 15,
-        paddingBottom: 10,
-        paddingTop: 12,
-        backgroundColor: 'black',
-        borderColor: '#fff',
-        borderWidth: 1,
-        borderRadius: 8,
-
+    imputsCotizacion: {
+        color: 'black',
+        fontSize: 18,
+        fontWeight: 'bold',
+        padding: 10,
+        borderRadius: 5,
     },
-    titleButtonUser: {
-        color: '#fff',
-        fontSize: 30,
-        paddingRight: 5,
-        paddingLeft: 15,
-        paddingBottom: 5,
-        paddingTop: 5,
-        backgroundColor: 'black',
-        borderColor: '#fff',
-        borderWidth: 1,
-        borderRadius: 8,
-
-    },
-    containerButton_user: {
-        paddingTop: 30,
-
-    },
-
-    buttonContainer: {
-        backgroundColor: "#fff",
-        borderBottomLeftRadius: 20,
-        borderBottomRightRadius: 20,
-
+    imputsBlanco: {
+        color: 'black',
+        fontSize: 18,
+        padding: 10,
     },
     imagen: {
         width: 300,
         height: 300,
     },
-    imagenUser: {
-        width: 170,
-        height: 170,
-
-    },
     displayNone: {
         display: 'none',
-
-    }
+    },
+    scrollView: {
+        backgroundColor: '#fff',
+        paddingLeft: 10,
+        paddingRight: 10,
+        color: 'black',
+        tintColor: '#fff',
+    },
+    // checkbox
+    section: {
+        flexDirection: 'row',
+        alignItems: 'center',
+    },
+    paragraph: {
+        fontSize: 15,
+    },
+    checkbox: {
+        margin: 8,
+    },
 });
 
 export default styles;

@@ -1,56 +1,88 @@
 import React from "react";
-import { Text, View, Image } from 'react-native';
+import { Text, View, Image, TouchableOpacity } from 'react-native';
 import styles from "../Styles/Styles";
-import { Input } from '@rneui/themed';
-import { Button } from "@rneui/themed";
 import { useNavigation } from "@react-navigation/native";
 
 
-// Denomino las props a los imputs
+export const HomeScreen = () => {
 
-const HomeScreen = ({ states }) => {
+  //Navigation para pasar de pantalla
+  const navigation = useNavigation();
 
-    const redirect = useNavigation();
 
-    const [name, email] = states;
+  return (
 
-    return (
+    <>
+      <View style={styles.containerHome} >
 
-        <View style={styles.container}>
+        {/* Columna 1 */}
+        <View >
 
-            <Image source={require('../assets/logoCriteria.jpg')} style={styles.imagen} />
+          <Text style={styles.titleHome}>Clientes</Text>
 
-            <Input id='name' style={styles.imputs} placeholder='Ingresar Nombre' defaultValue={name.value} onChangeText={(value) => name.setValue(value)} />
+          <TouchableOpacity>
 
-            <Input id='email' style={styles.imputs} placeholder='Ingresar Email' defaultValue={email.value} onChangeText={(value) => email.setValue(value)} />
+            <Image source={require('../assets/PersonalIMG.jpg')} style={{ width: 170, height: 200, margin: 10 }} />
 
-            <View >
-                <Button
-                    onPress={() => { redirect.navigate("User") }}
-                    type="clear" styles={styles.buttonContainer} >
+          </TouchableOpacity>
 
-                    <Text style={styles.titleButton} >Ingresar</Text>
-                    {/* {() => { states }} */}
 
-                </Button>
-                {/* <Button
-                    //type="outline"
-                    title='Ingresar'
-                    titleStyle={{ color: '#fff', fontSize: 20 }}
-                    onPress={() => { redirect.navigate("User") }} type="clear" styles={styles.buttonContainer}>
-                </Button> */}
 
-            </View>
+          <TouchableOpacity >
 
-        </View >
+            <Image source={require('../assets/Resumen.jpeg')} style={{ width: 170, height: 200, margin: 10 }} />
 
-    )
+          </TouchableOpacity>
+          <TouchableOpacity >
 
+            <Image source={require('../assets/Resumen.jpeg')} style={{ width: 170, height: 200, margin: 10 }} />
+
+          </TouchableOpacity>
+
+        </View>
+
+        {/* Columna 2 */}
+        <View>
+          <Text style={styles.titleHome}>Cotizacion</Text>
+
+          <TouchableOpacity onPress={() => { navigation.navigate("cotizacion") }}>
+
+            <Image source={require('../assets/CotizacionIMG.jpg')} style={{ width: 170, height: 200, margin: 10 }} />
+
+          </TouchableOpacity>
+
+
+
+          <TouchableOpacity >
+
+            <Image source={require('../assets/Resumen.jpeg')} style={{ width: 170, height: 200, margin: 10 }} />
+
+          </TouchableOpacity>
+          <TouchableOpacity >
+
+            <Image source={require('../assets/Resumen.jpeg')} style={{ width: 170, height: 200, margin: 10 }} />
+
+          </TouchableOpacity>
+
+        </View>
+
+
+      </View>
+
+      <View style={styles.container} >
+        <Text style={styles.titleDerechos}>©2023 Todos los derechos reservados | Desarrollado por CriteriA studio</Text>
+      </View>
+
+    </>
+
+
+
+
+  );
 };
 
 
 
-export default HomeScreen;
 
 
 
