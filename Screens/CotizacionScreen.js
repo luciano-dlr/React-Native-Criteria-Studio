@@ -1,40 +1,15 @@
 import React from "react";
-import { useState, useEffect } from "react";
 import styles from "../Styles/Styles";
-import { Text, View, SafeAreaView, ScrollView, Alert } from 'react-native';
-import { Dialog, CheckBox, Button, Input } from '@rneui/themed';
-import { useNavigation } from "@react-navigation/native";
 import { getAuth } from "firebase/auth";
+import { useState, useEffect } from "react";
 import { initializeApp } from "firebase/app";
 import { firebaseConfig } from "../firebase-config.js";
-
-import { getFirestore } from "firebase/firestore";
-
-import { collection, addDoc } from "firebase/firestore";
-
-
-
-
-
-
+import { useNavigation } from "@react-navigation/native";
+import { Dialog, CheckBox, Button, Input } from '@rneui/themed';
+import { getFirestore, collection, addDoc } from "firebase/firestore";
+import { Text, View, SafeAreaView, ScrollView, Alert } from 'react-native';
 
 export const CotizacionScreen = () => {
-
-    const [localTime, setLocalTime] = useState('');
-    const months = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre',];
-    useEffect(() => {
-        const intervalId = setInterval(() => {
-            const now = new Date();
-            const minuto = now.getMinutes();
-            const hora = now.getHours();
-            const day = now.getDate();
-            const month = months[now.getMonth()];
-            const year = now.getFullYear();
-            setLocalTime(`${day}-${month}-${year}-${hora + ':' + minuto + ' horas'}`);
-        }, 1000);
-        return () => clearInterval(intervalId);
-    }, []);
-
 
     //Navigation para pasar de pantalla
     const navigation = useNavigation();
@@ -43,14 +18,12 @@ export const CotizacionScreen = () => {
     const app = initializeApp(firebaseConfig);
     const auth = getAuth(app);
     const user = auth.currentUser;
+
+    //Email del usuario logueado
     const criteriaEmail = user.email;
 
     // base de datos
-
-    const db = getFirestore(app);
-
-    // const collectionRef = firestore().collection('Cotizaciones');
-
+    const db = getFirestore();
 
     //estado de los inputs 
     const [marca, setMarca] = useState('');
@@ -68,8 +41,7 @@ export const CotizacionScreen = () => {
     const [microOrganizacion, setMicroOrganizacion] = useState(false)
     const [osflOrganizacion, setOsflOrganizacion] = useState(false)
 
-
-    //funciones de los botones de empresa para desactivar las otras
+    //funciones de los botones de empresa para desactivar las otras Botones empresa
     const granOrganizacionButton = (isChecked) => {
         setGranOrganizacion(!granOrganizacion);
         setMedianaOrganizacion(false);
@@ -82,7 +54,7 @@ export const CotizacionScreen = () => {
             setGranOrganizacion(0);
         }
     }
-
+    //funcion de los botones de empresa para desactivar las otras Botones empresa
     const medianaOrganizacionButton = (isChecked) => {
         setGranOrganizacion(false);
         setMedianaOrganizacion(!medianaOrganizacion);
@@ -95,6 +67,8 @@ export const CotizacionScreen = () => {
             setMedianaOrganizacion(0);
         }
     }
+
+    //funcion de los botones de empresa para desactivar las otras Botones empresa
     const pequeOrganizacionButton = (isChecked) => {
         setGranOrganizacion(false);
         setMedianaOrganizacion(false);
@@ -107,6 +81,8 @@ export const CotizacionScreen = () => {
             setPequeOrganizacion(0);
         }
     }
+
+    //funcion de los botones de empresa para desactivar las otras Botones empresa
     const microeOrganizacionButton = (isChecked) => {
         setGranOrganizacion(false);
         setMedianaOrganizacion(false);
@@ -119,6 +95,8 @@ export const CotizacionScreen = () => {
             setMicroOrganizacion(0);
         }
     }
+
+    //funcion de los botones de empresa para desactivar las otras Botones empresa
     const osflOrganizacionButton = (isChecked) => {
         setGranOrganizacion(false);
         setMedianaOrganizacion(false);
@@ -143,59 +121,59 @@ export const CotizacionScreen = () => {
     const [pirdBasica, setPirdBasica] = useState(false)
     const [pirdCompleja, setPirdCompleja] = useState(false)
 
-    //funciones para que una vez clickeada una opcion de PirdBasica o PirdCompleja la otra se desactive 
+    //funciones para que una vez clickeada una opcion de PirdBasica o PirdCompleja la otra se desactive Social Media
     const pirdBasicaButton = () => {
         setPirdBasica(!pirdBasica);
         setPirdCompleja(false)
     }
 
+    //funciones para que una vez clickeada una opcion de PirdBasica o PirdCompleja la otra se desactive Social Media
     const pirdComplejaButton = () => {
         setPirdBasica(false);
         setPirdCompleja(!pirdCompleja)
     }
 
-
+    //Funcion para enviar el resumen del formulario a la base de datos
     const enviarFormulario = () => {
 
-        //Categorizacion de data ingresada en familia, sea redes como tambien data general 
-        // const formData = [localTime,
+        const formData = addDoc(collection(db, "cotizaciones"), {
+            localTime,
+            marca,
+            rubro,
+            nombreContacto,
+            apellidoContacto,
+            cargo,
+            emailContacto,
+            telefonoContacto,
+            criteriaEmail,
+            granOrganizacion,
+            pequeOrganizacion,
+            medianaOrganizacion,
+            microOrganizacion,
+            osflOrganizacion,
+            pirdBasica,
+            pirdCompleja
+        });
 
-        //     { marca, rubro, nombreContacto, apellidoContacto, cargo, emailContacto, telefonoContacto, criteriaEmail },
-        //     { granOrganizacion, pequeOrganizacion, medianaOrganizacion, microOrganizacion, osflOrganizacion },
-        //     { pirdBasica, pirdCompleja }];
-
-        // console.log(formData);
-        // Alert.alert(localTime + " Cotizacion Confirmada")
-
-        // Enviar petición al servidor
-
-        // try {
-        //     const docRef = addDoc(collection(db, "users"), {
-        //         first: "Ada",
-        //         last: "Lovelace",
-        //         born: 1815
-        //     });
-        //     console.log("Document written with ID: ", docRef.id);
-        // } catch (e) {
-        //     console.error("Error adding document: ", e);
-        // }
-
-        try {
-
-            const formData = addDoc(collection(db, "Cotizacion-fabri"),
-
-                { localTime, marca, rubro, nombreContacto, apellidoContacto, cargo, emailContacto, telefonoContacto, criteriaEmail },
-                { granOrganizacion, pequeOrganizacion, medianaOrganizacion, microOrganizacion, osflOrganizacion },
-                { pirdBasica, pirdCompleja });
-
-            console.log("Document written with ID: ", formData.id);
-        } catch (e) {
-            console.error("Error adding document: ", e);
-        }
-
-
+        Alert.alert("Cotizacion Confirmada " + user.email)
+        console.log('Cotizacion Finalizada ')
     }
 
+    //Funcion para mostrar el horario cuando fue realizado el formulario
+    const [localTime, setLocalTime] = useState('');
+    const months = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre',];
+    useEffect(() => {
+        const intervalId = setInterval(() => {
+            const now = new Date();
+            const minuto = now.getMinutes();
+            const hora = now.getHours();
+            const day = now.getDate();
+            const month = months[now.getMonth()];
+            const year = now.getFullYear();
+            setLocalTime(`${day}-${month}-${year}-${hora + ':' + minuto + ' horas'}`);
+        }, 1000);
+        return () => clearInterval(intervalId);
+    }, []);
 
     return (
         <SafeAreaView  >
@@ -263,7 +241,6 @@ export const CotizacionScreen = () => {
 
 
                     <Input disabled label={'Vista Dolar Hoy'} type='marca' id='marca' style={styles.imputsCotizacion} placeholder='Marca' value={'www.dolarhoy.com'} />
-
 
                     <Input label={'Valor Dolar Blue'} type='Dolar' id='telefono' style={styles.imputsCotizacion} placeholder='Valor dolar BLUE' />
 

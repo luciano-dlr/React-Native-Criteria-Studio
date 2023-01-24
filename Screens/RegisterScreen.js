@@ -1,11 +1,11 @@
-import { useNavigation } from "@react-navigation/native";
 import { useState } from "react";
-import { firebaseConfig } from "../firebase-config.js";
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
-import { initializeApp } from "firebase/app";
-import { Text, View, Alert, TouchableOpacity } from 'react-native';
 import { Input } from '@rneui/themed';
 import styles from "../Styles/Styles";
+import { initializeApp } from "firebase/app";
+import { firebaseConfig } from "../firebase-config.js";
+import { useNavigation } from "@react-navigation/native";
+import { Text, View, Alert, TouchableOpacity } from 'react-native';
+import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 
 export const RegisterScreen = () => {
 

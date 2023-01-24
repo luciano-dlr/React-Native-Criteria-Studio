@@ -1,7 +1,7 @@
 import React from "react";
-import { Text, View, Image, TouchableOpacity } from 'react-native';
 import styles from "../Styles/Styles";
 import { useNavigation } from "@react-navigation/native";
+import { Text, View, Image, TouchableOpacity } from 'react-native';
 
 
 export const HomeScreen = () => {
@@ -21,51 +21,37 @@ export const HomeScreen = () => {
           <Text style={styles.titleHome}>Clientes</Text>
 
           <TouchableOpacity>
-
             <Image source={require('../assets/PersonalIMG.jpg')} style={{ width: 170, height: 200, margin: 10 }} />
-
           </TouchableOpacity>
 
-
-
           <TouchableOpacity >
-
             <Image source={require('../assets/Resumen.jpeg')} style={{ width: 170, height: 200, margin: 10 }} />
-
           </TouchableOpacity>
+
           <TouchableOpacity >
-
             <Image source={require('../assets/Resumen.jpeg')} style={{ width: 170, height: 200, margin: 10 }} />
-
           </TouchableOpacity>
 
         </View>
 
         {/* Columna 2 */}
         <View>
+
           <Text style={styles.titleHome}>Cotizacion</Text>
 
           <TouchableOpacity onPress={() => { navigation.navigate("cotizacion") }}>
-
             <Image source={require('../assets/CotizacionIMG.jpg')} style={{ width: 170, height: 200, margin: 10 }} />
-
           </TouchableOpacity>
 
-
-
           <TouchableOpacity >
-
             <Image source={require('../assets/Resumen.jpeg')} style={{ width: 170, height: 200, margin: 10 }} />
-
           </TouchableOpacity>
+
           <TouchableOpacity >
-
             <Image source={require('../assets/Resumen.jpeg')} style={{ width: 170, height: 200, margin: 10 }} />
-
           </TouchableOpacity>
 
         </View>
-
 
       </View>
 
