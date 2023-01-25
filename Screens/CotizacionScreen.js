@@ -6,7 +6,7 @@ import { initializeApp } from "firebase/app";
 import { firebaseConfig } from "../firebase-config.js";
 import { useNavigation } from "@react-navigation/native";
 import { Dialog, CheckBox, Button, Input } from '@rneui/themed';
-import { getFirestore, collection, addDoc } from "firebase/firestore";
+import { collection, addDoc, getFirestore } from "firebase/firestore";
 import { Text, View, SafeAreaView, ScrollView, Alert } from 'react-native';
 
 export const CotizacionScreen = () => {
@@ -23,7 +23,7 @@ export const CotizacionScreen = () => {
     const criteriaEmail = user.email;
 
     // base de datos
-    const db = getFirestore();
+    const db = getFirestore(app);
 
     //estado de los inputs 
     const [marca, setMarca] = useState('');
@@ -158,6 +158,7 @@ export const CotizacionScreen = () => {
         Alert.alert("Cotizacion Confirmada " + user.email)
         console.log('Cotizacion Finalizada ')
     }
+
 
     //Funcion para mostrar el horario cuando fue realizado el formulario
     const [localTime, setLocalTime] = useState('');
