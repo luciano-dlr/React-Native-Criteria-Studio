@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 // import React, { useEffect, useState } from "react";
 // import { Text, View, Image } from 'react-native';
 // import styles from "../Styles/Styles";
@@ -177,3 +178,5 @@
 >>>>>>> second
 
 
+=======
+>>>>>>> second

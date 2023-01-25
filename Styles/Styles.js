@@ -122,6 +122,7 @@ const styles = StyleSheet.create({
     checkbox: {
         margin: 8,
     },
+
 });
 
 export default styles;

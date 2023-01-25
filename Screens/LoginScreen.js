@@ -1,11 +1,11 @@
-import { useNavigation } from "@react-navigation/native";
 import { useState } from "react";
-import { firebaseConfig } from "../firebase-config.js";
-import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
-import { initializeApp } from "firebase/app";
-import { View, Image, Alert, TouchableOpacity, Text } from 'react-native';
-import { Input } from '@rneui/themed';
 import styles from "../Styles/Styles";
+import { Input } from '@rneui/themed';
+import { initializeApp } from "firebase/app";
+import { firebaseConfig } from "../firebase-config.js";
+import { useNavigation } from "@react-navigation/native";
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import { View, Image, Alert, TouchableOpacity, Text } from 'react-native';
 
 export const LoginScreen = () => {
 
@@ -44,6 +44,7 @@ export const LoginScreen = () => {
 
                 console.log("error en login ")
                 Alert.alert("Usuario y contraseña no registrados")
+
             })
     };
 
