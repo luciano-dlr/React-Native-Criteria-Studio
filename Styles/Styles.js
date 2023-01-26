@@ -28,8 +28,6 @@ const styles = StyleSheet.create({
         backgroundColor: '#fff',
         marginTop: 30,
 
-
-
     },
     title: {
         color: '#fff',

@@ -1,13 +1,22 @@
 import React from "react";
 import styles from "../Styles/Styles";
-import { useNavigation } from "@react-navigation/native";
+import { useNavigation, getParam } from "@react-navigation/native";
 import { Text, View, Image, TouchableOpacity } from 'react-native';
+
+
 
 
 export const HomeScreen = () => {
 
+
+
+
   //Navigation para pasar de pantalla
   const navigation = useNavigation();
+
+
+
+
 
 
   return (
@@ -43,7 +52,7 @@ export const HomeScreen = () => {
             <Image source={require('../assets/CotizacionIMG.jpg')} style={{ width: 170, height: 200, margin: 10 }} />
           </TouchableOpacity>
 
-          <TouchableOpacity >
+          <TouchableOpacity onPress={() => { console.log(FormData) }}>
             <Image source={require('../assets/Resumen.jpeg')} style={{ width: 170, height: 200, margin: 10 }} />
           </TouchableOpacity>
 

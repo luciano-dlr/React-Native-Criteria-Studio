@@ -11,6 +11,10 @@ import { Text, View, SafeAreaView, ScrollView, Alert } from 'react-native';
 
 export const CotizacionScreen = () => {
 
+
+
+
+
     //Navigation para pasar de pantalla
     const navigation = useNavigation();
 
@@ -155,9 +159,12 @@ export const CotizacionScreen = () => {
             pirdCompleja
         });
 
+
+
         Alert.alert("Cotizacion Confirmada " + user.email)
         console.log('Cotizacion Finalizada ')
     }
+
 
 
     //Funcion para mostrar el horario cuando fue realizado el formulario
