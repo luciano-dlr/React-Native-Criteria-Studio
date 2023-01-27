@@ -9,11 +9,19 @@ import { doc, setDoc, getFirestore } from "firebase/firestore";
 
 
 import firebase from 'firebase/app';
-import 'firebase/firestore';
+// import 'firebase/firestore';
 import { Firestore } from "firebase/firestore";
 
 
-export const HomeScreen = () => {
+export const HomeScreen = (prop) => {
+
+
+
+
+  // prop = [dato]
+
+  console.log(prop)
+
 
 
   // const firestore = firebaseConfig
@@ -25,10 +33,10 @@ export const HomeScreen = () => {
   setDoc(doc(db, "cotizaciones", "LA"), {
     name: "Los Angeles",
     state: "CA",
-    country: "USA"
+    country: "USeee"
   });
 
-  console.log(app)
+
 
 
 
@@ -81,7 +89,7 @@ export const HomeScreen = () => {
             <Image source={require('../assets/CotizacionIMG.jpg')} style={{ width: 170, height: 200, margin: 10 }} />
           </TouchableOpacity>
 
-          <TouchableOpacity onPress={() => { console.log(FormData) }}>
+          <TouchableOpacity onPress={() => { }}>
             <Image source={require('../assets/Resumen.jpeg')} style={{ width: 170, height: 200, margin: 10 }} />
           </TouchableOpacity>
 

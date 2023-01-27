@@ -14,10 +14,6 @@ import 'firebase/firestore';
 
 export const CotizacionScreen = () => {
 
-    const firestore = firestore();
-    const collectionRef = firestore.collection('cotizaciones');
-    const docRef = collectionRef.doc('docId');
-
 
 
     //Navigation para pasar de pantalla
@@ -163,7 +159,6 @@ export const CotizacionScreen = () => {
             pirdBasica,
             pirdCompleja
         });
-
 
 
         Alert.alert("Cotizacion Confirmada " + user.email)
@@ -312,7 +307,10 @@ export const CotizacionScreen = () => {
                         onPress={() => {
 
                             enviarFormulario();
-                            navigation.navigate("home");
+
+                            // llevo un valor de estadoCotizacion como "pendiente" a otra pantalla para especificar el estado del formulario completado
+                            const estadoCotizacion = 'pendiente';
+                            navigation.navigate("home", { estadoCotizacion });
 
                         }} />
 
