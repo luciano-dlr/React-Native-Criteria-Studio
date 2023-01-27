@@ -9,9 +9,14 @@ import { Dialog, CheckBox, Button, Input } from '@rneui/themed';
 import { collection, addDoc, getFirestore } from "firebase/firestore";
 import { Text, View, SafeAreaView, ScrollView, Alert } from 'react-native';
 
+import firebase from 'firebase/app';
+import 'firebase/firestore';
+
 export const CotizacionScreen = () => {
 
-
+    const firestore = firestore();
+    const collectionRef = firestore.collection('cotizaciones');
+    const docRef = collectionRef.doc('docId');
 
 
 

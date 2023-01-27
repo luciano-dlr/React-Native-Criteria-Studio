@@ -2,11 +2,40 @@ import React from "react";
 import styles from "../Styles/Styles";
 import { useNavigation, getParam } from "@react-navigation/native";
 import { Text, View, Image, TouchableOpacity } from 'react-native';
+import { firebaseConfig } from "../firebase-config.js";
+import { initializeApp } from "firebase/app";
+import { doc, setDoc, getFirestore } from "firebase/firestore";
 
 
+
+import firebase from 'firebase/app';
+import 'firebase/firestore';
+import { Firestore } from "firebase/firestore";
 
 
 export const HomeScreen = () => {
+
+
+  // const firestore = firebaseConfig
+  // console.log(firestore)
+
+  const db = getFirestore(app);
+
+  const app = initializeApp(firebaseConfig);
+  setDoc(doc(db, "cotizaciones", "LA"), {
+    name: "Los Angeles",
+    state: "CA",
+    country: "USA"
+  });
+
+  console.log(app)
+
+
+
+
+  // const app = initializeApp(firebaseConfig);
+
+  // app = firebase.firestore();
 
 
 
