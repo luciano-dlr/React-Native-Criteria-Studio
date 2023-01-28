@@ -6,7 +6,7 @@ import { initializeApp } from "firebase/app";
 import { firebaseConfig } from "../firebase-config.js";
 import { useNavigation } from "@react-navigation/native";
 import { Dialog, CheckBox, Button, Input } from '@rneui/themed';
-import { collection, addDoc, getFirestore } from "firebase/firestore";
+import { collection, addDoc, getFirestore, setDoc, doc } from "firebase/firestore";
 import { Text, View, SafeAreaView, ScrollView, Alert } from 'react-native';
 
 import firebase from 'firebase/app';
@@ -139,9 +139,36 @@ export const CotizacionScreen = () => {
     }
 
     //Funcion para enviar el resumen del formulario a la base de datos
+    // const enviarFormulario = () => {
+
+    //     const formData = addDoc(collection(db, "cotizaciones"), {
+    //         localTime,
+    //         marca,
+    //         rubro,
+    //         nombreContacto,
+    //         apellidoContacto,
+    //         cargo,
+    //         emailContacto,
+    //         telefonoContacto,
+    //         criteriaEmail,
+    //         granOrganizacion,
+    //         pequeOrganizacion,
+    //         medianaOrganizacion,
+    //         microOrganizacion,
+    //         osflOrganizacion,
+    //         pirdBasica,
+    //         pirdCompleja
+    //     });
+
+
+    //     Alert.alert("Cotizacion Confirmada " + user.email)
+    //     console.log('Cotizacion Finalizada ')
+    // }
+
+
     const enviarFormulario = () => {
 
-        const formData = addDoc(collection(db, "cotizaciones"), {
+        const formData = setDoc(doc(db, "cotizaciones", "pendientes"), {
             localTime,
             marca,
             rubro,
@@ -182,6 +209,8 @@ export const CotizacionScreen = () => {
         }, 1000);
         return () => clearInterval(intervalId);
     }, []);
+
+    const [estadoCotizacion, setEstadoCotizacion] = useState('pendiente');
 
     return (
         <SafeAreaView  >
@@ -309,7 +338,11 @@ export const CotizacionScreen = () => {
                             enviarFormulario();
 
                             // llevo un valor de estadoCotizacion como "pendiente" a otra pantalla para especificar el estado del formulario completado
-                            const estadoCotizacion = 'pendiente';
+                            // const [estadoCotizacion,setEstadoCotizacion] = useState('');
+                            // const estadoCotizacion = 'pendiente el formu papu'
+
+
+
                             navigation.navigate("home", { estadoCotizacion });
 
                         }} />

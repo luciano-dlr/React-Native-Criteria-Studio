@@ -4,7 +4,9 @@ import { useNavigation, getParam } from "@react-navigation/native";
 import { Text, View, Image, TouchableOpacity } from 'react-native';
 import { firebaseConfig } from "../firebase-config.js";
 import { initializeApp } from "firebase/app";
-import { doc, setDoc, getFirestore } from "firebase/firestore";
+import { doc, setDoc, getFirestore, params } from "firebase/firestore";
+import { estadoCotizacion } from "./CotizacionScreen"
+import { useRoute } from '@react-navigation/native';
 
 
 
@@ -13,18 +15,26 @@ import firebase from 'firebase/app';
 import { Firestore } from "firebase/firestore";
 
 
-export const HomeScreen = (prop) => {
+export const HomeScreen = () => {
+
+  const route = useRoute();
+  const valor = route.params;
 
 
+
+  function handlePress() {
+    console.log(valor)
+
+  }
 
 
   // prop = [dato]
 
-  console.log(prop)
 
 
 
-  // const firestore = firebaseConfig
+
+  const firestore = firebaseConfig
   // console.log(firestore)
 
   const db = getFirestore(app);
@@ -89,7 +99,7 @@ export const HomeScreen = (prop) => {
             <Image source={require('../assets/CotizacionIMG.jpg')} style={{ width: 170, height: 200, margin: 10 }} />
           </TouchableOpacity>
 
-          <TouchableOpacity onPress={() => { }}>
+          <TouchableOpacity onPress={() => { handlePress() }}>
             <Image source={require('../assets/Resumen.jpeg')} style={{ width: 170, height: 200, margin: 10 }} />
           </TouchableOpacity>
 
