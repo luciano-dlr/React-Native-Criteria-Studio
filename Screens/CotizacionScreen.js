@@ -6,7 +6,7 @@ import { initializeApp } from "firebase/app";
 import { firebaseConfig } from "../firebase-config.js";
 import { useNavigation } from "@react-navigation/native";
 import { Dialog, CheckBox, Button, Input } from '@rneui/themed';
-import { collection, addDoc, getFirestore, setDoc, doc } from "firebase/firestore";
+import { collection, addDoc, getFirestore, setDoc, doc, getDocs, query, where } from "firebase/firestore";
 import { Text, View, SafeAreaView, ScrollView, Alert } from 'react-native';
 
 import firebase from 'firebase/app';
@@ -115,6 +115,10 @@ export const CotizacionScreen = () => {
         }
     }
 
+    //Check-Box dentro de popup 'RDS'
+    const [pirdBasica, setPirdBasica] = useState(false)
+    const [pirdCompleja, setPirdCompleja] = useState(false)
+
     //PopUp SocialMedia
     const [socialMedia, setSocialMedia] = useState(false);
 
@@ -122,53 +126,124 @@ export const CotizacionScreen = () => {
         setSocialMedia(!socialMedia);
     };
 
-    //Check-Box dentro de popup 'RDS'
-    const [pirdBasica, setPirdBasica] = useState(false)
-    const [pirdCompleja, setPirdCompleja] = useState(false)
+    const socialMediaPopUpConfirmar = () => {
+        setSocialMedia(!socialMedia);
+    };
+
+
+    //boton pop up media confirmar
+    const socialMediaPopUpLimpiar = () => {
+        setPirdCompleja(false)
+        setPirdBasica(false)
+    };
 
     //funciones para que una vez clickeada una opcion de PirdBasica o PirdCompleja la otra se desactive Social Media
-    const pirdBasicaButton = () => {
-        setPirdBasica(!pirdBasica);
+    const pirdBasicaButton = (isChecked) => {
         setPirdCompleja(false)
+        setPirdBasica(!pirdBasica);
+        if (isChecked) {
+            setPirdBasica(9.120)
+
+        }
+        else {
+            setPirdBasica(false)
+
+        }
     }
 
     //funciones para que una vez clickeada una opcion de PirdBasica o PirdCompleja la otra se desactive Social Media
-    const pirdComplejaButton = () => {
+    const pirdComplejaButton = (isChecked) => {
         setPirdBasica(false);
         setPirdCompleja(!pirdCompleja)
+        if (isChecked) {
+            setPirdCompleja(14.592)
+
+        }
+        else {
+            setPirdCompleja(false)
+            setPirdBasica(false);
+
+        }
     }
 
-    //Funcion para enviar el resumen del formulario a la base de datos
-    // const enviarFormulario = () => {
+    //Check box Anuncios 
 
-    //     const formData = addDoc(collection(db, "cotizaciones"), {
-    //         localTime,
-    //         marca,
-    //         rubro,
-    //         nombreContacto,
-    //         apellidoContacto,
-    //         cargo,
-    //         emailContacto,
-    //         telefonoContacto,
-    //         criteriaEmail,
-    //         granOrganizacion,
-    //         pequeOrganizacion,
-    //         medianaOrganizacion,
-    //         microOrganizacion,
-    //         osflOrganizacion,
-    //         pirdBasica,
-    //         pirdCompleja
-    //     });
+    const [anuncioBasicos, setAnunciosBasicos] = useState(false);
+    const [anunciosComplejos, setAnunciosComplejos] = useState(false)
+
+    //PopUp Anuncios
+    const [anuncios, setSAnuncios] = useState(false)
+
+    const anunciosPopup = () => {
+        setSAnuncios(!anuncios);
+    };
+
+    const anunciosPopupConfirmar = () => {
+        setSAnuncios(!anuncios);
+    };
+    const anunciosPopupLimpiar = () => {
+        setAnunciosComplejos(false)
+        setAnunciosBasicos(false)
+    };
+
+    //funciones para que una vez clickeada una opcion de PirdBasica o PirdCompleja la otra se desactive Social Media
+    const anunciosBasicaButton = (isChecked) => {
+        setAnunciosComplejos(false)
+        setAnunciosBasicos(!anuncioBasicos);
+        if (isChecked) {
+            setAnunciosBasicos(6.384)
+        }
+        else {
+            setAnunciosBasicos(false)
+        }
+    }
+    const anunciosComplejaButton = (isChecked) => {
+        setAnunciosBasicos(false)
+        setAnunciosComplejos(!anunciosComplejos);
+        if (isChecked) {
+            setAnunciosComplejos(9.780)
+        }
+        else {
+            setAnunciosComplejos(false)
+        }
+    }
 
 
-    //     Alert.alert("Cotizacion Confirmada " + user.email)
-    //     console.log('Cotizacion Finalizada ')
-    // }
+
+
+
+
+
+
+
+    const consultar = () => {
+
+        // const q = query(collection(db, "cotizaciones"), where("cargo", "==", 'pepe'));
+
+        // const querySnapshot = getDocs(q);
+
+        // querySnapshot.forEach((doc) => {
+        //     // doc.data() is never undefined for query doc snapshots
+        //     console.log(doc.id, " => ", doc.data());
+        // });
+        // querySnapshot.map
+
+        // const querySnapshot = getDocs(collection(db, "cotizaciones", '0mHVgwS7CSnzQEW4OU9V'));
+        // querySnapshot.forEach((doc) => {
+        //     // doc.data() is never undefined for query doc snapshots
+        //     console.log(doc.id, " => ", doc.data());
+        // });
+
+
+    }
+
 
 
     const enviarFormulario = () => {
 
-        const formData = setDoc(doc(db, "cotizaciones", "pendientes"), {
+
+
+        const formData = addDoc(collection(db, "cotizaciones"), {
             localTime,
             marca,
             rubro,
@@ -184,14 +259,18 @@ export const CotizacionScreen = () => {
             microOrganizacion,
             osflOrganizacion,
             pirdBasica,
-            pirdCompleja
+            pirdCompleja,
+            anuncioBasicos,
+            anunciosComplejos
+
         });
 
 
-        Alert.alert("Cotizacion Confirmada " + user.email)
+        // Alert.alert("Cotizacion Confirmada " + user.email)
+        navigation.navigate("home");
         console.log('Cotizacion Finalizada ')
-    }
 
+    }
 
 
     //Funcion para mostrar el horario cuando fue realizado el formulario
@@ -210,7 +289,6 @@ export const CotizacionScreen = () => {
         return () => clearInterval(intervalId);
     }, []);
 
-    const [estadoCotizacion, setEstadoCotizacion] = useState('pendiente');
 
     return (
         <SafeAreaView  >
@@ -295,31 +373,75 @@ export const CotizacionScreen = () => {
                         <CheckBox title="PIRD Básica" checkedIcon="dot-circle-o" uncheckedIcon="circle-o" checked={pirdBasica} onPress={pirdBasicaButton} />
                         <CheckBox title="PIRD Compleja" checkedIcon="dot-circle-o" uncheckedIcon="circle-o" checked={pirdCompleja} onPress={pirdComplejaButton} />
 
-                        <Button title="Confirmar" onPress={socialMediaPopUp} />
+                        <Button title="Limpiar" onPress={socialMediaPopUpLimpiar} />
+                        <Button title="Confirmar" onPress={socialMediaPopUpConfirmar} />
 
                     </Dialog>
 
-                    {pirdBasica === true && (
+                    {pirdBasica === 9.120 && (
 
                         <View>
 
-                            <Input label={'Resultado de PIRD Básica 1'} type='text' id='text' style={styles.imputsCotizacion} placeholder='PIRD Básica' />
-                            <Input label={'Resultado de PIRD Básica 2'} type='text' id='text' style={styles.imputsCotizacion} placeholder='PIRD Básica' />
+                            <Input disabled label={'Resultado de PIRD Básica '} type='text' id='text' style={styles.imputsCotizacion} placeholder='9.120' />
+
 
                         </View>
 
                     )}
 
-                    {pirdCompleja === true && (
+                    {pirdCompleja === 14.592 && (
 
                         <View>
 
-                            <Input label={'Resultado de PIRD Compleja 1'} type='text' id='text' style={styles.imputsCotizacion} placeholder='PIRD Compleja' />
-                            <Input label={'Resultado de PIRD Compleja 2'} type='text' id='text' style={styles.imputsCotizacion} placeholder='PIRD Compleja' />
+                            <Input disabled label={'Resultado de PIRD Compleja'} type='text' id='text' style={styles.imputsCotizacion} placeholder='14.592' />
 
                         </View>
 
                     )}
+
+                    <Button title="Administracion Anuncios " onPress={anunciosPopup} titleStyle={{ color: 'black', fontSize: 18 }} containerStyle={{ marginHorizontal: 10, marginVertical: 50, color: 'black' }} buttonStyle={{ backgroundColor: 'white', borderWidth: 1, borderColor: 'black', borderRadius: 5, padding: 10 }} />
+
+                    <Dialog isVisible={anuncios} onBackdropPress={anunciosPopup}>
+
+                        {/* Opciones Social Media*/}
+                        <Dialog.Title title="Parametros Inicial RDS" />
+
+                        <CheckBox title="Básica" checkedIcon="dot-circle-o" uncheckedIcon="circle-o" checked={anuncioBasicos} onPress={anunciosBasicaButton} />
+                        <CheckBox title="Compleja" checkedIcon="dot-circle-o" uncheckedIcon="circle-o" checked={anunciosComplejos} onPress={anunciosComplejaButton} />
+
+                        <Button title="Limpiar" onPress={anunciosPopupLimpiar} />
+                        <Button title="Confirmar" onPress={anunciosPopupConfirmar} />
+
+                    </Dialog>
+
+                    {anuncioBasicos === 6.384 && (
+
+                        <View>
+
+                            <Input disabled label={'Anuncio Basico'} type='text' id='text' style={styles.imputsCotizacion} placeholder='6.384' />
+
+
+                        </View>
+
+                    )}
+
+                    {anunciosComplejos === 9.780 && (
+
+                        <View>
+
+                            <Input disabled label={'Anuncio Complejo'} type='text' id='text' style={styles.imputsCotizacion} placeholder='9.780' />
+
+                        </View>
+
+                    )}
+
+
+
+
+
+
+
+
 
                     <Input type='contacto' id='contacto' style={styles.imputsCotizacion} placeholder='Nombre de Contacto' value={nombreContacto} onChangeText={(text) => setNombreContacto(text)} />
 
@@ -343,7 +465,15 @@ export const CotizacionScreen = () => {
 
 
 
-                            navigation.navigate("home", { estadoCotizacion });
+
+
+                        }} />
+                    <Button title='Cotizar' titleStyle={{ color: 'black', fontSize: 18 }} containerStyle={{ marginHorizontal: 10, marginVertical: 50, color: 'black' }} buttonStyle={{ backgroundColor: 'white', borderWidth: 1, borderColor: 'black', borderRadius: 5, padding: 10 }}
+
+                        onPress={() => {
+
+                            consultar();
+
 
                         }} />
 

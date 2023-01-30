@@ -10,25 +10,29 @@ import { useRoute } from '@react-navigation/native';
 
 
 
-import firebase from 'firebase/app';
-// import 'firebase/firestore';
-import { Firestore } from "firebase/firestore";
+
 
 
 export const HomeScreen = () => {
 
-  const route = useRoute();
-  const valor = route.params;
+
+  //traer un valor de una pantalla a otra salteando agoritmo usando useRoute de navigation navigate
+  // const route = useRoute();
+  // const valor = route.params;
 
 
 
-  function handlePress() {
-    console.log(valor)
+  // function handlePress() {
+  //   console.log(valor)
 
-  }
+  // }
+
+  // function handlePress2() {
+
+  // }
 
 
-  // prop = [dato]
+
 
 
 
@@ -103,7 +107,7 @@ export const HomeScreen = () => {
             <Image source={require('../assets/Resumen.jpeg')} style={{ width: 170, height: 200, margin: 10 }} />
           </TouchableOpacity>
 
-          <TouchableOpacity >
+          <TouchableOpacity onPress={() => { handlePress2() }}>
             <Image source={require('../assets/Resumen.jpeg')} style={{ width: 170, height: 200, margin: 10 }} />
           </TouchableOpacity>
 
