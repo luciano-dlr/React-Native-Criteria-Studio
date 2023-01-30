@@ -5,7 +5,7 @@ import { useState, useEffect } from "react";
 import { initializeApp } from "firebase/app";
 import { firebaseConfig } from "../firebase-config.js";
 import { useNavigation } from "@react-navigation/native";
-import { Dialog, CheckBox, Button, Input } from '@rneui/themed';
+import { Dialog, CheckBox, Button, Input, ButtonGroup } from '@rneui/themed';
 import { collection, addDoc, getFirestore, setDoc, doc, getDocs, query, where } from "firebase/firestore";
 import { Text, View, SafeAreaView, ScrollView, Alert } from 'react-native';
 
@@ -115,6 +115,9 @@ export const CotizacionScreen = () => {
         }
     }
 
+    //Valor dolar 
+    const [dolar, setDolar] = useState(0)
+
     //Check-Box dentro de popup 'RDS'
     const [pirdBasica, setPirdBasica] = useState(false)
     const [pirdCompleja, setPirdCompleja] = useState(false)
@@ -214,8 +217,6 @@ export const CotizacionScreen = () => {
 
 
 
-
-
     const consultar = () => {
 
         // const q = query(collection(db, "cotizaciones"), where("cargo", "==", 'pepe'));
@@ -238,6 +239,21 @@ export const CotizacionScreen = () => {
     }
 
 
+    //Funcion para mostrar el horario cuando fue realizado el formulario
+    const [localTime, setLocalTime] = useState('');
+    const months = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre',];
+    useEffect(() => {
+        const intervalId = setInterval(() => {
+            const now = new Date();
+            const minuto = now.getMinutes();
+            const hora = now.getHours();
+            const day = now.getDate();
+            const month = months[now.getMonth()];
+            const year = now.getFullYear();
+            setLocalTime(`${day}-${month}-${year}-${hora + ':' + minuto + ' horas'}`);
+        }, 1000);
+        return () => clearInterval(intervalId);
+    }, []);
 
     const enviarFormulario = () => {
 
@@ -258,6 +274,7 @@ export const CotizacionScreen = () => {
             medianaOrganizacion,
             microOrganizacion,
             osflOrganizacion,
+            dolar,
             pirdBasica,
             pirdCompleja,
             anuncioBasicos,
@@ -265,32 +282,86 @@ export const CotizacionScreen = () => {
 
         });
 
-
         // Alert.alert("Cotizacion Confirmada " + user.email)
         navigation.navigate("home");
         console.log('Cotizacion Finalizada ')
 
     }
 
+    // SI / NO Abono integral RDS
+    const [integralRDS, setIntegralRDS] = useState(false);
 
-    //Funcion para mostrar el horario cuando fue realizado el formulario
-    const [localTime, setLocalTime] = useState('');
-    const months = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre',];
-    useEffect(() => {
-        const intervalId = setInterval(() => {
-            const now = new Date();
-            const minuto = now.getMinutes();
-            const hora = now.getHours();
-            const day = now.getDate();
-            const month = months[now.getMonth()];
-            const year = now.getFullYear();
-            setLocalTime(`${day}-${month}-${year}-${hora + ':' + minuto + ' horas'}`);
-        }, 1000);
-        return () => clearInterval(intervalId);
-    }, []);
+    const abonoIntregralRDS = (value) => {
+
+        setIntegralRDS(value);
+
+    }
+
+    //popup Administracion Integral Redes
+    const [redesFbIgFBAds, setRedesFbIgFBAds] = useState(false);
+    const [redesFbIgGoogleAds, setRedesFbIgGoogleAds] = useState(false)
+    const [redesFbIgFBAdsGoogleAds, setRedesFbIgFNBdsGoogleAds] = useState(false)
+
+    const [redesPopup, setRedesPopup] = useState(false)
+
+    const administracionIntegralRDS = () => {
+        setRedesPopup(!redesPopup);
+    };
+
+    const administracionIntegralRDSLimpiar = () => {
+        setRedesFbIgFBAds(false);
+        setRedesFbIgGoogleAds(false);
+        setRedesFbIgFNBdsGoogleAds(false);
+    };
+
+    const redesFbIgFBAdsButton = (isChecked) => {
+        setRedesFbIgFBAds(!redesFbIgFBAds);
+        setRedesFbIgGoogleAds(false);
+        setRedesFbIgFNBdsGoogleAds(false)
+        if (isChecked) {
+            setRedesFbIgFBAds(1111)
+        }
+        else {
+            setRedesFbIgFBAds(false)
+        }
+    }
+
+    const redesFbIgGoogleAdsButton = (isChecked) => {
+        setRedesFbIgFBAds(false);
+        setRedesFbIgGoogleAds(!redesFbIgGoogleAds);
+        setRedesFbIgFNBdsGoogleAds(false)
+        if (isChecked) {
+            setRedesFbIgGoogleAds(2222)
+        }
+        else {
+            setRedesFbIgGoogleAds(false)
+        }
+    }
+
+    const redesFbIgFBAdsGoogleAdsButton = (isChecked) => {
+        setRedesFbIgFBAds(false);
+        setRedesFbIgGoogleAds(false);
+        setRedesFbIgFNBdsGoogleAds(!redesFbIgFBAdsGoogleAds)
+        if (isChecked) {
+            setRedesFbIgFNBdsGoogleAds(3333)
+        }
+        else {
+            setRedesFbIgFNBdsGoogleAds(false)
+        }
+    }
+
+    console.log(redesFbIgFBAdsGoogleAds + redesFbIgGoogleAds + redesFbIgFBAds)
+
 
 
     return (
+
+
+
+
+
+
+
         <SafeAreaView  >
             <ScrollView style={styles.scrollView}>
 
@@ -357,7 +428,7 @@ export const CotizacionScreen = () => {
 
                     <Input disabled label={'Vista Dolar Hoy'} type='marca' id='marca' style={styles.imputsCotizacion} placeholder='Marca' value={'www.dolarhoy.com'} />
 
-                    <Input label={'Valor Dolar Blue'} type='Dolar' id='telefono' style={styles.imputsCotizacion} placeholder='Valor dolar BLUE' />
+                    <Input label={'Valor Dolar Blue'} type='Dolar' id='dolar' style={styles.imputsCotizacion} placeholder='Valor dolar BLUE' value={dolar} onChangeText={(text) => setDolar(text)} />
 
                     <Input disabled label={'Cotizacion Realizada por'} type='marca' id='marca' style={styles.imputsCotizacion} placeholder='Marca' value={user.email} />
 
@@ -435,6 +506,30 @@ export const CotizacionScreen = () => {
 
                     )}
 
+                    <Text>Abono Integral RDS? </Text>
+                    <ButtonGroup
+                        buttons={['Si', 'No']}
+                        selectedIndex={integralRDS}
+                        onPress={abonoIntregralRDS}
+                        containerStyle={{ marginBottom: 20, marginTop: 20 }}
+                    />
+
+                    <Button title="Administracion Integral Redes" onPress={administracionIntegralRDS} titleStyle={{ color: 'black', fontSize: 18 }} containerStyle={{ marginHorizontal: 10, marginVertical: 50, color: 'black' }} buttonStyle={{ backgroundColor: 'white', borderWidth: 1, borderColor: 'black', borderRadius: 5, padding: 10 }} />
+
+                    <Dialog isVisible={redesPopup} onBackdropPress={administracionIntegralRDS}>
+
+                        {/* Opciones Social Media*/}
+                        <Dialog.Title title="Administracion Integral Redes" />
+
+                        <CheckBox title="Ig FB " checkedIcon="dot-circle-o" uncheckedIcon="circle-o" checked={redesFbIgFBAds} onPress={redesFbIgFBAdsButton} />
+                        <CheckBox title="IG FB GOOGLEads" checkedIcon="dot-circle-o" uncheckedIcon="circle-o" checked={redesFbIgGoogleAds} onPress={redesFbIgGoogleAdsButton} />
+                        <CheckBox title="IG FB GOOGLEads fbads" checkedIcon="dot-circle-o" uncheckedIcon="circle-o" checked={redesFbIgFBAdsGoogleAds} onPress={redesFbIgFBAdsGoogleAdsButton} />
+
+
+                        <Button title="Limpiar" onPress={administracionIntegralRDSLimpiar} />
+                        <Button title="Confirmar" onPress={administracionIntegralRDS} />
+
+                    </Dialog>
 
 
 
@@ -443,39 +538,25 @@ export const CotizacionScreen = () => {
 
 
 
-                    <Input type='contacto' id='contacto' style={styles.imputsCotizacion} placeholder='Nombre de Contacto' value={nombreContacto} onChangeText={(text) => setNombreContacto(text)} />
 
-                    <Input type='apellidoContacto' id='apellidoContacto' style={styles.imputsCotizacion} placeholder='Apellido de Contacto' value={apellidoContacto} onChangeText={(text) => setApellidoContacto(text)} />
-
-                    <Input type='cargo' id='cargo' style={styles.imputsCotizacion} placeholder='Cargo' value={cargo} onChangeText={(text) => setCargo(text)} />
-
-                    <Input type='email' id='email' style={styles.imputsCotizacion} placeholder='Email de Contacto' value={emailContacto} onChangeText={(text) => setEmailContacto(text)} />
-
-                    <Input type='phone' id='telefono' style={styles.imputsCotizacion} placeholder='Telefono de Contacto' value={telefonoContacto} onChangeText={(text) => setTelefonoContacto(text)} />
 
                     <Button title='Cotizar' titleStyle={{ color: 'black', fontSize: 18 }} containerStyle={{ marginHorizontal: 10, marginVertical: 50, color: 'black' }} buttonStyle={{ backgroundColor: 'white', borderWidth: 1, borderColor: 'black', borderRadius: 5, padding: 10 }}
 
                         onPress={() => {
-
                             enviarFormulario();
-
                             // llevo un valor de estadoCotizacion como "pendiente" a otra pantalla para especificar el estado del formulario completado
                             // const [estadoCotizacion,setEstadoCotizacion] = useState('');
                             // const estadoCotizacion = 'pendiente el formu papu'
 
-
-
-
-
                         }} />
-                    <Button title='Cotizar' titleStyle={{ color: 'black', fontSize: 18 }} containerStyle={{ marginHorizontal: 10, marginVertical: 50, color: 'black' }} buttonStyle={{ backgroundColor: 'white', borderWidth: 1, borderColor: 'black', borderRadius: 5, padding: 10 }}
+                    {/* <Button title='Cotizar' titleStyle={{ color: 'black', fontSize: 18 }} containerStyle={{ marginHorizontal: 10, marginVertical: 50, color: 'black' }} buttonStyle={{ backgroundColor: 'white', borderWidth: 1, borderColor: 'black', borderRadius: 5, padding: 10 }}
 
                         onPress={() => {
 
                             consultar();
 
 
-                        }} />
+                        }} /> */}
 
                 </View>
 

@@ -64,6 +64,9 @@ const styles = StyleSheet.create({
         width: '40%',
         margin: 10,
     },
+    viewMitad: {
+        width: '50%'
+    },
     buttonApp: {
         width: 200,
         marginHorizontal: 50,
