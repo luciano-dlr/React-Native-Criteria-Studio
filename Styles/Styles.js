@@ -24,10 +24,23 @@ const styles = StyleSheet.create({
         alignItems: 'center',
 
     },
+    containerColum: {
+        backgroundColor: '#fff',
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+
+    },
     containerCoti: {
         backgroundColor: '#fff',
         marginTop: 30,
+        marginBottom: 30,
 
+    },
+    containerSwitch: {
+        backgroundColor: '#fff',
+        paddingBottom: 40,
+        paddingTop: 10,
     },
     title: {
         color: '#fff',
@@ -38,7 +51,9 @@ const styles = StyleSheet.create({
     titleNegro: {
         color: 'black',
         fontSize: 25,
-        paddingTop: 50,
+        paddingBottom: 20,
+        paddingTop: 20,
+        paddingLeft: 10,
     },
     titleHome: {
         textAlign: 'center',
