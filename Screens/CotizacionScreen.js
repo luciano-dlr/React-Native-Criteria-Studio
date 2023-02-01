@@ -8,12 +8,49 @@ import { useNavigation } from "@react-navigation/native";
 import { Dialog, CheckBox, Button, Input, ButtonGroup, Switch, Label } from '@rneui/themed';
 import { collection, addDoc, getFirestore, setDoc, doc, getDocs, query, where } from "firebase/firestore";
 import { Text, View, SafeAreaView, ScrollView, Alert, TextInput } from 'react-native';
-
-
+import { ListItem, Icon } from '@rneui/themed';
 import firebase from 'firebase/app';
 import 'firebase/firestore';
+import { TouchableOpacity } from "react-native-gesture-handler";
+
+
 
 export const CotizacionScreen = () => {
+
+    // Objeto pusheado a la base de datos en firestore
+    const [expanded, setExpanded] = React.useState(false);
+
+    const enviarFormulario = () => {
+
+        const formData = addDoc(collection(db, "cotizaciones"), {
+            localTime,
+            marca,
+            rubro,
+            nombreContacto,
+            apellidoContacto,
+            cargo,
+            emailContacto,
+            telefonoContacto,
+            criteriaEmail,
+            granOrganizacion,
+            pequeOrganizacion,
+            medianaOrganizacion,
+            microOrganizacion,
+            osflOrganizacion,
+            dolar,
+            pirdBasica,
+            pirdCompleja,
+            anuncioBasicos,
+            anunciosComplejos
+
+        });
+
+        Alert.alert("Cotizacion Confirmada " + user.email)
+        navigation.navigate("home");
+        console.log('Cotizacion Finalizada ')
+
+    }
+
 
     //Funcion para mostrar el horario cuando fue realizado el formulario
     const [localTime, setLocalTime] = useState('');
@@ -69,7 +106,7 @@ export const CotizacionScreen = () => {
         setMicroOrganizacion(false);
         setOsflOrganizacion(false);
         if (isChecked) {
-            setGranOrganizacion(0.9);
+            setGranOrganizacion(1.4);
         } else {
             setGranOrganizacion(0);
         }
@@ -82,7 +119,7 @@ export const CotizacionScreen = () => {
         setMicroOrganizacion(false);
         setOsflOrganizacion(false);
         if (isChecked) {
-            setMedianaOrganizacion(0.7);
+            setMedianaOrganizacion(1.2);
         } else {
             setMedianaOrganizacion(0);
         }
@@ -96,7 +133,7 @@ export const CotizacionScreen = () => {
         setMicroOrganizacion(false);
         setOsflOrganizacion(false);
         if (isChecked) {
-            setPequeOrganizacion(0.4);
+            setPequeOrganizacion(1);
         } else {
             setPequeOrganizacion(0);
         }
@@ -110,7 +147,7 @@ export const CotizacionScreen = () => {
         setMicroOrganizacion(!microOrganizacion)
         setOsflOrganizacion(false);
         if (isChecked) {
-            setMicroOrganizacion(0.2);
+            setMicroOrganizacion(0.9);
         } else {
             setMicroOrganizacion(0);
         }
@@ -124,7 +161,7 @@ export const CotizacionScreen = () => {
         setMicroOrganizacion(false);
         setOsflOrganizacion(!osflOrganizacion);
         if (isChecked) {
-            setOsflOrganizacion(0.1);
+            setOsflOrganizacion(0.8);
         } else {
             setOsflOrganizacion(0);
         }
@@ -157,18 +194,14 @@ export const CotizacionScreen = () => {
     };
 
     //funciones para que una vez clickeada una opcion de PirdBasica o PirdCompleja la otra se desactive Social Media
-    const pirdBasicaButton = (isChecked) => {
-        setPirdCompleja(false)
+    const pirdBasicaButton = () => {
+        setPirdCompleja(false);
         setPirdBasica(!pirdBasica);
-        if (isChecked) {
-            setPirdBasica(9.120)
+    };
+    const pirdBasicaValor = pirdBasica ? 9.120 : '';
+    console.log(pirdBasicaValor)
 
-        }
-        else {
-            setPirdBasica(false)
 
-        }
-    }
 
     //funciones para que una vez clickeada una opcion de PirdBasica o PirdCompleja la otra se desactive Social Media
     const pirdComplejaButton = (isChecked) => {
@@ -227,70 +260,15 @@ export const CotizacionScreen = () => {
         }
     }
 
-
-    const consultar = () => {
-
-        // const q = query(collection(db, "cotizaciones"), where("cargo", "==", 'pepe'));
-
-        // const querySnapshot = getDocs(q);
-
-        // querySnapshot.forEach((doc) => {
-        //     // doc.data() is never undefined for query doc snapshots
-        //     console.log(doc.id, " => ", doc.data());
-        // });
-        // querySnapshot.map
-
-        // const querySnapshot = getDocs(collection(db, "cotizaciones", '0mHVgwS7CSnzQEW4OU9V'));
-        // querySnapshot.forEach((doc) => {
-        //     // doc.data() is never undefined for query doc snapshots
-        //     console.log(doc.id, " => ", doc.data());
-        // });
-
-
-    }
-
-
-
-
-    const enviarFormulario = () => {
-
-
-
-        const formData = addDoc(collection(db, "cotizaciones"), {
-            localTime,
-            marca,
-            rubro,
-            nombreContacto,
-            apellidoContacto,
-            cargo,
-            emailContacto,
-            telefonoContacto,
-            criteriaEmail,
-            granOrganizacion,
-            pequeOrganizacion,
-            medianaOrganizacion,
-            microOrganizacion,
-            osflOrganizacion,
-            dolar,
-            pirdBasica,
-            pirdCompleja,
-            anuncioBasicos,
-            anunciosComplejos
-
-        });
-
-        Alert.alert("Cotizacion Confirmada " + user.email)
-        navigation.navigate("home");
-        console.log('Cotizacion Finalizada ')
-
-    }
-
     // SI / NO Abono integral RDS
     const [integralRDS, setIntegralRDS] = useState(false);
+
+
 
     const abonoIntregralRDS = (value) => {
 
         setIntegralRDS(value);
+
 
     }
 
@@ -319,7 +297,7 @@ export const CotizacionScreen = () => {
         setRedesFbIgGoogleAds(false);
         setRedesFbIgFNBdsGoogleAds(false)
         if (isChecked) {
-            setRedesFbIgFBAds(1111)
+            setRedesFbIgFBAds(10.000)
         }
         else {
             setRedesFbIgFBAds(false)
@@ -331,7 +309,7 @@ export const CotizacionScreen = () => {
         setRedesFbIgGoogleAds(!redesFbIgGoogleAds);
         setRedesFbIgFNBdsGoogleAds(false)
         if (isChecked) {
-            setRedesFbIgGoogleAds(2222)
+            setRedesFbIgGoogleAds(11.000)
         }
         else {
             setRedesFbIgGoogleAds(false)
@@ -343,12 +321,15 @@ export const CotizacionScreen = () => {
         setRedesFbIgGoogleAds(false);
         setRedesFbIgFNBdsGoogleAds(!redesFbIgFBAdsGoogleAds)
         if (isChecked) {
-            setRedesFbIgFNBdsGoogleAds(3333)
+            setRedesFbIgFNBdsGoogleAds(12.000)
         }
         else {
             setRedesFbIgFNBdsGoogleAds(false)
         }
     }
+
+    //Monto sugerido de pauta paga
+    const [montoSugeridoPautaPaga, setMontoSugeridoPautaPaga] = useState('');
 
     //Popup Linkedin
     const [linkekdin2, setLinkedin2] = useState(false);
@@ -436,7 +417,7 @@ export const CotizacionScreen = () => {
         setInstagramCard15(false);
         setInstagramCard18(false);
         if (isChecked) {
-            setFbIg3post2historias(121212)
+            setFbIg3post2historias(10.000)
         }
         else {
             setFbIg3post2historias(false)
@@ -450,7 +431,7 @@ export const CotizacionScreen = () => {
         setInstagramCard15(false);
         setInstagramCard18(false);
         if (isChecked) {
-            setFbIg4post3historias(2323)
+            setFbIg4post3historias(11.000)
         }
         else {
             setFbIg4post3historias(false)
@@ -464,7 +445,7 @@ export const CotizacionScreen = () => {
         setInstagramCard15(false);
         setInstagramCard18(false);
         if (isChecked) {
-            setFbIg5post4historias(3333)
+            setFbIg5post4historias(12.000)
         }
         else {
             setFbIg5post4historias(false)
@@ -478,7 +459,7 @@ export const CotizacionScreen = () => {
         setInstagramCard15(!instagramCard15);
         setInstagramCard18(false);
         if (isChecked) {
-            setInstagramCard15(3333)
+            setInstagramCard15(13.000)
         }
         else {
             setInstagramCard15(false)
@@ -492,7 +473,7 @@ export const CotizacionScreen = () => {
         setInstagramCard15(false);
         setInstagramCard18(!instagramCard18);
         if (isChecked) {
-            setInstagramCard18(3333)
+            setInstagramCard18(14.000)
         }
         else {
             setInstagramCard18(false)
@@ -527,7 +508,7 @@ export const CotizacionScreen = () => {
         setFbGoogleAds(false);
         setInstagramCard18(false);
         if (isChecked) {
-            setFbAds(121212)
+            setFbAds(10.000)
         }
         else {
             setFbAds(false)
@@ -539,7 +520,7 @@ export const CotizacionScreen = () => {
         setGoogleAds(!googleAds);
         setFbGoogleAds(false);
         if (isChecked) {
-            setGoogleAds(2323)
+            setGoogleAds(11.000)
         }
         else {
             setGoogleAds(false)
@@ -551,7 +532,7 @@ export const CotizacionScreen = () => {
         setGoogleAds(false);
         setFbGoogleAds(!fbGoogleAds);
         if (isChecked) {
-            setFbGoogleAds(3333)
+            setFbGoogleAds(12.000)
         }
         else {
             setFbGoogleAds(false)
@@ -642,12 +623,12 @@ export const CotizacionScreen = () => {
         setRediseñoIdentidad(false);
         setDiseñoMarca(false);
         setNaming(false);
-        if (isChecked) {
-            setLogo(121212)
-        }
-        else {
-            setLogo(false)
-        }
+        // if (isChecked) {
+        //     setLogo(121212)
+        // }
+        // else {
+        //     setLogo(false)
+        // }
     }
 
     const rediseñoIdentidadButton = (isChecked) => {
@@ -655,12 +636,12 @@ export const CotizacionScreen = () => {
         setRediseñoIdentidad(!rediseñoIdentidad);
         setDiseñoMarca(false);
         setNaming(false);
-        if (isChecked) {
-            setRediseñoIdentidad(2323)
-        }
-        else {
-            setRediseñoIdentidad(false)
-        }
+        // if (isChecked) {
+        //     setRediseñoIdentidad(2323)
+        // }
+        // else {
+        //     setRediseñoIdentidad(false)
+        // }
     }
 
     const diseñoMarcaButton = (isChecked) => {
@@ -668,12 +649,12 @@ export const CotizacionScreen = () => {
         setRediseñoIdentidad(false);
         setDiseñoMarca(!diseñoMarca);
         setNaming(false);
-        if (isChecked) {
-            setDiseñoMarca(3333)
-        }
-        else {
-            setDiseñoMarca(false)
-        }
+        // if (isChecked) {
+        //     setDiseñoMarca(3333)
+        // }
+        // else {
+        //     setDiseñoMarca(false)
+        // }
     }
 
     const namingButton = (isChecked) => {
@@ -681,12 +662,12 @@ export const CotizacionScreen = () => {
         setRediseñoIdentidad(false);
         setDiseñoMarca(false);
         setNaming(!naming);
-        if (isChecked) {
-            setNaming(4444)
-        }
-        else {
-            setNaming(false)
-        }
+        // if (isChecked) {
+        //     setNaming(4444)
+        // }
+        // else {
+        //     setNaming(false)
+        // }
     }
 
     // Input Numerico de horas totales  de la sesion de fotos 
@@ -734,13 +715,6 @@ export const CotizacionScreen = () => {
 
 
     return (
-
-
-
-
-
-
-
         <SafeAreaView  >
             <ScrollView style={styles.scrollView}>
 
@@ -769,53 +743,41 @@ export const CotizacionScreen = () => {
                     <Button title="Pequeña Organizacion (5-20 empleados)" containerStyle={{ marginHorizontal: 5, marginVertical: 5, }} onPress={pequeOrganizacionButton} />
                     <Button title="Micro Organizacion (5-5 empleados)" containerStyle={{ marginHorizontal: 5, marginVertical: 5, }} onPress={microeOrganizacionButton} />
                     <Button title="Particular OSFL" containerStyle={{ marginHorizontal: 5, marginVertical: 5, }} onPress={osflOrganizacionButton} />
-
                     {/*
 
                      Dependiendo el boton seleccionado, representa true o false , y al ser true pasa a un valor numerico por un if / else
                      Si un input es igual al valor seleccionado muestra el valor en pantalla ejemplo, granOrganizacion === 0.9 se muestra el input
 
                      */}
-
-                    {granOrganizacion === 0.9 && (
+                    {granOrganizacion === 1.4 && (
+                        <Input disabled label={'Factor Correccion'} type='marca' id='marca' style={styles.imputsCotizacion} placeholder='Marca' value={'1.4'} />
+                    )}
+                    {medianaOrganizacion === 1.2 && (
+                        <Input disabled label={'Factor Correccion'} type='marca' id='marca' style={styles.imputsCotizacion} placeholder='Marca' value={'1.2'} />
+                    )}
+                    {pequeOrganizacion === 1 && (
+                        <Input disabled label={'Factor Correccion'} type='marca' id='marca' style={styles.imputsCotizacion} placeholder='Marca' value={'1'} />
+                    )}
+                    {microOrganizacion === 0.9 && (
                         <Input disabled label={'Factor Correccion'} type='marca' id='marca' style={styles.imputsCotizacion} placeholder='Marca' value={'0.9'} />
                     )}
-
-                    {medianaOrganizacion === 0.7 && (
-                        <Input disabled label={'Factor Correccion'} type='marca' id='marca' style={styles.imputsCotizacion} placeholder='Marca' value={'0.7'} />
+                    {osflOrganizacion === 0.8 && (
+                        <Input disabled label={'Factor Correccion'} type='marca' id='valorOSFL' style={styles.imputsCotizacion} placeholder='Marca' value={'0.8'} />
                     )}
-
-                    {pequeOrganizacion === 0.4 && (
-                        <Input disabled label={'Factor Correccion'} type='marca' id='marca' style={styles.imputsCotizacion} placeholder='Marca' value={'0.4'} />
-                    )}
-
-                    {microOrganizacion === 0.2 && (
-                        <Input disabled label={'Factor Correccion'} type='marca' id='marca' style={styles.imputsCotizacion} placeholder='Marca' value={'0.2'} />
-                    )}
-
-                    {osflOrganizacion === 0.1 && (
-                        <Input disabled label={'Factor Correccion'} type='marca' id='valorOSFL' style={styles.imputsCotizacion} placeholder='Marca' value={'0.1'} />
-                    )}
-
-                    {/*
-
-                     Si todos los botones de empresa estan en false, el input a mostrar es 0
-                     
-                     */}
+                    {/*Si todos los botones de empresa estan en false, el input a mostrar es 0*/}
                     {granOrganizacion === false && medianaOrganizacion === false && pequeOrganizacion === false && microOrganizacion === false && osflOrganizacion === false && (
                         <Input disabled label={'Factor Correccion'} type='marca' id='marca' style={styles.imputsCotizacion} placeholder='Marca' value={'0'} />
                     )}
 
-
                     <Input disabled label={'Vista Dolar Hoy'} type='marca' id='marca' style={styles.imputsCotizacion} placeholder='Marca' value={'www.dolarhoy.com'} />
 
-                    <Input label={'Valor Dolar Blue'} type='Dolar' id='dolar' style={styles.imputsCotizacion} placeholder='Valor dolar BLUE' value={dolar} onChangeText={(text) => setDolar(text)} />
+                    <Input keyboardType="numeric" label={'Valor Dolar Blue'} type='Dolar' id='dolar' style={styles.imputsCotizacion} placeholder='Valor dolar BLUE' value={dolar} onChangeText={(text) => setDolar(text)} />
 
                     <Input disabled label={'Cotizacion Realizada por'} type='marca' id='marca' style={styles.imputsCotizacion} placeholder='Marca' value={user.email} />
 
                     <Text style={styles.titleNegro}>Social Media</Text>
 
-                    <Button title="Parametros Inicial RDS" onPress={socialMediaPopUp} titleStyle={{ color: 'black', fontSize: 18 }} containerStyle={{ marginHorizontal: 10, marginVertical: 50, color: 'black' }} buttonStyle={{ backgroundColor: 'white', borderWidth: 1, borderColor: 'black', borderRadius: 5, padding: 10 }} />
+                    <Button title="Parametros Inicial RDS" onPress={socialMediaPopUp} titleStyle={{ color: 'black', fontSize: 18 }} containerStyle={{ marginHorizontal: 10, marginVertical: 20, color: 'black' }} buttonStyle={{ backgroundColor: 'white', borderWidth: 1, borderColor: 'black', borderRadius: 5, padding: 10 }} />
 
                     <Dialog isVisible={socialMedia} onBackdropPress={socialMediaPopUp}>
 
@@ -830,28 +792,18 @@ export const CotizacionScreen = () => {
 
                     </Dialog>
 
-                    {pirdBasica === 9.120 && (
-
+                    {pirdBasica === true && (
                         <View>
-
                             <Input disabled label={'Resultado de PIRD Básica '} type='text' id='text' style={styles.imputsCotizacion} placeholder='9.120' />
-
-
                         </View>
-
                     )}
-
                     {pirdCompleja === 14.592 && (
-
                         <View>
-
                             <Input disabled label={'Resultado de PIRD Compleja'} type='text' id='text' style={styles.imputsCotizacion} placeholder='14.592' />
-
                         </View>
-
                     )}
 
-                    <Button title="Administracion Anuncios " onPress={anunciosPopup} titleStyle={{ color: 'black', fontSize: 18 }} containerStyle={{ marginHorizontal: 10, marginVertical: 50, color: 'black' }} buttonStyle={{ backgroundColor: 'white', borderWidth: 1, borderColor: 'black', borderRadius: 5, padding: 10 }} />
+                    <Button title="Administracion Anuncios " onPress={anunciosPopup} titleStyle={{ color: 'black', fontSize: 18 }} containerStyle={{ marginHorizontal: 10, marginVertical: 20, color: 'black' }} buttonStyle={{ backgroundColor: 'white', borderWidth: 1, borderColor: 'black', borderRadius: 5, padding: 10 }} />
 
                     <Dialog isVisible={anuncios} onBackdropPress={anunciosPopup}>
 
@@ -869,10 +821,7 @@ export const CotizacionScreen = () => {
                     {anuncioBasicos === 6.384 && (
 
                         <View>
-
-                            <Input disabled label={'Anuncio Basico'} type='text' id='text' style={styles.imputsCotizacion} placeholder='6.384' />
-
-
+                            <Input disabled label={'Monto CBM'} type='text' id='text' style={styles.imputsCotizacion} placeholder='6.384' />
                         </View>
 
                     )}
@@ -880,9 +829,7 @@ export const CotizacionScreen = () => {
                     {anunciosComplejos === 9.780 && (
 
                         <View>
-
-                            <Input disabled label={'Anuncio Complejo'} type='text' id='text' style={styles.imputsCotizacion} placeholder='9.780' />
-
+                            <Input disabled label={'Monto CBM'} type='text' id='text' style={styles.imputsCotizacion} placeholder='9.780' />
                         </View>
 
                     )}
@@ -895,24 +842,141 @@ export const CotizacionScreen = () => {
                         containerStyle={{ marginBottom: 20, marginTop: 20 }}
                     />
 
+                    {/* Sea valor 0 o 1 por el boton se muestran los campos indicados  */}
+                    {integralRDS === 0 && (
+                        <View>
 
-                    {/* Pop up anunncios  */}
-                    <Button title="Administracion Integral Redes" onPress={administracionIntegralRDS} titleStyle={{ color: 'black', fontSize: 18 }} containerStyle={{ marginHorizontal: 10, marginVertical: 50, color: 'black' }} buttonStyle={{ backgroundColor: 'white', borderWidth: 1, borderColor: 'black', borderRadius: 5, padding: 10 }} />
+                            {/* Pop up anunncios  */}
+                            <Button title="Administracion Integral Redes" onPress={administracionIntegralRDS} titleStyle={{ color: 'black', fontSize: 18 }} containerStyle={{ marginHorizontal: 10, marginVertical: 20, color: 'black' }} buttonStyle={{ backgroundColor: 'white', borderWidth: 1, borderColor: 'black', borderRadius: 5, padding: 10 }} />
 
-                    <Dialog isVisible={redesPopup} onBackdropPress={administracionIntegralRDS}>
+                            <Dialog isVisible={redesPopup} onBackdropPress={administracionIntegralRDS}>
 
-                        {/* Opciones Social Media*/}
-                        <Dialog.Title title="Administracion Integral Redes" />
+                                {/* Opciones Social Media*/}
+                                <Dialog.Title title="Administracion Integral Redes" />
 
-                        <CheckBox title="Ig FB " checkedIcon="dot-circle-o" uncheckedIcon="circle-o" checked={redesFbIgFBAds} onPress={redesFbIgFBAdsButton} />
-                        <CheckBox title="IG FB GOOGLEads" checkedIcon="dot-circle-o" uncheckedIcon="circle-o" checked={redesFbIgGoogleAds} onPress={redesFbIgGoogleAdsButton} />
-                        <CheckBox title="IG FB GOOGLEads fbads" checkedIcon="dot-circle-o" uncheckedIcon="circle-o" checked={redesFbIgFBAdsGoogleAds} onPress={redesFbIgFBAdsGoogleAdsButton} />
+                                <CheckBox title="Ig FB " checkedIcon="dot-circle-o" uncheckedIcon="circle-o" checked={redesFbIgFBAds} onPress={redesFbIgFBAdsButton} />
+                                <CheckBox title="IG FB GOOGLEads" checkedIcon="dot-circle-o" uncheckedIcon="circle-o" checked={redesFbIgGoogleAds} onPress={redesFbIgGoogleAdsButton} />
+                                <CheckBox title="IG FB GOOGLEads fbads" checkedIcon="dot-circle-o" uncheckedIcon="circle-o" checked={redesFbIgFBAdsGoogleAds} onPress={redesFbIgFBAdsGoogleAdsButton} />
 
 
-                        <Button title="Limpiar" onPress={administracionIntegralRDSLimpiar} />
-                        <Button title="Confirmar" onPress={administracionIntegralRDS} />
+                                <Button title="Limpiar" onPress={administracionIntegralRDSLimpiar} />
+                                <Button title="Confirmar" onPress={administracionIntegralRDS} />
 
-                    </Dialog>
+                            </Dialog>
+
+                            {/* Resultado segun la opcion indicada */}
+
+                            {redesFbIgFBAds === 10.000 && (
+                                <View>
+                                    <Input disabled label={'Resultado Administracion Integral Redes'} type='text' id='text' style={styles.imputsCotizacion} placeholder='10.000' />
+                                </View>
+                            )}
+
+                            {redesFbIgGoogleAds === 11.000 && (
+                                <View>
+                                    <Input disabled label={'Resultado Administracion Integral Redes'} type='text' id='text' style={styles.imputsCotizacion} placeholder='11.000' />
+                                </View>
+                            )}
+
+                            {redesFbIgFBAdsGoogleAds === 12.000 && (
+                                <View>
+                                    <Input disabled label={'Resultado Administracion Integral Redes'} type='text' id='text' style={styles.imputsCotizacion} placeholder='12.000' />
+                                </View>
+                            )}
+                        </View>
+
+                    )}
+
+                    {integralRDS === 1 && (
+                        <View>
+                            {/* Pop up Diseño y administracion de redes sociales  */}
+                            <Button title=" Diseño y Administracion de redes sociales" onPress={diseñoRedesPopupButton} titleStyle={{ color: 'black', fontSize: 18 }} containerStyle={{ marginHorizontal: 10, marginVertical: 20, color: 'black' }} buttonStyle={{ backgroundColor: 'white', borderWidth: 1, borderColor: 'black', borderRadius: 5, padding: 10 }} />
+
+                            <Dialog isVisible={diseñoRedesPopup} onBackdropPress={diseñoRedesPopupButton}>
+
+                                {/* Opciones Social Media*/}
+                                <Dialog.Title title="Diseño y Administracion de redes sociales" />
+
+                                <CheckBox title="FB + IG ( 3 Posteos  + 2 Historias Semanales ) " checkedIcon="dot-circle-o" uncheckedIcon="circle-o" checked={fbIg3post2historias} onPress={fbIg3post2historiasButton} />
+                                <CheckBox title="FB + IG ( 4 Posteos  + 3 Historias Semanales ) " checkedIcon="dot-circle-o" uncheckedIcon="circle-o" checked={fbIg4post3historias} onPress={fbIg4post3historiasButton} />
+                                <CheckBox title="FB + IG ( 5 Posteos  + 4 Historias Semanales ) " checkedIcon="dot-circle-o" uncheckedIcon="circle-o" checked={fbIg5post4historias} onPress={fbIg5post4historiasButton} />
+                                <CheckBox title="Instagram Business Card ( 15 Posteos + Historias Mensules ) " checkedIcon="dot-circle-o" uncheckedIcon="circle-o" checked={instagramCard15} onPress={instagramCard15Button} />
+                                <CheckBox title="Instagram Business Card ( 18 Posteos + Historias Mensules )" checkedIcon="dot-circle-o" uncheckedIcon="circle-o" checked={instagramCard18} onPress={instagramCard18Button} />
+
+                                <Button title="Limpiar" onPress={diseñoRedesPopupButtonLimpiar} />
+                                <Button title="Confirmar" onPress={diseñoRedesPopupButton} />
+
+                            </Dialog>
+
+                            {/* Resultado segun la opcion indicada */}
+                            {fbIg3post2historias === 10.000 && (
+                                <View>
+                                    <Input disabled label={'Resultado Administracion Redes'} type='text' id='text' style={styles.imputsCotizacion} placeholder='10.000' />
+                                </View>
+                            )}
+                            {fbIg4post3historias === 11.000 && (
+                                <View>
+                                    <Input disabled label={'Resultado Administracion Redes'} type='text' id='text' style={styles.imputsCotizacion} placeholder='11.000' />
+                                </View>
+                            )}
+                            {fbIg5post4historias === 12.000 && (
+                                <View>
+                                    <Input disabled label={'Resultado Administracion Redes'} type='text' id='text' style={styles.imputsCotizacion} placeholder='12.000' />
+                                </View>
+                            )}
+                            {instagramCard15 === 13.000 && (
+                                <View>
+                                    <Input disabled label={'Resultado Administracion Redes'} type='text' id='text' style={styles.imputsCotizacion} placeholder='13.000' />
+                                </View>
+                            )}
+                            {instagramCard18 === 14.000 && (
+                                <View>
+                                    <Input disabled label={'Resultado Administracion Redes'} type='text' id='text' style={styles.imputsCotizacion} placeholder='14.000' />
+                                </View>
+                            )}
+
+                            {/* Pop Campaña  */}
+                            <Button title="Campañas" onPress={campañasPopupButton} titleStyle={{ color: 'black', fontSize: 18 }} containerStyle={{ marginHorizontal: 10, marginVertical: 20, color: 'black' }} buttonStyle={{ backgroundColor: 'white', borderWidth: 1, borderColor: 'black', borderRadius: 5, padding: 10 }} />
+
+                            <Dialog isVisible={campañasPopup} onBackdropPress={campañasPopupButton}>
+
+                                {/* Opciones Campañas */}
+                                <Dialog.Title title="Campañas" />
+
+                                <CheckBox title="FB Ads" checkedIcon="dot-circle-o" uncheckedIcon="circle-o" checked={fbAds} onPress={fbAdsButton} />
+                                <CheckBox title="Google Ads" checkedIcon="dot-circle-o" uncheckedIcon="circle-o" checked={googleAds} onPress={googleAdsButton} />
+                                <CheckBox title="FB + Google Ads" checkedIcon="dot-circle-o" uncheckedIcon="circle-o" checked={fbGoogleAds} onPress={fbGoogleAdsButton} />
+
+                                <Button title="Limpiar" onPress={campañasPopupButtonLimpiar} />
+                                <Button title="Confirmar" onPress={campañasPopupButton} />
+
+                            </Dialog>
+
+                            {/* Resultado segun la opcion indicada */}
+                            {fbAds === 10.000 && (
+                                <View>
+                                    <Input disabled label={'Resultado Administracion Redes'} type='text' id='text' style={styles.imputsCotizacion} placeholder='10.000' />
+                                </View>
+                            )}
+                            {googleAds === 11.000 && (
+                                <View>
+                                    <Input disabled label={'Resultado Administracion Redes'} type='text' id='text' style={styles.imputsCotizacion} placeholder='11.000' />
+                                </View>
+                            )}
+                            {fbGoogleAds === 12.000 && (
+                                <View>
+                                    <Input disabled label={'Resultado Administracion Redes'} type='text' id='text' style={styles.imputsCotizacion} placeholder='12.000' />
+                                </View>
+                            )}
+
+                        </View>
+
+                    )}
+
+
+                    <Input keyboardType="numeric" label={'Monto Sugerido Pauta Paga'} type='Monto' id='MontoSugerido' style={styles.imputsCotizacion} placeholder='$ 0' value={montoSugeridoPautaPaga} onChangeText={(text) => setMontoSugeridoPautaPaga(text)} />
+
+
 
                     {/* Pop up LinkedIn  */}
                     <Button title=" Diseño y redaccion Linked-In" onPress={diseñoRedaccionLinkedin} titleStyle={{ color: 'black', fontSize: 18 }} containerStyle={{ marginHorizontal: 10, marginVertical: 50, color: 'black' }} buttonStyle={{ backgroundColor: 'white', borderWidth: 1, borderColor: 'black', borderRadius: 5, padding: 10 }} />
@@ -932,45 +996,8 @@ export const CotizacionScreen = () => {
 
                     </Dialog>
 
-                    {/* Pop up Diseño y administracion de redes sociales  */}
-                    <Button title=" Diseño y Administracion de redes sociales" onPress={diseñoRedesPopupButton} titleStyle={{ color: 'black', fontSize: 18 }} containerStyle={{ marginHorizontal: 10, marginVertical: 50, color: 'black' }} buttonStyle={{ backgroundColor: 'white', borderWidth: 1, borderColor: 'black', borderRadius: 5, padding: 10 }} />
-
-                    <Dialog isVisible={diseñoRedesPopup} onBackdropPress={diseñoRedesPopupButton}>
-
-                        {/* Opciones Social Media*/}
-                        <Dialog.Title title="Diseño y Administracion de redes sociales" />
-
-                        <CheckBox title="FB + IG ( 3 Posteos  + 2 Historias Semanales ) " checkedIcon="dot-circle-o" uncheckedIcon="circle-o" checked={fbIg3post2historias} onPress={fbIg3post2historiasButton} />
-                        <CheckBox title="FB + IG ( 4 Posteos  + 3 Historias Semanales ) " checkedIcon="dot-circle-o" uncheckedIcon="circle-o" checked={fbIg4post3historias} onPress={fbIg4post3historiasButton} />
-                        <CheckBox title="FB + IG ( 5 Posteos  + 4 Historias Semanales ) " checkedIcon="dot-circle-o" uncheckedIcon="circle-o" checked={fbIg5post4historias} onPress={fbIg5post4historiasButton} />
-                        <CheckBox title="Instagram Business Card ( 15 Posteos + Historias Mensules ) " checkedIcon="dot-circle-o" uncheckedIcon="circle-o" checked={instagramCard15} onPress={instagramCard15Button} />
-                        <CheckBox title="Instagram Business Card ( 18 Posteos + Historias Mensules )" checkedIcon="dot-circle-o" uncheckedIcon="circle-o" checked={instagramCard18} onPress={instagramCard18Button} />
 
 
-
-                        <Button title="Limpiar" onPress={diseñoRedesPopupButtonLimpiar} />
-                        <Button title="Confirmar" onPress={diseñoRedesPopupButton} />
-
-                    </Dialog>
-
-                    {/* Pop Campaña  */}
-                    <Button title="Campañas" onPress={campañasPopupButton} titleStyle={{ color: 'black', fontSize: 18 }} containerStyle={{ marginHorizontal: 10, marginVertical: 50, color: 'black' }} buttonStyle={{ backgroundColor: 'white', borderWidth: 1, borderColor: 'black', borderRadius: 5, padding: 10 }} />
-
-                    <Dialog isVisible={campañasPopup} onBackdropPress={campañasPopupButton}>
-
-                        {/* Opciones Campañas */}
-                        <Dialog.Title title="Campañas" />
-
-                        <CheckBox title="FB Ads" checkedIcon="dot-circle-o" uncheckedIcon="circle-o" checked={fbAds} onPress={fbAdsButton} />
-                        <CheckBox title="Google Ads" checkedIcon="dot-circle-o" uncheckedIcon="circle-o" checked={googleAds} onPress={googleAdsButton} />
-                        <CheckBox title="FB + Google Ads" checkedIcon="dot-circle-o" uncheckedIcon="circle-o" checked={fbGoogleAds} onPress={fbGoogleAdsButton} />
-
-
-
-                        <Button title="Limpiar" onPress={campañasPopupButtonLimpiar} />
-                        <Button title="Confirmar" onPress={campañasPopupButton} />
-
-                    </Dialog>
 
                     {/* Pop Newsletter  */}
                     <Button title="Newsletter" onPress={newsletterPopupButton} titleStyle={{ color: 'black', fontSize: 18 }} containerStyle={{ marginHorizontal: 10, marginVertical: 50, color: 'black' }} buttonStyle={{ backgroundColor: 'white', borderWidth: 1, borderColor: 'black', borderRadius: 5, padding: 10 }} />
@@ -1065,6 +1092,38 @@ export const CotizacionScreen = () => {
 
                     </Dialog>
 
+                    <>
+                        <ListItem.Accordion
+                            content={
+                                <ListItem.Content>
+                                    <ListItem.Title>Identidad de la empresa</ListItem.Title>
+                                    <ListItem.Subtitle>Logo y diseños </ListItem.Subtitle>
+                                </ListItem.Content>
+                            }
+                            isExpanded={expanded}
+                            onPress={() => {
+                                setExpanded(!expanded);
+                            }}
+                        >
+                            <ListItem>
+
+                                <ListItem.Content>
+                                    <CheckBox title="Logo" checkedIcon="dot-circle-o" uncheckedIcon="circle-o" checked={logo} onPress={logoButton} />
+
+
+                                    <CheckBox title="rediseño identidad" checkedIcon="dot-circle-o" uncheckedIcon="circle-o" checked={rediseñoIdentidad} onPress={rediseñoIdentidadButton} />
+
+                                    <CheckBox title="diseño marca" checkedIcon="dot-circle-o" uncheckedIcon="circle-o" checked={diseñoMarca} onPress={diseñoMarcaButton} />
+                                    <CheckBox title="naming" checkedIcon="dot-circle-o" uncheckedIcon="circle-o" checked={naming} onPress={namingButton} />
+
+                                    {/* 
+                                    <Button title="Limpiar" onPress={identidadPopupButtonLimpiar} />
+                                    <Button title="Confirmar" onPress={identidadPopupButton} /> */}
+
+                                </ListItem.Content>
+                            </ListItem>
+                        </ListItem.Accordion>
+                    </>
 
 
 
