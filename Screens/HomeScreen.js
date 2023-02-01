@@ -103,11 +103,11 @@ export const HomeScreen = () => {
             <Image source={require('../assets/CotizacionIMG.jpg')} style={{ width: 170, height: 200, margin: 10 }} />
           </TouchableOpacity>
 
-          <TouchableOpacity onPress={() => { handlePress() }}>
+          <TouchableOpacity >
             <Image source={require('../assets/Resumen.jpeg')} style={{ width: 170, height: 200, margin: 10 }} />
           </TouchableOpacity>
 
-          <TouchableOpacity onPress={() => { handlePress2() }}>
+          <TouchableOpacity >
             <Image source={require('../assets/Resumen.jpeg')} style={{ width: 170, height: 200, margin: 10 }} />
           </TouchableOpacity>
 
