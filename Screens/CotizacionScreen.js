@@ -24,6 +24,8 @@ export const CotizacionScreen = () => {
     const [expandedRedesAds, setExpandedRedesAds] = useState(false);
     const [expandedDiseñoRedes, setExpandedDiseñoRedes] = useState(false);
     const [expandedCampañas, setExpandedCampañas] = useState(false);
+    const [expandedLinkedin, setExpandedLinkedin] = useState(false);
+    const [expandedNewsletter, setExpandedNewsletter] = useState(false);
 
 
 
@@ -108,73 +110,87 @@ export const CotizacionScreen = () => {
     const [osflOrganizacion, setOsflOrganizacion] = useState(false)
 
     //funciones de los botones de empresa para desactivar los otros Botones empresa
-    const granOrganizacionButton = (isChecked) => {
+    const [backgroundColor1, setBackgroundColor1] = useState('lightsteelblue');
+    const [backgroundColor2, setBackgroundColor2] = useState('lightsteelblue');
+    const [backgroundColor3, setBackgroundColor3] = useState('lightsteelblue');
+    const [backgroundColor4, setBackgroundColor4] = useState('lightsteelblue');
+    const [backgroundColor5, setBackgroundColor5] = useState('lightsteelblue');
+
+    const granOrganizacionButton = () => {
         setGranOrganizacion(!granOrganizacion);
         setMedianaOrganizacion(false);
         setPequeOrganizacion(false);
         setMicroOrganizacion(false);
         setOsflOrganizacion(false);
-        if (isChecked) {
-            setGranOrganizacion(1.4);
-        } else {
-            setGranOrganizacion(0);
-        }
+        setBackgroundColor1('navy')
+        setBackgroundColor2('lightsteelblue')
+        setBackgroundColor3('lightsteelblue')
+        setBackgroundColor4('lightsteelblue')
+        setBackgroundColor5('lightsteelblue')
     }
+    const granOrganizacionValor = granOrganizacion ? 1.4 : '';
+
     //funcion de los botones de empresa para desactivar las otras Botones empresa
-    const medianaOrganizacionButton = (isChecked) => {
+    const medianaOrganizacionButton = () => {
         setGranOrganizacion(false);
         setMedianaOrganizacion(!medianaOrganizacion);
         setPequeOrganizacion(false);
         setMicroOrganizacion(false);
         setOsflOrganizacion(false);
-        if (isChecked) {
-            setMedianaOrganizacion(1.2);
-        } else {
-            setMedianaOrganizacion(0);
-        }
+        setBackgroundColor1('lightsteelblue')
+        setBackgroundColor2('navy')
+        setBackgroundColor3('lightsteelblue')
+        setBackgroundColor4('lightsteelblue')
+        setBackgroundColor5('lightsteelblue')
+
     }
+    const medianaOrganizacionValor = medianaOrganizacion ? 1.2 : '';
 
     //funcion de los botones de empresa para desactivar las otras Botones empresa
-    const pequeOrganizacionButton = (isChecked) => {
+    const pequeOrganizacionButton = () => {
         setGranOrganizacion(false);
         setMedianaOrganizacion(false);
         setPequeOrganizacion(!pequeOrganizacion)
         setMicroOrganizacion(false);
         setOsflOrganizacion(false);
-        if (isChecked) {
-            setPequeOrganizacion(1);
-        } else {
-            setPequeOrganizacion(0);
-        }
+        setBackgroundColor1('lightsteelblue')
+        setBackgroundColor2('lightsteelblue')
+        setBackgroundColor3('navy')
+        setBackgroundColor4('lightsteelblue')
+        setBackgroundColor5('lightsteelblue')
     }
+    const pequeOrganizacionValor = pequeOrganizacion ? 1 : '';
 
     //funcion de los botones de empresa para desactivar las otras Botones empresa
-    const microeOrganizacionButton = (isChecked) => {
+    const microeOrganizacionButton = () => {
         setGranOrganizacion(false);
         setMedianaOrganizacion(false);
         setPequeOrganizacion(false)
         setMicroOrganizacion(!microOrganizacion)
         setOsflOrganizacion(false);
-        if (isChecked) {
-            setMicroOrganizacion(0.9);
-        } else {
-            setMicroOrganizacion(0);
-        }
+        setBackgroundColor1('lightsteelblue')
+        setBackgroundColor2('lightsteelblue')
+        setBackgroundColor3('lightsteelblue')
+        setBackgroundColor4('navy')
+        setBackgroundColor5('lightsteelblue')
     }
+    const microOrganizacionValor = microOrganizacion ? 0.9 : '';
 
     //funcion de los botones de empresa para desactivar las otras Botones empresa
-    const osflOrganizacionButton = (isChecked) => {
+    const osflOrganizacionButton = () => {
         setGranOrganizacion(false);
         setMedianaOrganizacion(false);
         setPequeOrganizacion(false);
         setMicroOrganizacion(false);
         setOsflOrganizacion(!osflOrganizacion);
-        if (isChecked) {
-            setOsflOrganizacion(0.8);
-        } else {
-            setOsflOrganizacion(0);
-        }
+        setBackgroundColor1('lightsteelblue')
+        setBackgroundColor2('lightsteelblue')
+        setBackgroundColor3('lightsteelblue')
+        setBackgroundColor4('lightsteelblue')
+        setBackgroundColor5('navy')
     }
+    const osflOrganizacionValor = osflOrganizacion ? 0.8 : '';
+
 
     //Valor dolar ingresado 
     const [dolar, setDolar] = useState(0)
@@ -222,30 +238,18 @@ export const CotizacionScreen = () => {
     const anunciosBasicaButton = () => {
         setAnunciosComplejos(false)
         setAnunciosBasicos(!anuncioBasicos);
-        // if (isChecked) {
-        //     setAnunciosBasicos(6.384)
-        // }
-        // else {
-        //     setAnunciosBasicos(false)
-        // }
+
     }
     const anuncioBasicosValor = pirdBasica ? 6.384 : '';
 
     const anunciosComplejaButton = () => {
         setAnunciosBasicos(false)
         setAnunciosComplejos(!anunciosComplejos);
-        // if (isChecked) {
-        //     setAnunciosComplejos(9.780)
-        // }
-        // else {
-        //     setAnunciosComplejos(false)
-        // }
     }
     const anunciosComplejosValor = pirdBasica ? 9.780 : '';
 
     // SI / NO Abono integral RDS
     const [integralRDS, setIntegralRDS] = useState(false);
-
 
 
     const abonoIntregralRDS = (value) => {
@@ -317,41 +321,26 @@ export const CotizacionScreen = () => {
         setLinkedin4(false);
     };
 
-    const linkekdin2Button = (isChecked) => {
+    const linkekdin2Button = () => {
         setLinkedin2(!linkekdin2);
         setLinkedin3(false);
         setLinkedin4(false)
-        if (isChecked) {
-            setLinkedin2(121212)
-        }
-        else {
-            setLinkedin2(false)
-        }
     }
+    const linkekdin2Valor = linkekdin2 ? 10.000 : '';
 
-    const linkedin3Button = (isChecked) => {
+    const linkedin3Button = () => {
         setLinkedin2(false);
         setLinkedin3(!linkedin3);
         setLinkedin4(false)
-        if (isChecked) {
-            setLinkedin3(2323)
-        }
-        else {
-            setLinkedin3(false)
-        }
     }
+    const linkedin3Valor = linkedin3 ? 11.000 : '';
 
-    const linkedin4Button = (isChecked) => {
+    const linkedin4Button = () => {
         setLinkedin2(false);
         setLinkedin3(false);
         setLinkedin4(!linkedin4)
-        if (isChecked) {
-            setLinkedin4(3333)
-        }
-        else {
-            setLinkedin4(false)
-        }
     }
+    const linkedin4Valor = linkedin4 ? 12.000 : '';
 
     //Popup diseño administracion redes sociales
     const [fbIg3post2historias, setFbIg3post2historias] = useState(false);
@@ -498,41 +487,26 @@ export const CotizacionScreen = () => {
 
     };
 
-    const newsletter1Button = (isChecked) => {
+    const newsletter1Button = () => {
         setNewsletter1(!newsletter1);
         setNewsletter2(false);
         setNewsletter3(false);
-        if (isChecked) {
-            setNewsletter1(121212)
-        }
-        else {
-            setNewsletter1(false)
-        }
     }
+    const newsletter1Valor = newsletter1 ? 10.000 : '';
 
-    const newsletter2Button = (isChecked) => {
+    const newsletter2Button = () => {
         setNewsletter1(false);
         setNewsletter2(!newsletter2);
         setNewsletter3(false);
-        if (isChecked) {
-            setNewsletter2(2323)
-        }
-        else {
-            setNewsletter2(false)
-        }
     }
+    const newsletter2Valor = newsletter2 ? 11.000 : '';
 
-    const newsletter3Button = (isChecked) => {
+    const newsletter3Button = () => {
         setNewsletter1(false);
         setNewsletter2(false);
         setNewsletter3(!newsletter3);
-        if (isChecked) {
-            setNewsletter3(3333)
-        }
-        else {
-            setNewsletter3(false)
-        }
     }
+    const newsletter3Valor = newsletter3 ? 12.000 : '';
 
     //Popup Identidad
     const [logo, setLogo] = useState(false);
@@ -560,52 +534,32 @@ export const CotizacionScreen = () => {
         setRediseñoIdentidad(false);
         setDiseñoMarca(false);
         setNaming(false);
-        // if (isChecked) {
-        //     setLogo(121212)
-        // }
-        // else {
-        //     setLogo(false)
-        // }
     }
+    const logoValor = logo ? 10.000 : '';
 
     const rediseñoIdentidadButton = () => {
         setLogo(false);
         setRediseñoIdentidad(!rediseñoIdentidad);
         setDiseñoMarca(false);
         setNaming(false);
-        // if (isChecked) {
-        //     setRediseñoIdentidad(2323)
-        // }
-        // else {
-        //     setRediseñoIdentidad(false)
-        // }
     }
+    const rediseñoIdentidadValor = rediseñoIdentidad ? 11.000 : '';
 
     const diseñoMarcaButton = () => {
         setLogo(false);
         setRediseñoIdentidad(false);
         setDiseñoMarca(!diseñoMarca);
         setNaming(false);
-        // if (isChecked) {
-        //     setDiseñoMarca(3333)
-        // }
-        // else {
-        //     setDiseñoMarca(false)
-        // }
     }
+    const diseñoMarcaValor = diseñoMarca ? 12.000 : '';
 
     const namingButton = () => {
         setLogo(false);
         setRediseñoIdentidad(false);
         setDiseñoMarca(false);
         setNaming(!naming);
-        // if (isChecked) {
-        //     setNaming(4444)
-        // }
-        // else {
-        //     setNaming(false)
-        // }
     }
+    const namingValor = naming ? 13.000 : '';
 
     // Input Numerico de horas totales  de la sesion de fotos 
     const [horasTotalesSesionFotos, setHorasTotalesSesionFotos] = useState('')
@@ -675,30 +629,30 @@ export const CotizacionScreen = () => {
 
                     <Text > Nivel del cliente como empresa </Text>
 
-                    <Button title="Gran Organizacion (+50 empleados)" containerStyle={{ marginHorizontal: 5, marginVertical: 5, }} onPress={granOrganizacionButton} />
-                    <Button title="Mediana Organizacion (20-50 empleados)" containerStyle={{ marginHorizontal: 5, marginVertical: 5, }} onPress={medianaOrganizacionButton} />
-                    <Button title="Pequeña Organizacion (5-20 empleados)" containerStyle={{ marginHorizontal: 5, marginVertical: 5, }} onPress={pequeOrganizacionButton} />
-                    <Button title="Micro Organizacion (5-5 empleados)" containerStyle={{ marginHorizontal: 5, marginVertical: 5, }} onPress={microeOrganizacionButton} />
-                    <Button title="Particular OSFL" containerStyle={{ marginHorizontal: 5, marginVertical: 5, }} onPress={osflOrganizacionButton} />
+                    <Button title="Gran Organizacion (+50 empleados)" containerStyle={{ marginHorizontal: 5, marginVertical: 5, }} onPress={granOrganizacionButton} buttonStyle={{ backgroundColor: backgroundColor1 }} />
+                    <Button title="Mediana Organizacion (20-50 empleados)" containerStyle={{ marginHorizontal: 5, marginVertical: 5, }} onPress={medianaOrganizacionButton} buttonStyle={{ backgroundColor: backgroundColor2 }} />
+                    <Button title="Pequeña Organizacion (5-20 empleados)" containerStyle={{ marginHorizontal: 5, marginVertical: 5, }} onPress={pequeOrganizacionButton} buttonStyle={{ backgroundColor: backgroundColor3 }} />
+                    <Button title="Micro Organizacion (5-5 empleados)" containerStyle={{ marginHorizontal: 5, marginVertical: 5, }} onPress={microeOrganizacionButton} buttonStyle={{ backgroundColor: backgroundColor4 }} />
+                    <Button title="Particular OSFL" containerStyle={{ marginHorizontal: 5, marginVertical: 5, }} onPress={osflOrganizacionButton} buttonStyle={{ backgroundColor: backgroundColor5 }} />
                     {/*
 
                      Dependiendo el boton seleccionado, representa true o false , y al ser true pasa a un valor numerico por un if / else
                      Si un input es igual al valor seleccionado muestra el valor en pantalla ejemplo, granOrganizacion === 0.9 se muestra el input
 
                      */}
-                    {granOrganizacion === 1.4 && (
+                    {granOrganizacion === true && (
                         <Input disabled label={'Factor Correccion'} type='marca' id='marca' style={styles.imputsCotizacion} placeholder='Marca' value={'1.4'} />
                     )}
-                    {medianaOrganizacion === 1.2 && (
+                    {medianaOrganizacion === true && (
                         <Input disabled label={'Factor Correccion'} type='marca' id='marca' style={styles.imputsCotizacion} placeholder='Marca' value={'1.2'} />
                     )}
-                    {pequeOrganizacion === 1 && (
+                    {pequeOrganizacion === true && (
                         <Input disabled label={'Factor Correccion'} type='marca' id='marca' style={styles.imputsCotizacion} placeholder='Marca' value={'1'} />
                     )}
-                    {microOrganizacion === 0.9 && (
+                    {microOrganizacion === true && (
                         <Input disabled label={'Factor Correccion'} type='marca' id='marca' style={styles.imputsCotizacion} placeholder='Marca' value={'0.9'} />
                     )}
-                    {osflOrganizacion === 0.8 && (
+                    {osflOrganizacion === true && (
                         <Input disabled label={'Factor Correccion'} type='marca' id='valorOSFL' style={styles.imputsCotizacion} placeholder='Marca' value={'0.8'} />
                     )}
                     {/*Si todos los botones de empresa estan en false, el input a mostrar es 0*/}
@@ -713,36 +667,6 @@ export const CotizacionScreen = () => {
                     <Input disabled label={'Cotizacion Realizada por'} type='marca' id='marca' style={styles.imputsCotizacion} placeholder='Marca' value={user.email} />
 
                     <Text style={styles.titleNegro}>Social Media</Text>
-
-
-                    {/* <Button title="Parametros Inicial RDS" onPress={socialMediaPopUp} titleStyle={{ color: 'black', fontSize: 18 }} containerStyle={{ marginHorizontal: 10, marginVertical: 20, color: 'black' }} buttonStyle={{ backgroundColor: 'white', borderWidth: 1, borderColor: 'black', borderRadius: 5, padding: 10 }} />
-
-                    <Dialog isVisible={socialMedia} onBackdropPress={socialMediaPopUp}>
-
-                        Opciones Social Media
-                        <Dialog.Title title="Parametros Inicial RDS" />
-
-                        <CheckBox title="PIRD Básica" checkedIcon="dot-circle-o" uncheckedIcon="circle-o" checked={pirdBasica} onPress={pirdBasicaButton} />
-                        <CheckBox title="PIRD Compleja" checkedIcon="dot-circle-o" uncheckedIcon="circle-o" checked={pirdCompleja} onPress={pirdComplejaButton} />
-
-                        <Button title="Limpiar" onPress={socialMediaPopUpLimpiar} />
-                        <Button title="Confirmar" onPress={socialMediaPopUpConfirmar} />
-
-                    </Dialog> */}
-
-                    {/* {pirdBasica === true && (
-                        <View>
-                            <Input disabled label={'Resultado de PIRD Básica '} type='text' id='text' style={styles.imputsCotizacion} placeholder='9.120' />
-                        </View>
-                    )}
-                    {pirdCompleja === true && (
-                        <View>
-                            <Input disabled label={'Resultado de PIRD Compleja'} type='text' id='text' style={styles.imputsCotizacion} placeholder='14.592' />
-                        </View>
-                    )} */}
-
-                    {/* Acordeon Parametros RDS */}
-
                     <>
                         <ListItem.Accordion
                             content={
@@ -756,7 +680,7 @@ export const CotizacionScreen = () => {
                                 setExpandedRDS(!expandedRDS);
                             }}>
 
-                            <View >
+                            <View style={styles.containerDropDawn}>
 
                                 <CheckBox title="PIRD Básica" checkedIcon="dot-circle-o" uncheckedIcon="circle-o" checked={pirdBasica} onPress={pirdBasicaButton} />
                                 <CheckBox title="PIRD Compleja" checkedIcon="dot-circle-o" uncheckedIcon="circle-o" checked={pirdCompleja} onPress={pirdComplejaButton} />
@@ -776,40 +700,6 @@ export const CotizacionScreen = () => {
                         </ListItem.Accordion>
                     </>
 
-
-
-                    {/* <Button title="Administracion Anuncios " onPress={anunciosPopup} titleStyle={{ color: 'black', fontSize: 18 }} containerStyle={{ marginHorizontal: 10, marginVertical: 20, color: 'black' }} buttonStyle={{ backgroundColor: 'white', borderWidth: 1, borderColor: 'black', borderRadius: 5, padding: 10 }} />
-
-                    <Dialog isVisible={anuncios} onBackdropPress={anunciosPopup}>
-
-                        Opciones Social Media
-                        <Dialog.Title title="Parametros Inicial RDS" />
-
-                        <CheckBox title="Básica" checkedIcon="dot-circle-o" uncheckedIcon="circle-o" checked={anuncioBasicos} onPress={anunciosBasicaButton} />
-                        <CheckBox title="Compleja" checkedIcon="dot-circle-o" uncheckedIcon="circle-o" checked={anunciosComplejos} onPress={anunciosComplejaButton} />
-
-                        <Button title="Limpiar" onPress={anunciosPopupLimpiar} />
-                        <Button title="Confirmar" onPress={anunciosPopupConfirmar} />
-
-                    </Dialog>
-
-                    {anuncioBasicos === 6.384 && (
-
-                        <View>
-                            <Input disabled label={'Monto CBM'} type='text' id='text' style={styles.imputsCotizacion} placeholder='6.384' />
-                        </View>
-
-                    )}
-
-                    {anunciosComplejos === 9.780 && (
-
-                        <View>
-                            <Input disabled label={'Monto CBM'} type='text' id='text' style={styles.imputsCotizacion} placeholder='9.780' />
-                        </View>
-
-                    )} */}
-
-
                     <ListItem.Accordion
                         content={
                             <ListItem.Content>
@@ -822,7 +712,7 @@ export const CotizacionScreen = () => {
                             setExpandedAnuncios(!expandedAnuncios);
                         }}>
 
-                        <View >
+                        <View style={styles.containerDropDawn}>
 
                             <CheckBox title="Básica" checkedIcon="dot-circle-o" uncheckedIcon="circle-o" checked={anuncioBasicos} onPress={anunciosBasicaButton} />
                             <CheckBox title="Compleja" checkedIcon="dot-circle-o" uncheckedIcon="circle-o" checked={anunciosComplejos} onPress={anunciosComplejaButton} />
@@ -873,7 +763,7 @@ export const CotizacionScreen = () => {
                                 setExpandedRedesAds(!expandedRedesAds);
                             }}>
 
-                            <View >
+                            <View style={styles.containerDropDawn}>
 
                                 <CheckBox title="Ig FB " checkedIcon="dot-circle-o" uncheckedIcon="circle-o" checked={redesFbIgFBAds} onPress={redesFbIgFBAdsButton} />
                                 <CheckBox title="IG FB GOOGLEads" checkedIcon="dot-circle-o" uncheckedIcon="circle-o" checked={redesFbIgGoogleAds} onPress={redesFbIgGoogleAdsButton} />
@@ -916,7 +806,7 @@ export const CotizacionScreen = () => {
                                     setExpandedDiseñoRedes(!expandedDiseñoRedes);
                                 }}>
 
-                                <View >
+                                <View style={styles.containerDropDawn}>
 
                                     <CheckBox title="FB + IG ( 3 Posteos  + 2 Historias Semanales ) " checkedIcon="dot-circle-o" uncheckedIcon="circle-o" checked={fbIg3post2historias} onPress={fbIg3post2historiasButton} />
                                     <CheckBox title="FB + IG ( 4 Posteos  + 3 Historias Semanales ) " checkedIcon="dot-circle-o" uncheckedIcon="circle-o" checked={fbIg4post3historias} onPress={fbIg4post3historiasButton} />
@@ -967,7 +857,7 @@ export const CotizacionScreen = () => {
                                     setExpandedCampañas(!expandedCampañas);
                                 }}>
 
-                                <View >
+                                <View style={styles.containerDropDawn}>
 
                                     <CheckBox title="FB Ads" checkedIcon="dot-circle-o" uncheckedIcon="circle-o" checked={fbAds} onPress={fbAdsButton} />
                                     <CheckBox title="Google Ads" checkedIcon="dot-circle-o" uncheckedIcon="circle-o" checked={googleAds} onPress={googleAdsButton} />
@@ -999,44 +889,79 @@ export const CotizacionScreen = () => {
                     <Input keyboardType="numeric" label={'Monto Sugerido Pauta Paga'} type='Monto' id='MontoSugerido' style={styles.imputsCotizacion} placeholder='$ 0' value={montoSugeridoPautaPaga} onChangeText={(text) => setMontoSugeridoPautaPaga(text)} />
 
 
+                    <ListItem.Accordion
+                        content={
+                            <ListItem.Content>
+                                <ListItem.Title>Diseño y redaccion Linked-In</ListItem.Title>
+                                <ListItem.Subtitle>Linked Posteos Mensuales</ListItem.Subtitle>
+                            </ListItem.Content>
+                        }
+                        isExpanded={expandedLinkedin}
+                        onPress={() => {
+                            setExpandedLinkedin(!expandedLinkedin);
+                        }}>
 
-                    {/* Pop up LinkedIn  */}
-                    <Button title=" Diseño y redaccion Linked-In" onPress={diseñoRedaccionLinkedin} titleStyle={{ color: 'black', fontSize: 18 }} containerStyle={{ marginHorizontal: 10, marginVertical: 50, color: 'black' }} buttonStyle={{ backgroundColor: 'white', borderWidth: 1, borderColor: 'black', borderRadius: 5, padding: 10 }} />
+                        <View style={styles.containerDropDawn}>
 
-                    <Dialog isVisible={linkedinPopup} onBackdropPress={diseñoRedaccionLinkedin}>
-
-                        {/* Opciones Social Media*/}
-                        <Dialog.Title title="Diseño y redaccion Linked-In" />
-
-                        <CheckBox title="LINKEDIN 2 Posteos Mensuales " checkedIcon="dot-circle-o" uncheckedIcon="circle-o" checked={linkekdin2} onPress={linkekdin2Button} />
-                        <CheckBox title="LINKEDIN 3 Posteos Mensuales " checkedIcon="dot-circle-o" uncheckedIcon="circle-o" checked={linkedin3} onPress={linkedin3Button} />
-                        <CheckBox title="LINKEDIN 4 Posteos Mensuales " checkedIcon="dot-circle-o" uncheckedIcon="circle-o" checked={linkedin4} onPress={linkedin4Button} />
-
-
-                        <Button title="Limpiar" onPress={diseñoRedaccionLinkedinLimpiar} />
-                        <Button title="Confirmar" onPress={diseñoRedaccionLinkedin} />
-
-                    </Dialog>
-
+                            <CheckBox title="LINKEDIN 2 Posteos Mensuales " checkedIcon="dot-circle-o" uncheckedIcon="circle-o" checked={linkekdin2} onPress={linkekdin2Button} />
+                            <CheckBox title="LINKEDIN 3 Posteos Mensuales " checkedIcon="dot-circle-o" uncheckedIcon="circle-o" checked={linkedin3} onPress={linkedin3Button} />
+                            <CheckBox title="LINKEDIN 4 Posteos Mensuales " checkedIcon="dot-circle-o" uncheckedIcon="circle-o" checked={linkedin4} onPress={linkedin4Button} />
 
 
+                            {linkekdin2 === true && (
+                                <View>
+                                    <Input disabled label={'Resultado LinkedIn'} type='text' id='text' style={styles.imputsCotizacion} placeholder='10.000' />
+                                </View>
+                            )}
+                            {linkedin3 === true && (
+                                <View>
+                                    <Input disabled label={'Resultado LinkedIn'} type='text' id='text' style={styles.imputsCotizacion} placeholder='11.000' />
+                                </View>
+                            )}
+                            {linkedin4 === true && (
+                                <View>
+                                    <Input disabled label={'Resultado LinkedIn'} type='text' id='text' style={styles.imputsCotizacion} placeholder='12.000' />
+                                </View>
+                            )}
+                        </View>
+                    </ListItem.Accordion>
 
-                    {/* Pop Newsletter  */}
-                    <Button title="Newsletter" onPress={newsletterPopupButton} titleStyle={{ color: 'black', fontSize: 18 }} containerStyle={{ marginHorizontal: 10, marginVertical: 50, color: 'black' }} buttonStyle={{ backgroundColor: 'white', borderWidth: 1, borderColor: 'black', borderRadius: 5, padding: 10 }} />
+                    <ListItem.Accordion
+                        content={
+                            <ListItem.Content>
+                                <ListItem.Title>Newsletter</ListItem.Title>
+                                <ListItem.Subtitle>Newsletter Posteos Mensuales</ListItem.Subtitle>
+                            </ListItem.Content>
+                        }
+                        isExpanded={expandedNewsletter}
+                        onPress={() => {
+                            setExpandedNewsletter(!expandedNewsletter);
+                        }}>
 
-                    <Dialog isVisible={newsletterPopup} onBackdropPress={newsletterPopupButton}>
+                        <View style={styles.containerDropDawn}>
 
-                        {/* Opciones Social Media*/}
-                        <Dialog.Title title="Newsletter" />
+                            <CheckBox title="Newsletter: 1 Posteo Mensual " checkedIcon="dot-circle-o" uncheckedIcon="circle-o" checked={newsletter1} onPress={newsletter1Button} />
+                            <CheckBox title="Newsletter: 2 Posteos Menuales" checkedIcon="dot-circle-o" uncheckedIcon="circle-o" checked={newsletter2} onPress={newsletter2Button} />
+                            <CheckBox title="Newsletter: 3 Posteos Mensuales" checkedIcon="dot-circle-o" uncheckedIcon="circle-o" checked={newsletter3} onPress={newsletter3Button} />
 
-                        <CheckBox title="Newsletter: 1 Posteo Mensual " checkedIcon="dot-circle-o" uncheckedIcon="circle-o" checked={newsletter1} onPress={newsletter1Button} />
-                        <CheckBox title="Newsletter: 2 Posteos Menuales" checkedIcon="dot-circle-o" uncheckedIcon="circle-o" checked={newsletter2} onPress={newsletter2Button} />
-                        <CheckBox title="Newsletter: 3 Posteos Mensuales" checkedIcon="dot-circle-o" uncheckedIcon="circle-o" checked={newsletter3} onPress={newsletter3Button} />
 
-                        <Button title="Limpiar" onPress={newsletterPopupButtonLimpiar} />
-                        <Button title="Confirmar" onPress={newsletterPopupButton} />
-
-                    </Dialog>
+                            {newsletter1 === true && (
+                                <View>
+                                    <Input disabled label={'Resultado Newsletter'} type='text' id='text' style={styles.imputsCotizacion} placeholder='10.000' />
+                                </View>
+                            )}
+                            {newsletter2 === true && (
+                                <View>
+                                    <Input disabled label={'Resultado Newsletter'} type='text' id='text' style={styles.imputsCotizacion} placeholder='11.000' />
+                                </View>
+                            )}
+                            {newsletter3 === true && (
+                                <View>
+                                    <Input disabled label={'Resultado Newsletter'} type='text' id='text' style={styles.imputsCotizacion} placeholder='12.000' />
+                                </View>
+                            )}
+                        </View>
+                    </ListItem.Accordion>
 
 
 
@@ -1095,62 +1020,48 @@ export const CotizacionScreen = () => {
                     {/* Cantidad de fotos a entregar */}
                     <Input keyboardType="numeric" label={'Cantidad de Fotos a Entregar '} type='text' id='text' style={styles.imputsCotizacion} placeholder='0' value={fotosAEntregar} onChangeText={(text) => setFotosAEntregar(text)} />
 
-                    {/* Popup Identidad  */}
-                    <Button title="Identidad" onPress={identidadPopupButton} titleStyle={{ color: 'black', fontSize: 18 }} containerStyle={{ marginHorizontal: 10, marginVertical: 50, color: 'black' }} buttonStyle={{ backgroundColor: 'white', borderWidth: 1, borderColor: 'black', borderRadius: 5, padding: 10 }} />
+                    {/* DropDown Identidad */}
+                    <ListItem.Accordion
+                        content={
+                            <ListItem.Content>
+                                <ListItem.Title>Identidad de la empresa</ListItem.Title>
+                                <ListItem.Subtitle>Logo y diseños </ListItem.Subtitle>
+                            </ListItem.Content>
+                        }
+                        isExpanded={expanded}
+                        onPress={() => {
+                            setExpanded(!expanded);
+                        }}>
+                        <View style={styles.containerDropDawn}>
 
-                    <Dialog isVisible={identidadPopup} onBackdropPress={identidadPopupButton}>
+                            <CheckBox title="Logo" checkedIcon="dot-circle-o" uncheckedIcon="circle-o" checked={logo} onPress={logoButton} />
+                            <CheckBox title="rediseño identidad" checkedIcon="dot-circle-o" uncheckedIcon="circle-o" checked={rediseñoIdentidad} onPress={rediseñoIdentidadButton} />
+                            <CheckBox title="diseño marca" checkedIcon="dot-circle-o" uncheckedIcon="circle-o" checked={diseñoMarca} onPress={diseñoMarcaButton} />
+                            <CheckBox title="naming" checkedIcon="dot-circle-o" uncheckedIcon="circle-o" checked={naming} onPress={namingButton} />
 
-                        {/* Opciones Identidad*/}
-                        <Dialog.Title title="Identidad" />
+                            {logo === true && (
+                                <View>
+                                    <Input disabled label={'Resultado Identidad de la empresa'} type='text' id='text' style={styles.imputsCotizacion} placeholder='10.000' />
+                                </View>
+                            )}
+                            {rediseñoIdentidad === true && (
+                                <View>
+                                    <Input disabled label={'Resultado Identidad de la empresa'} type='text' id='text' style={styles.imputsCotizacion} placeholder='11.000' />
+                                </View>
+                            )}
+                            {diseñoMarca === true && (
+                                <View>
+                                    <Input disabled label={'Resultado Identidad de la empresa'} type='text' id='text' style={styles.imputsCotizacion} placeholder='12.000' />
+                                </View>
+                            )}
+                            {naming === true && (
+                                <View>
+                                    <Input disabled label={'Resultado Identidad de la empresa'} type='text' id='text' style={styles.imputsCotizacion} placeholder='12.000' />
+                                </View>
+                            )}
+                        </View>
 
-                        <CheckBox title="Logo" checkedIcon="dot-circle-o" uncheckedIcon="circle-o" checked={logo} onPress={logoButton} />
-                        <CheckBox title="rediseño identidad" checkedIcon="dot-circle-o" uncheckedIcon="circle-o" checked={rediseñoIdentidad} onPress={rediseñoIdentidadButton} />
-                        <CheckBox title="diseño marca" checkedIcon="dot-circle-o" uncheckedIcon="circle-o" checked={diseñoMarca} onPress={diseñoMarcaButton} />
-                        <CheckBox title="naming" checkedIcon="dot-circle-o" uncheckedIcon="circle-o" checked={naming} onPress={namingButton} />
-
-
-                        <Button title="Limpiar" onPress={identidadPopupButtonLimpiar} />
-                        <Button title="Confirmar" onPress={identidadPopupButton} />
-
-                    </Dialog>
-
-                    <>
-                        <ListItem.Accordion
-                            content={
-                                <ListItem.Content>
-                                    <ListItem.Title>Identidad de la empresa</ListItem.Title>
-                                    <ListItem.Subtitle>Logo y diseños </ListItem.Subtitle>
-                                </ListItem.Content>
-                            }
-                            isExpanded={expanded}
-                            onPress={() => {
-                                setExpanded(!expanded);
-                            }}
-                        >
-                            <ListItem>
-
-                                <ListItem.Content>
-                                    <CheckBox title="Logo" checkedIcon="dot-circle-o" uncheckedIcon="circle-o" checked={logo} onPress={logoButton} />
-
-
-                                    <CheckBox title="rediseño identidad" checkedIcon="dot-circle-o" uncheckedIcon="circle-o" checked={rediseñoIdentidad} onPress={rediseñoIdentidadButton} />
-
-                                    <CheckBox title="diseño marca" checkedIcon="dot-circle-o" uncheckedIcon="circle-o" checked={diseñoMarca} onPress={diseñoMarcaButton} />
-                                    <CheckBox title="naming" checkedIcon="dot-circle-o" uncheckedIcon="circle-o" checked={naming} onPress={namingButton} />
-
-                                    {/* 
-                                    <Button title="Limpiar" onPress={identidadPopupButtonLimpiar} />
-                                    <Button title="Confirmar" onPress={identidadPopupButton} /> */}
-
-                                </ListItem.Content>
-                            </ListItem>
-                        </ListItem.Accordion>
-                    </>
-
-
-
-
-
+                    </ListItem.Accordion>
 
 
 
