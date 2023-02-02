@@ -17,9 +17,18 @@ import { TouchableOpacity } from "react-native-gesture-handler";
 
 export const CotizacionScreen = () => {
 
-    // Objeto pusheado a la base de datos en firestore
-    const [expanded, setExpanded] = React.useState(false);
+    //Constantes para expandir dropdawns
+    const [expanded, setExpanded] = useState(false);
+    const [expandedRDS, setExpandedRDS] = useState(false);
+    const [expandedAnuncios, setExpandedAnuncios] = useState(false);
+    const [expandedRedesAds, setExpandedRedesAds] = useState(false);
+    const [expandedDiseñoRedes, setExpandedDiseñoRedes] = useState(false);
+    const [expandedCampañas, setExpandedCampañas] = useState(false);
 
+
+
+
+    // Objeto pusheado a la base de datos en firestore
     const enviarFormulario = () => {
 
         const formData = addDoc(collection(db, "cotizaciones"), {
@@ -170,28 +179,10 @@ export const CotizacionScreen = () => {
     //Valor dolar ingresado 
     const [dolar, setDolar] = useState(0)
 
-    //Check-Box dentro de popup 'RDS'
+    //Check-Box dentro de dropdawn 'RDS'
     const [pirdBasica, setPirdBasica] = useState(false)
     const [pirdCompleja, setPirdCompleja] = useState(false)
 
-    //PopUp SocialMedia
-    const [socialMedia, setSocialMedia] = useState(false);
-
-    const socialMediaPopUp = () => {
-        setSocialMedia(!socialMedia);
-    };
-
-    //boton confirmar socialmedia 
-    const socialMediaPopUpConfirmar = () => {
-        setSocialMedia(!socialMedia);
-    };
-
-
-    //boton pop up media confirmar
-    const socialMediaPopUpLimpiar = () => {
-        setPirdCompleja(false)
-        setPirdBasica(false)
-    };
 
     //funciones para que una vez clickeada una opcion de PirdBasica o PirdCompleja la otra se desactive Social Media
     const pirdBasicaButton = () => {
@@ -199,66 +190,58 @@ export const CotizacionScreen = () => {
         setPirdBasica(!pirdBasica);
     };
     const pirdBasicaValor = pirdBasica ? 9.120 : '';
-    console.log(pirdBasicaValor)
-
-
 
     //funciones para que una vez clickeada una opcion de PirdBasica o PirdCompleja la otra se desactive Social Media
-    const pirdComplejaButton = (isChecked) => {
+    const pirdComplejaButton = () => {
         setPirdBasica(false);
         setPirdCompleja(!pirdCompleja)
-        if (isChecked) {
-            setPirdCompleja(14.592)
-
-        }
-        else {
-            setPirdCompleja(false)
-            setPirdBasica(false);
-
-        }
     }
+    const pirdComplejaValor = pirdCompleja ? 14.592 : '';
 
     //Check box Anuncios 
 
     const [anuncioBasicos, setAnunciosBasicos] = useState(false);
     const [anunciosComplejos, setAnunciosComplejos] = useState(false)
 
-    //PopUp Anuncios
-    const [anuncios, setSAnuncios] = useState(false)
+    // //PopUp Anuncios
+    // const [anuncios, setSAnuncios] = useState(false)
 
-    const anunciosPopup = () => {
-        setSAnuncios(!anuncios);
-    };
+    // const anunciosPopup = () => {
+    //     setSAnuncios(!anuncios);
+    // };
 
-    const anunciosPopupConfirmar = () => {
-        setSAnuncios(!anuncios);
-    };
-    const anunciosPopupLimpiar = () => {
-        setAnunciosComplejos(false)
-        setAnunciosBasicos(false)
-    };
+    // const anunciosPopupConfirmar = () => {
+    //     setSAnuncios(!anuncios);
+    // };
+    // const anunciosPopupLimpiar = () => {
+    //     setAnunciosComplejos(false)
+    //     setAnunciosBasicos(false)
+    // };
 
     //funciones para que una vez clickeada una opcion de PirdBasica o PirdCompleja la otra se desactive Social Media
-    const anunciosBasicaButton = (isChecked) => {
+    const anunciosBasicaButton = () => {
         setAnunciosComplejos(false)
         setAnunciosBasicos(!anuncioBasicos);
-        if (isChecked) {
-            setAnunciosBasicos(6.384)
-        }
-        else {
-            setAnunciosBasicos(false)
-        }
+        // if (isChecked) {
+        //     setAnunciosBasicos(6.384)
+        // }
+        // else {
+        //     setAnunciosBasicos(false)
+        // }
     }
-    const anunciosComplejaButton = (isChecked) => {
+    const anuncioBasicosValor = pirdBasica ? 6.384 : '';
+
+    const anunciosComplejaButton = () => {
         setAnunciosBasicos(false)
         setAnunciosComplejos(!anunciosComplejos);
-        if (isChecked) {
-            setAnunciosComplejos(9.780)
-        }
-        else {
-            setAnunciosComplejos(false)
-        }
+        // if (isChecked) {
+        //     setAnunciosComplejos(9.780)
+        // }
+        // else {
+        //     setAnunciosComplejos(false)
+        // }
     }
+    const anunciosComplejosValor = pirdBasica ? 9.780 : '';
 
     // SI / NO Abono integral RDS
     const [integralRDS, setIntegralRDS] = useState(false);
@@ -266,9 +249,7 @@ export const CotizacionScreen = () => {
 
 
     const abonoIntregralRDS = (value) => {
-
         setIntegralRDS(value);
-
 
     }
 
@@ -292,41 +273,27 @@ export const CotizacionScreen = () => {
     };
 
 
-    const redesFbIgFBAdsButton = (isChecked) => {
+    const redesFbIgFBAdsButton = () => {
         setRedesFbIgFBAds(!redesFbIgFBAds);
         setRedesFbIgGoogleAds(false);
         setRedesFbIgFNBdsGoogleAds(false)
-        if (isChecked) {
-            setRedesFbIgFBAds(10.000)
-        }
-        else {
-            setRedesFbIgFBAds(false)
-        }
     }
+    const redesFbIgFBAdsValor = redesFbIgFBAds ? 10.000 : '';
 
-    const redesFbIgGoogleAdsButton = (isChecked) => {
+    const redesFbIgGoogleAdsButton = () => {
         setRedesFbIgFBAds(false);
         setRedesFbIgGoogleAds(!redesFbIgGoogleAds);
         setRedesFbIgFNBdsGoogleAds(false)
-        if (isChecked) {
-            setRedesFbIgGoogleAds(11.000)
-        }
-        else {
-            setRedesFbIgGoogleAds(false)
-        }
     }
+    const redesFbIgGoogleAdsValor = redesFbIgGoogleAds ? 11.000 : '';
 
-    const redesFbIgFBAdsGoogleAdsButton = (isChecked) => {
+    const redesFbIgFBAdsGoogleAdsButton = () => {
         setRedesFbIgFBAds(false);
         setRedesFbIgGoogleAds(false);
         setRedesFbIgFNBdsGoogleAds(!redesFbIgFBAdsGoogleAds)
-        if (isChecked) {
-            setRedesFbIgFNBdsGoogleAds(12.000)
-        }
-        else {
-            setRedesFbIgFNBdsGoogleAds(false)
-        }
     }
+    const redesFbIgFBAdsGoogleAdsValor = redesFbIgFBAdsGoogleAds ? 12.000 : '';
+
 
     //Monto sugerido de pauta paga
     const [montoSugeridoPautaPaga, setMontoSugeridoPautaPaga] = useState('');
@@ -410,75 +377,52 @@ export const CotizacionScreen = () => {
 
     };
 
-    const fbIg3post2historiasButton = (isChecked) => {
+    const fbIg3post2historiasButton = () => {
         setFbIg3post2historias(!fbIg3post2historias);
         setFbIg4post3historias(false);
         setFbIg5post4historias(false);
         setInstagramCard15(false);
         setInstagramCard18(false);
-        if (isChecked) {
-            setFbIg3post2historias(10.000)
-        }
-        else {
-            setFbIg3post2historias(false)
-        }
     }
+    const fbIg3post2historiasValor = fbIg3post2historias ? 10.000 : '';
 
-    const fbIg4post3historiasButton = (isChecked) => {
+    const fbIg4post3historiasButton = () => {
         setFbIg3post2historias(false);
         setFbIg4post3historias(!fbIg4post3historias);
         setFbIg5post4historias(false);
         setInstagramCard15(false);
         setInstagramCard18(false);
-        if (isChecked) {
-            setFbIg4post3historias(11.000)
-        }
-        else {
-            setFbIg4post3historias(false)
-        }
     }
+    const fbIg4post3historiasValor = fbIg4post3historias ? 11.000 : '';
 
-    const fbIg5post4historiasButton = (isChecked) => {
+    const fbIg5post4historiasButton = () => {
         setFbIg3post2historias(false);
         setFbIg4post3historias(false);
         setFbIg5post4historias(!fbIg5post4historias)
         setInstagramCard15(false);
         setInstagramCard18(false);
-        if (isChecked) {
-            setFbIg5post4historias(12.000)
-        }
-        else {
-            setFbIg5post4historias(false)
-        }
     }
+    const fbIg5post4historiasValor = fbIg5post4historias ? 12.000 : '';
 
-    const instagramCard15Button = (isChecked) => {
+
+    const instagramCard15Button = () => {
         setFbIg3post2historias(false);
         setFbIg4post3historias(false);
         setFbIg5post4historias(false)
         setInstagramCard15(!instagramCard15);
         setInstagramCard18(false);
-        if (isChecked) {
-            setInstagramCard15(13.000)
-        }
-        else {
-            setInstagramCard15(false)
-        }
     }
+    const instagramCard15Valor = instagramCard15 ? 13.000 : '';
 
-    const instagramCard18Button = (isChecked) => {
+
+    const instagramCard18Button = () => {
         setFbIg3post2historias(false);
         setFbIg4post3historias(false);
         setFbIg5post4historias(false)
         setInstagramCard15(false);
         setInstagramCard18(!instagramCard18);
-        if (isChecked) {
-            setInstagramCard18(14.000)
-        }
-        else {
-            setInstagramCard18(false)
-        }
     }
+    const instagramCard18Valor = instagramCard18 ? 14.000 : '';
 
     //Popup diseño administracion Campañas
     const [fbAds, setFbAds] = useState(false);
@@ -502,42 +446,35 @@ export const CotizacionScreen = () => {
 
     };
 
-    const fbAdsButton = (isChecked) => {
+    const fbAdsButton = () => {
         setFbAds(!fbAds);
         setGoogleAds(false);
         setFbGoogleAds(false);
         setInstagramCard18(false);
-        if (isChecked) {
-            setFbAds(10.000)
-        }
-        else {
-            setFbAds(false)
-        }
+        // if (isChecked) {
+        //     setFbAds(10.000)
+        // }
+        // else {
+        //     setFbAds(false)
+        // }
     }
+    const fbAdsValor = fbAds ? 10.000 : '';
 
     const googleAdsButton = (isChecked) => {
         setFbAds(false);
         setGoogleAds(!googleAds);
         setFbGoogleAds(false);
-        if (isChecked) {
-            setGoogleAds(11.000)
-        }
-        else {
-            setGoogleAds(false)
-        }
-    }
 
-    const fbGoogleAdsButton = (isChecked) => {
+    }
+    const googleAdsValor = googleAds ? 11.000 : '';
+
+    const fbGoogleAdsButton = () => {
         setFbAds(false);
         setGoogleAds(false);
         setFbGoogleAds(!fbGoogleAds);
-        if (isChecked) {
-            setFbGoogleAds(12.000)
-        }
-        else {
-            setFbGoogleAds(false)
-        }
+
     }
+    const fbGoogleAdsValor = fbGoogleAds ? 12.000 : '';
 
     //Popup Newsletter
     const [newsletter1, setNewsletter1] = useState(false);
@@ -618,7 +555,7 @@ export const CotizacionScreen = () => {
         setNaming(false);
     };
 
-    const logoButton = (isChecked) => {
+    const logoButton = () => {
         setLogo(!logo);
         setRediseñoIdentidad(false);
         setDiseñoMarca(false);
@@ -631,7 +568,7 @@ export const CotizacionScreen = () => {
         // }
     }
 
-    const rediseñoIdentidadButton = (isChecked) => {
+    const rediseñoIdentidadButton = () => {
         setLogo(false);
         setRediseñoIdentidad(!rediseñoIdentidad);
         setDiseñoMarca(false);
@@ -644,7 +581,7 @@ export const CotizacionScreen = () => {
         // }
     }
 
-    const diseñoMarcaButton = (isChecked) => {
+    const diseñoMarcaButton = () => {
         setLogo(false);
         setRediseñoIdentidad(false);
         setDiseñoMarca(!diseñoMarca);
@@ -657,7 +594,7 @@ export const CotizacionScreen = () => {
         // }
     }
 
-    const namingButton = (isChecked) => {
+    const namingButton = () => {
         setLogo(false);
         setRediseñoIdentidad(false);
         setDiseñoMarca(false);
@@ -777,11 +714,12 @@ export const CotizacionScreen = () => {
 
                     <Text style={styles.titleNegro}>Social Media</Text>
 
-                    <Button title="Parametros Inicial RDS" onPress={socialMediaPopUp} titleStyle={{ color: 'black', fontSize: 18 }} containerStyle={{ marginHorizontal: 10, marginVertical: 20, color: 'black' }} buttonStyle={{ backgroundColor: 'white', borderWidth: 1, borderColor: 'black', borderRadius: 5, padding: 10 }} />
+
+                    {/* <Button title="Parametros Inicial RDS" onPress={socialMediaPopUp} titleStyle={{ color: 'black', fontSize: 18 }} containerStyle={{ marginHorizontal: 10, marginVertical: 20, color: 'black' }} buttonStyle={{ backgroundColor: 'white', borderWidth: 1, borderColor: 'black', borderRadius: 5, padding: 10 }} />
 
                     <Dialog isVisible={socialMedia} onBackdropPress={socialMediaPopUp}>
 
-                        {/* Opciones Social Media*/}
+                        Opciones Social Media
                         <Dialog.Title title="Parametros Inicial RDS" />
 
                         <CheckBox title="PIRD Básica" checkedIcon="dot-circle-o" uncheckedIcon="circle-o" checked={pirdBasica} onPress={pirdBasicaButton} />
@@ -790,24 +728,61 @@ export const CotizacionScreen = () => {
                         <Button title="Limpiar" onPress={socialMediaPopUpLimpiar} />
                         <Button title="Confirmar" onPress={socialMediaPopUpConfirmar} />
 
-                    </Dialog>
+                    </Dialog> */}
 
-                    {pirdBasica === true && (
+                    {/* {pirdBasica === true && (
                         <View>
                             <Input disabled label={'Resultado de PIRD Básica '} type='text' id='text' style={styles.imputsCotizacion} placeholder='9.120' />
                         </View>
                     )}
-                    {pirdCompleja === 14.592 && (
+                    {pirdCompleja === true && (
                         <View>
                             <Input disabled label={'Resultado de PIRD Compleja'} type='text' id='text' style={styles.imputsCotizacion} placeholder='14.592' />
                         </View>
-                    )}
+                    )} */}
 
-                    <Button title="Administracion Anuncios " onPress={anunciosPopup} titleStyle={{ color: 'black', fontSize: 18 }} containerStyle={{ marginHorizontal: 10, marginVertical: 20, color: 'black' }} buttonStyle={{ backgroundColor: 'white', borderWidth: 1, borderColor: 'black', borderRadius: 5, padding: 10 }} />
+                    {/* Acordeon Parametros RDS */}
+
+                    <>
+                        <ListItem.Accordion
+                            content={
+                                <ListItem.Content>
+                                    <ListItem.Title>Parametros Inicial RDS</ListItem.Title>
+                                    <ListItem.Subtitle>Basica Y Compleja </ListItem.Subtitle>
+                                </ListItem.Content>
+                            }
+                            isExpanded={expandedRDS}
+                            onPress={() => {
+                                setExpandedRDS(!expandedRDS);
+                            }}>
+
+                            <View >
+
+                                <CheckBox title="PIRD Básica" checkedIcon="dot-circle-o" uncheckedIcon="circle-o" checked={pirdBasica} onPress={pirdBasicaButton} />
+                                <CheckBox title="PIRD Compleja" checkedIcon="dot-circle-o" uncheckedIcon="circle-o" checked={pirdCompleja} onPress={pirdComplejaButton} />
+                                {pirdBasica === true && (
+                                    <View>
+                                        <Input disabled label={'Resultado de PIRD Básica '} type='text' id='text' style={styles.imputsCotizacion} placeholder='9.120' />
+                                    </View>
+                                )}
+                                {pirdCompleja === true && (
+                                    <View>
+                                        <Input disabled label={'Resultado de PIRD Compleja'} type='text' id='text' style={styles.imputsCotizacion} placeholder='14.592' />
+                                    </View>
+                                )}
+                            </View>
+
+
+                        </ListItem.Accordion>
+                    </>
+
+
+
+                    {/* <Button title="Administracion Anuncios " onPress={anunciosPopup} titleStyle={{ color: 'black', fontSize: 18 }} containerStyle={{ marginHorizontal: 10, marginVertical: 20, color: 'black' }} buttonStyle={{ backgroundColor: 'white', borderWidth: 1, borderColor: 'black', borderRadius: 5, padding: 10 }} />
 
                     <Dialog isVisible={anuncios} onBackdropPress={anunciosPopup}>
 
-                        {/* Opciones Social Media*/}
+                        Opciones Social Media
                         <Dialog.Title title="Parametros Inicial RDS" />
 
                         <CheckBox title="Básica" checkedIcon="dot-circle-o" uncheckedIcon="circle-o" checked={anuncioBasicos} onPress={anunciosBasicaButton} />
@@ -832,7 +807,48 @@ export const CotizacionScreen = () => {
                             <Input disabled label={'Monto CBM'} type='text' id='text' style={styles.imputsCotizacion} placeholder='9.780' />
                         </View>
 
-                    )}
+                    )} */}
+
+
+                    <ListItem.Accordion
+                        content={
+                            <ListItem.Content>
+                                <ListItem.Title>Administracion Anuncios </ListItem.Title>
+                                <ListItem.Subtitle>Basica Y Compleja </ListItem.Subtitle>
+                            </ListItem.Content>
+                        }
+                        isExpanded={expandedAnuncios}
+                        onPress={() => {
+                            setExpandedAnuncios(!expandedAnuncios);
+                        }}>
+
+                        <View >
+
+                            <CheckBox title="Básica" checkedIcon="dot-circle-o" uncheckedIcon="circle-o" checked={anuncioBasicos} onPress={anunciosBasicaButton} />
+                            <CheckBox title="Compleja" checkedIcon="dot-circle-o" uncheckedIcon="circle-o" checked={anunciosComplejos} onPress={anunciosComplejaButton} />
+
+                            {anuncioBasicos === true && (
+
+                                <View>
+                                    <Input disabled label={'Monto CBM'} type='text' id='text' style={styles.imputsCotizacion} placeholder='6.384' />
+                                </View>
+
+                            )}
+
+                            {anunciosComplejos === true && (
+
+                                <View>
+                                    <Input disabled label={'Monto CBM'} type='text' id='text' style={styles.imputsCotizacion} placeholder='9.780' />
+                                </View>
+
+                            )}
+
+
+                        </View>
+
+
+                    </ListItem.Accordion>
+
 
                     <Text>Abono Integral RDS? </Text>
                     <ButtonGroup
@@ -844,130 +860,136 @@ export const CotizacionScreen = () => {
 
                     {/* Sea valor 0 o 1 por el boton se muestran los campos indicados  */}
                     {integralRDS === 0 && (
-                        <View>
 
-                            {/* Pop up anunncios  */}
-                            <Button title="Administracion Integral Redes" onPress={administracionIntegralRDS} titleStyle={{ color: 'black', fontSize: 18 }} containerStyle={{ marginHorizontal: 10, marginVertical: 20, color: 'black' }} buttonStyle={{ backgroundColor: 'white', borderWidth: 1, borderColor: 'black', borderRadius: 5, padding: 10 }} />
+                        <ListItem.Accordion
+                            content={
+                                <ListItem.Content>
+                                    <ListItem.Title>Administracion Integral Redes </ListItem.Title>
+                                    <ListItem.Subtitle>Facebook Instagram Google </ListItem.Subtitle>
+                                </ListItem.Content>
+                            }
+                            isExpanded={expandedRedesAds}
+                            onPress={() => {
+                                setExpandedRedesAds(!expandedRedesAds);
+                            }}>
 
-                            <Dialog isVisible={redesPopup} onBackdropPress={administracionIntegralRDS}>
-
-                                {/* Opciones Social Media*/}
-                                <Dialog.Title title="Administracion Integral Redes" />
+                            <View >
 
                                 <CheckBox title="Ig FB " checkedIcon="dot-circle-o" uncheckedIcon="circle-o" checked={redesFbIgFBAds} onPress={redesFbIgFBAdsButton} />
                                 <CheckBox title="IG FB GOOGLEads" checkedIcon="dot-circle-o" uncheckedIcon="circle-o" checked={redesFbIgGoogleAds} onPress={redesFbIgGoogleAdsButton} />
                                 <CheckBox title="IG FB GOOGLEads fbads" checkedIcon="dot-circle-o" uncheckedIcon="circle-o" checked={redesFbIgFBAdsGoogleAds} onPress={redesFbIgFBAdsGoogleAdsButton} />
 
+                                {redesFbIgFBAds === true && (
+                                    <View>
+                                        <Input disabled label={'Resultado Administracion Integral Redes'} type='text' id='text' style={styles.imputsCotizacion} placeholder='10.000' />
+                                    </View>
+                                )}
 
-                                <Button title="Limpiar" onPress={administracionIntegralRDSLimpiar} />
-                                <Button title="Confirmar" onPress={administracionIntegralRDS} />
+                                {redesFbIgGoogleAds === true && (
+                                    <View>
+                                        <Input disabled label={'Resultado Administracion Integral Redes'} type='text' id='text' style={styles.imputsCotizacion} placeholder='11.000' />
+                                    </View>
+                                )}
 
-                            </Dialog>
+                                {redesFbIgFBAdsGoogleAds === true && (
+                                    <View>
+                                        <Input disabled label={'Resultado Administracion Integral Redes'} type='text' id='text' style={styles.imputsCotizacion} placeholder='12.000' />
+                                    </View>
+                                )}
 
-                            {/* Resultado segun la opcion indicada */}
-
-                            {redesFbIgFBAds === 10.000 && (
-                                <View>
-                                    <Input disabled label={'Resultado Administracion Integral Redes'} type='text' id='text' style={styles.imputsCotizacion} placeholder='10.000' />
-                                </View>
-                            )}
-
-                            {redesFbIgGoogleAds === 11.000 && (
-                                <View>
-                                    <Input disabled label={'Resultado Administracion Integral Redes'} type='text' id='text' style={styles.imputsCotizacion} placeholder='11.000' />
-                                </View>
-                            )}
-
-                            {redesFbIgFBAdsGoogleAds === 12.000 && (
-                                <View>
-                                    <Input disabled label={'Resultado Administracion Integral Redes'} type='text' id='text' style={styles.imputsCotizacion} placeholder='12.000' />
-                                </View>
-                            )}
-                        </View>
+                            </View>
+                        </ListItem.Accordion>
 
                     )}
 
                     {integralRDS === 1 && (
                         <View>
-                            {/* Pop up Diseño y administracion de redes sociales  */}
-                            <Button title=" Diseño y Administracion de redes sociales" onPress={diseñoRedesPopupButton} titleStyle={{ color: 'black', fontSize: 18 }} containerStyle={{ marginHorizontal: 10, marginVertical: 20, color: 'black' }} buttonStyle={{ backgroundColor: 'white', borderWidth: 1, borderColor: 'black', borderRadius: 5, padding: 10 }} />
+                            <ListItem.Accordion
+                                content={
+                                    <ListItem.Content>
+                                        <ListItem.Title>Diseño y Administracion de redes sociales </ListItem.Title>
+                                        <ListItem.Subtitle>Facebook e Instagram Posteos  </ListItem.Subtitle>
+                                    </ListItem.Content>
+                                }
+                                isExpanded={expandedDiseñoRedes}
+                                onPress={() => {
+                                    setExpandedDiseñoRedes(!expandedDiseñoRedes);
+                                }}>
 
-                            <Dialog isVisible={diseñoRedesPopup} onBackdropPress={diseñoRedesPopupButton}>
+                                <View >
 
-                                {/* Opciones Social Media*/}
-                                <Dialog.Title title="Diseño y Administracion de redes sociales" />
+                                    <CheckBox title="FB + IG ( 3 Posteos  + 2 Historias Semanales ) " checkedIcon="dot-circle-o" uncheckedIcon="circle-o" checked={fbIg3post2historias} onPress={fbIg3post2historiasButton} />
+                                    <CheckBox title="FB + IG ( 4 Posteos  + 3 Historias Semanales ) " checkedIcon="dot-circle-o" uncheckedIcon="circle-o" checked={fbIg4post3historias} onPress={fbIg4post3historiasButton} />
+                                    <CheckBox title="FB + IG ( 5 Posteos  + 4 Historias Semanales ) " checkedIcon="dot-circle-o" uncheckedIcon="circle-o" checked={fbIg5post4historias} onPress={fbIg5post4historiasButton} />
+                                    <CheckBox title="Instagram Business Card ( 15 Posteos + Historias Mensules ) " checkedIcon="dot-circle-o" uncheckedIcon="circle-o" checked={instagramCard15} onPress={instagramCard15Button} />
+                                    <CheckBox title="Instagram Business Card ( 18 Posteos + Historias Mensules )" checkedIcon="dot-circle-o" uncheckedIcon="circle-o" checked={instagramCard18} onPress={instagramCard18Button} />
 
-                                <CheckBox title="FB + IG ( 3 Posteos  + 2 Historias Semanales ) " checkedIcon="dot-circle-o" uncheckedIcon="circle-o" checked={fbIg3post2historias} onPress={fbIg3post2historiasButton} />
-                                <CheckBox title="FB + IG ( 4 Posteos  + 3 Historias Semanales ) " checkedIcon="dot-circle-o" uncheckedIcon="circle-o" checked={fbIg4post3historias} onPress={fbIg4post3historiasButton} />
-                                <CheckBox title="FB + IG ( 5 Posteos  + 4 Historias Semanales ) " checkedIcon="dot-circle-o" uncheckedIcon="circle-o" checked={fbIg5post4historias} onPress={fbIg5post4historiasButton} />
-                                <CheckBox title="Instagram Business Card ( 15 Posteos + Historias Mensules ) " checkedIcon="dot-circle-o" uncheckedIcon="circle-o" checked={instagramCard15} onPress={instagramCard15Button} />
-                                <CheckBox title="Instagram Business Card ( 18 Posteos + Historias Mensules )" checkedIcon="dot-circle-o" uncheckedIcon="circle-o" checked={instagramCard18} onPress={instagramCard18Button} />
+                                    {fbIg3post2historias === true && (
+                                        <View>
+                                            <Input disabled label={'Resultado Administracion Integral Redes'} type='text' id='text' style={styles.imputsCotizacion} placeholder='10.000' />
+                                        </View>
+                                    )}
 
-                                <Button title="Limpiar" onPress={diseñoRedesPopupButtonLimpiar} />
-                                <Button title="Confirmar" onPress={diseñoRedesPopupButton} />
+                                    {fbIg4post3historias === true && (
+                                        <View>
+                                            <Input disabled label={'Resultado Administracion Integral Redes'} type='text' id='text' style={styles.imputsCotizacion} placeholder='11.000' />
+                                        </View>
+                                    )}
 
-                            </Dialog>
+                                    {fbIg5post4historias === true && (
+                                        <View>
+                                            <Input disabled label={'Resultado Administracion Integral Redes'} type='text' id='text' style={styles.imputsCotizacion} placeholder='12.000' />
+                                        </View>
+                                    )}
+                                    {instagramCard15 === true && (
+                                        <View>
+                                            <Input disabled label={'Resultado Administracion Integral Redes'} type='text' id='text' style={styles.imputsCotizacion} placeholder='13.000' />
+                                        </View>
+                                    )}
+                                    {instagramCard18 === true && (
+                                        <View>
+                                            <Input disabled label={'Resultado Administracion Integral Redes'} type='text' id='text' style={styles.imputsCotizacion} placeholder='14.000' />
+                                        </View>
+                                    )}
 
-                            {/* Resultado segun la opcion indicada */}
-                            {fbIg3post2historias === 10.000 && (
-                                <View>
-                                    <Input disabled label={'Resultado Administracion Redes'} type='text' id='text' style={styles.imputsCotizacion} placeholder='10.000' />
                                 </View>
-                            )}
-                            {fbIg4post3historias === 11.000 && (
-                                <View>
-                                    <Input disabled label={'Resultado Administracion Redes'} type='text' id='text' style={styles.imputsCotizacion} placeholder='11.000' />
-                                </View>
-                            )}
-                            {fbIg5post4historias === 12.000 && (
-                                <View>
-                                    <Input disabled label={'Resultado Administracion Redes'} type='text' id='text' style={styles.imputsCotizacion} placeholder='12.000' />
-                                </View>
-                            )}
-                            {instagramCard15 === 13.000 && (
-                                <View>
-                                    <Input disabled label={'Resultado Administracion Redes'} type='text' id='text' style={styles.imputsCotizacion} placeholder='13.000' />
-                                </View>
-                            )}
-                            {instagramCard18 === 14.000 && (
-                                <View>
-                                    <Input disabled label={'Resultado Administracion Redes'} type='text' id='text' style={styles.imputsCotizacion} placeholder='14.000' />
-                                </View>
-                            )}
+                            </ListItem.Accordion>
 
-                            {/* Pop Campaña  */}
-                            <Button title="Campañas" onPress={campañasPopupButton} titleStyle={{ color: 'black', fontSize: 18 }} containerStyle={{ marginHorizontal: 10, marginVertical: 20, color: 'black' }} buttonStyle={{ backgroundColor: 'white', borderWidth: 1, borderColor: 'black', borderRadius: 5, padding: 10 }} />
+                            <ListItem.Accordion
+                                content={
+                                    <ListItem.Content>
+                                        <ListItem.Title>Campañas</ListItem.Title>
+                                        <ListItem.Subtitle>Facebook Ads, Google Ads  </ListItem.Subtitle>
+                                    </ListItem.Content>
+                                }
+                                isExpanded={expandedCampañas}
+                                onPress={() => {
+                                    setExpandedCampañas(!expandedCampañas);
+                                }}>
 
-                            <Dialog isVisible={campañasPopup} onBackdropPress={campañasPopupButton}>
+                                <View >
 
-                                {/* Opciones Campañas */}
-                                <Dialog.Title title="Campañas" />
+                                    <CheckBox title="FB Ads" checkedIcon="dot-circle-o" uncheckedIcon="circle-o" checked={fbAds} onPress={fbAdsButton} />
+                                    <CheckBox title="Google Ads" checkedIcon="dot-circle-o" uncheckedIcon="circle-o" checked={googleAds} onPress={googleAdsButton} />
+                                    <CheckBox title="FB + Google Ads" checkedIcon="dot-circle-o" uncheckedIcon="circle-o" checked={fbGoogleAds} onPress={fbGoogleAdsButton} />
 
-                                <CheckBox title="FB Ads" checkedIcon="dot-circle-o" uncheckedIcon="circle-o" checked={fbAds} onPress={fbAdsButton} />
-                                <CheckBox title="Google Ads" checkedIcon="dot-circle-o" uncheckedIcon="circle-o" checked={googleAds} onPress={googleAdsButton} />
-                                <CheckBox title="FB + Google Ads" checkedIcon="dot-circle-o" uncheckedIcon="circle-o" checked={fbGoogleAds} onPress={fbGoogleAdsButton} />
-
-                                <Button title="Limpiar" onPress={campañasPopupButtonLimpiar} />
-                                <Button title="Confirmar" onPress={campañasPopupButton} />
-
-                            </Dialog>
-
-                            {/* Resultado segun la opcion indicada */}
-                            {fbAds === 10.000 && (
-                                <View>
-                                    <Input disabled label={'Resultado Administracion Redes'} type='text' id='text' style={styles.imputsCotizacion} placeholder='10.000' />
+                                    {fbAds === true && (
+                                        <View>
+                                            <Input disabled label={'Resultado Administracion Redes'} type='text' id='text' style={styles.imputsCotizacion} placeholder='10.000' />
+                                        </View>
+                                    )}
+                                    {googleAds === true && (
+                                        <View>
+                                            <Input disabled label={'Resultado Administracion Redes'} type='text' id='text' style={styles.imputsCotizacion} placeholder='11.000' />
+                                        </View>
+                                    )}
+                                    {fbGoogleAds === true && (
+                                        <View>
+                                            <Input disabled label={'Resultado Administracion Redes'} type='text' id='text' style={styles.imputsCotizacion} placeholder='12.000' />
+                                        </View>
+                                    )}
                                 </View>
-                            )}
-                            {googleAds === 11.000 && (
-                                <View>
-                                    <Input disabled label={'Resultado Administracion Redes'} type='text' id='text' style={styles.imputsCotizacion} placeholder='11.000' />
-                                </View>
-                            )}
-                            {fbGoogleAds === 12.000 && (
-                                <View>
-                                    <Input disabled label={'Resultado Administracion Redes'} type='text' id='text' style={styles.imputsCotizacion} placeholder='12.000' />
-                                </View>
-                            )}
+                            </ListItem.Accordion>
 
                         </View>
 
@@ -1124,14 +1146,6 @@ export const CotizacionScreen = () => {
                             </ListItem>
                         </ListItem.Accordion>
                     </>
-
-
-
-
-
-
-
-
 
 
 
