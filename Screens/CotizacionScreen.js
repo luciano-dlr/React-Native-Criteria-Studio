@@ -26,6 +26,7 @@ export const CotizacionScreen = () => {
     const [expandedCampañas, setExpandedCampañas] = useState(false);
     const [expandedLinkedin, setExpandedLinkedin] = useState(false);
     const [expandedNewsletter, setExpandedNewsletter] = useState(false);
+    const [expandedGoogleMiNegocio, setExpandedGoogleMiNegocio] = useState(false);
 
 
 
@@ -465,7 +466,7 @@ export const CotizacionScreen = () => {
     }
     const fbGoogleAdsValor = fbGoogleAds ? 12.000 : '';
 
-    //Popup Newsletter
+    //Drop Newsletter
     const [newsletter1, setNewsletter1] = useState(false);
     const [newsletter2, setNewsletter2] = useState(false);
     const [newsletter3, setNewsletter3] = useState(false);
@@ -483,8 +484,6 @@ export const CotizacionScreen = () => {
         setNewsletter1(false);
         setNewsletter2(false);
         setNewsletter3(false);
-
-
     };
 
     const newsletter1Button = () => {
@@ -507,6 +506,34 @@ export const CotizacionScreen = () => {
         setNewsletter3(!newsletter3);
     }
     const newsletter3Valor = newsletter3 ? 12.000 : '';
+
+    // Drop Google Mi Negocio
+    const [googleMiNegocio1, setGoogleMiNegocio1] = useState(false);
+    const [googleMiNegocio2, setGoogleMiNegocio2] = useState(false);
+    const [googleMiNegocio3, setGoogleMiNegocio3] = useState(false);
+
+    const googleMiNegocio1Button = () => {
+        setGoogleMiNegocio1(!googleMiNegocio1);
+        setGoogleMiNegocio2(false);
+        setGoogleMiNegocio3(false);
+    }
+    const googleMiNegocio1Valor = googleMiNegocio1 ? 10.000 : '';
+
+    const googleMiNegocio2Button = () => {
+        setGoogleMiNegocio1(false);
+        setGoogleMiNegocio2(!googleMiNegocio2);
+        setGoogleMiNegocio3(false);
+    }
+    const googleMiNegocio2Valor = googleMiNegocio2 ? 11.000 : '';
+
+    const googleMiNegocio3Button = () => {
+        setGoogleMiNegocio1(false);
+        setGoogleMiNegocio2(false);
+        setGoogleMiNegocio3(!googleMiNegocio3);
+    }
+    const googleMiNegocio3Valor = googleMiNegocio3 ? 12.000 : '';
+
+
 
     //Popup Identidad
     const [logo, setLogo] = useState(false);
@@ -568,25 +595,22 @@ export const CotizacionScreen = () => {
     //Switch Asesor de imagen 
     const [asesorImagen, setAsesorImagen] = useState('');
 
-    const asesorImagenSwitch = (value) => {
-        setAsesorImagen(value);
-
+    const asesorImagenSwitch = () => {
+        setAsesorImagen(!asesorImagen);
     }
 
     //Switch Asesor de imagen 
     const [contenidoEditadoDiseño, setContenidoEditadoDiseño] = useState(false);
 
-    const contenidoEditadoDiseñoSwitch = (value) => {
-        setContenidoEditadoDiseño(value);
-
+    const contenidoEditadoDiseñoSwitch = () => {
+        setContenidoEditadoDiseño(!contenidoEditadoDiseño);
     }
 
     //Switch "La seccion de fotos es en nuestro estudio Fotografico ?""
-    const [seccionFotosEnCriteria, setSeccionFotosEnCriteria] = useState(false);
+    const [seccionFotosEnCriteria, setSeccionFotosEnCriteria] = useState(0);
 
-    const seccionFotosEnCriteriaSwitch = (value) => {
-        setSeccionFotosEnCriteria(value);
-
+    const seccionFotosEnCriteriaSwitch = () => {
+        setSeccionFotosEnCriteria(!seccionFotosEnCriteria);
     }
 
     // Input Numerico de Cantidad de fotos a entregar
@@ -962,6 +986,42 @@ export const CotizacionScreen = () => {
                             )}
                         </View>
                     </ListItem.Accordion>
+                    <ListItem.Accordion
+                        content={
+                            <ListItem.Content>
+                                <ListItem.Title>Google Mi Negocio</ListItem.Title>
+                                <ListItem.Subtitle>Opcion 1, Opcion 2 Opcion 3</ListItem.Subtitle>
+                            </ListItem.Content>
+                        }
+                        isExpanded={expandedGoogleMiNegocio}
+                        onPress={() => {
+                            setExpandedGoogleMiNegocio(!expandedGoogleMiNegocio);
+                        }}>
+
+                        <View style={styles.containerDropDawn}>
+
+                            <CheckBox title="Opcion 1" checkedIcon="dot-circle-o" uncheckedIcon="circle-o" checked={googleMiNegocio1} onPress={googleMiNegocio1Button} />
+                            <CheckBox title="Opcion 2" checkedIcon="dot-circle-o" uncheckedIcon="circle-o" checked={googleMiNegocio2} onPress={googleMiNegocio2Button} />
+                            <CheckBox title="Opcion 3" checkedIcon="dot-circle-o" uncheckedIcon="circle-o" checked={googleMiNegocio3} onPress={googleMiNegocio3Button} />
+
+
+                            {googleMiNegocio1 === true && (
+                                <View>
+                                    <Input disabled label={'Resultado Google Mi Empresa'} type='text' id='text' style={styles.imputsCotizacion} placeholder='10.000' />
+                                </View>
+                            )}
+                            {googleMiNegocio2 === true && (
+                                <View>
+                                    <Input disabled label={'Resultado Google Mi Empresa'} type='text' id='text' style={styles.imputsCotizacion} placeholder='11.000' />
+                                </View>
+                            )}
+                            {googleMiNegocio3 === true && (
+                                <View>
+                                    <Input disabled label={'Resultado Google Mi Empresa'} type='text' id='text' style={styles.imputsCotizacion} placeholder='12.000' />
+                                </View>
+                            )}
+                        </View>
+                    </ListItem.Accordion>
 
 
 
@@ -997,10 +1057,17 @@ export const CotizacionScreen = () => {
                                 title="Limpiar"
                                 label='texto'
                                 value={contenidoEditadoDiseño}
-                                onValueChange={setContenidoEditadoDiseño}
+                                onValueChange={contenidoEditadoDiseñoSwitch}
                             />
 
                         </View>
+                        {contenidoEditadoDiseño === true && (
+                            <View>
+                                {/* Cantidad de fotos a entregar */}
+                                <Input keyboardType="numeric" label={'Cantidad de Fotos a Entregar '} type='text' id='text' style={styles.imputsCotizacion} placeholder='0' value={fotosAEntregar} onChangeText={(text) => setFotosAEntregar(text)} />
+
+                            </View>
+                        )}
 
                         {/* Switch Asesor de imagen */}
                         <View style={styles.containerColum}>
@@ -1011,10 +1078,11 @@ export const CotizacionScreen = () => {
                                 title="Limpiar"
                                 label='texto'
                                 value={seccionFotosEnCriteria}
-                                onValueChange={setSeccionFotosEnCriteria}
+                                onValueChange={seccionFotosEnCriteriaSwitch}
                             />
 
                         </View>
+
                     </View>
 
                     {/* Cantidad de fotos a entregar */}
