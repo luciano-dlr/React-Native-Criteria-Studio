@@ -220,21 +220,6 @@ export const CotizacionScreen = () => {
     const [anuncioBasicos, setAnunciosBasicos] = useState(false);
     const [anunciosComplejos, setAnunciosComplejos] = useState(false)
 
-    // //PopUp Anuncios
-    // const [anuncios, setSAnuncios] = useState(false)
-
-    // const anunciosPopup = () => {
-    //     setSAnuncios(!anuncios);
-    // };
-
-    // const anunciosPopupConfirmar = () => {
-    //     setSAnuncios(!anuncios);
-    // };
-    // const anunciosPopupLimpiar = () => {
-    //     setAnunciosComplejos(false)
-    //     setAnunciosBasicos(false)
-    // };
-
     //funciones para que una vez clickeada una opcion de PirdBasica o PirdCompleja la otra se desactive Social Media
     const anunciosBasicaButton = () => {
         setAnunciosComplejos(false)
@@ -252,75 +237,50 @@ export const CotizacionScreen = () => {
     // SI / NO Abono integral RDS
     const [integralRDS, setIntegralRDS] = useState(false);
 
-
     const abonoIntregralRDS = (value) => {
         setIntegralRDS(value);
-
     }
 
-    //popup Administracion Integral Redes
+    // Drop Administracion Integral Redes
     const [redesFbIgFBAds, setRedesFbIgFBAds] = useState(false);
     const [redesFbIgGoogleAds, setRedesFbIgGoogleAds] = useState(false)
     const [redesFbIgFBAdsGoogleAds, setRedesFbIgFNBdsGoogleAds] = useState(false)
 
-    const [redesPopup, setRedesPopup] = useState(false)
-
-    //Boton para llamar al popup
-    const administracionIntegralRDS = () => {
-        setRedesPopup(!redesPopup);
-    };
-
-    //Boton limpiar anuncio
-    const administracionIntegralRDSLimpiar = () => {
-        setRedesFbIgFBAds(false);
-        setRedesFbIgGoogleAds(false);
-        setRedesFbIgFNBdsGoogleAds(false);
-    };
-
-
+    //Cada Opcion del dropDawn
     const redesFbIgFBAdsButton = () => {
         setRedesFbIgFBAds(!redesFbIgFBAds);
         setRedesFbIgGoogleAds(false);
         setRedesFbIgFNBdsGoogleAds(false)
     }
+    // Valor final 
     const redesFbIgFBAdsValor = redesFbIgFBAds ? 10.000 : '';
 
+    //Cada Opcion del dropDawn
     const redesFbIgGoogleAdsButton = () => {
         setRedesFbIgFBAds(false);
         setRedesFbIgGoogleAds(!redesFbIgGoogleAds);
         setRedesFbIgFNBdsGoogleAds(false)
     }
+    // Valor final 
     const redesFbIgGoogleAdsValor = redesFbIgGoogleAds ? 11.000 : '';
 
+    //Cada Opcion del dropDawn
     const redesFbIgFBAdsGoogleAdsButton = () => {
         setRedesFbIgFBAds(false);
         setRedesFbIgGoogleAds(false);
         setRedesFbIgFNBdsGoogleAds(!redesFbIgFBAdsGoogleAds)
     }
+    // Valor final 
     const redesFbIgFBAdsGoogleAdsValor = redesFbIgFBAdsGoogleAds ? 12.000 : '';
 
 
     //Monto sugerido de pauta paga
     const [montoSugeridoPautaPaga, setMontoSugeridoPautaPaga] = useState('');
 
-    //Popup Linkedin
+    //DropDawn Linkedin
     const [linkekdin2, setLinkedin2] = useState(false);
     const [linkedin3, setLinkedin3] = useState(false);
     const [linkedin4, setLinkedin4] = useState(false);
-
-    const [linkedinPopup, setLinkedinPopup] = useState(false);
-
-    //boton para llamar al popup 
-    const diseñoRedaccionLinkedin = () => {
-        setLinkedinPopup(!linkedinPopup);
-    }
-
-    //Boton limpiar Linkedin
-    const diseñoRedaccionLinkedinLimpiar = () => {
-        setLinkedin2(false);
-        setLinkedin3(false);
-        setLinkedin4(false);
-    };
 
     const linkekdin2Button = () => {
         setLinkedin2(!linkekdin2);
@@ -343,29 +303,13 @@ export const CotizacionScreen = () => {
     }
     const linkedin4Valor = linkedin4 ? 12.000 : '';
 
-    //Popup diseño administracion redes sociales
+    //DropDawn diseño administracion redes sociales
     const [fbIg3post2historias, setFbIg3post2historias] = useState(false);
     const [fbIg4post3historias, setFbIg4post3historias] = useState(false);
     const [fbIg5post4historias, setFbIg5post4historias] = useState(false);
     const [instagramCard15, setInstagramCard15] = useState(false);
     const [instagramCard18, setInstagramCard18] = useState(false);
 
-    const [diseñoRedesPopup, setDiseñoRedesPopup] = useState(false);
-
-    //boton para llamar al popup 
-    const diseñoRedesPopupButton = () => {
-        setDiseñoRedesPopup(!diseñoRedesPopup);
-    }
-
-    //Boton limpiar popup
-    const diseñoRedesPopupButtonLimpiar = () => {
-        setFbIg3post2historias(false);
-        setFbIg4post3historias(false);
-        setFbIg5post4historias(false);
-        setInstagramCard15(false);
-        setInstagramCard18(false);
-
-    };
 
     const fbIg3post2historiasButton = () => {
         setFbIg3post2historias(!fbIg3post2historias);
@@ -414,39 +358,16 @@ export const CotizacionScreen = () => {
     }
     const instagramCard18Valor = instagramCard18 ? 14.000 : '';
 
-    //Popup diseño administracion Campañas
+    //DropDawn diseño administracion Campañas
     const [fbAds, setFbAds] = useState(false);
     const [googleAds, setGoogleAds] = useState(false);
     const [fbGoogleAds, setFbGoogleAds] = useState(false);
-
-
-    const [campañasPopup, setCampañasPopup] = useState(false);
-
-    //boton para llamar al popup 
-    const campañasPopupButton = () => {
-        setCampañasPopup(!campañasPopup);
-    }
-
-    //Boton limpiar popup
-    const campañasPopupButtonLimpiar = () => {
-        setFbAds(false);
-        setGoogleAds(false);
-        setFbGoogleAds(false);
-
-
-    };
 
     const fbAdsButton = () => {
         setFbAds(!fbAds);
         setGoogleAds(false);
         setFbGoogleAds(false);
         setInstagramCard18(false);
-        // if (isChecked) {
-        //     setFbAds(10.000)
-        // }
-        // else {
-        //     setFbAds(false)
-        // }
     }
     const fbAdsValor = fbAds ? 10.000 : '';
 
@@ -470,21 +391,6 @@ export const CotizacionScreen = () => {
     const [newsletter1, setNewsletter1] = useState(false);
     const [newsletter2, setNewsletter2] = useState(false);
     const [newsletter3, setNewsletter3] = useState(false);
-
-
-    const [newsletterPopup, setNewsletterPopup] = useState(false);
-
-    //boton para llamar al popup 
-    const newsletterPopupButton = () => {
-        setNewsletterPopup(!newsletterPopup);
-    }
-
-    //Boton limpiar popup
-    const newsletterPopupButtonLimpiar = () => {
-        setNewsletter1(false);
-        setNewsletter2(false);
-        setNewsletter3(false);
-    };
 
     const newsletter1Button = () => {
         setNewsletter1(!newsletter1);
@@ -534,27 +440,11 @@ export const CotizacionScreen = () => {
     const googleMiNegocio3Valor = googleMiNegocio3 ? 12.000 : '';
 
 
-
-    //Popup Identidad
+    //DropDawn Identidad
     const [logo, setLogo] = useState(false);
     const [rediseñoIdentidad, setRediseñoIdentidad] = useState(false);
     const [diseñoMarca, setDiseñoMarca] = useState(false);
     const [naming, setNaming] = useState(false);
-
-    const [identidadPopup, setIdentidadPopup] = useState(false);
-
-    //boton para llamar al popup 
-    const identidadPopupButton = () => {
-        setIdentidadPopup(!identidadPopup);
-    }
-
-    //Boton limpiar popup
-    const identidadPopupButtonLimpiar = () => {
-        setLogo(false);
-        setRediseñoIdentidad(false);
-        setDiseñoMarca(false);
-        setNaming(false);
-    };
 
     const logoButton = () => {
         setLogo(!logo);
@@ -615,16 +505,6 @@ export const CotizacionScreen = () => {
 
     // Input Numerico de Cantidad de fotos a entregar
     const [fotosAEntregar, setFotosAEntregar] = useState('');
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -1133,7 +1013,6 @@ export const CotizacionScreen = () => {
 
 
 
-
                     <Button title='Cotizar' titleStyle={{ color: 'black', fontSize: 18 }} containerStyle={{ marginHorizontal: 10, marginVertical: 50, color: 'black' }} buttonStyle={{ backgroundColor: 'white', borderWidth: 1, borderColor: 'black', borderRadius: 5, padding: 10 }}
 
                         onPress={() => {
@@ -1143,14 +1022,7 @@ export const CotizacionScreen = () => {
                             // const estadoCotizacion = 'pendiente el formu papu'
 
                         }} />
-                    {/* <Button title='Cotizar' titleStyle={{ color: 'black', fontSize: 18 }} containerStyle={{ marginHorizontal: 10, marginVertical: 50, color: 'black' }} buttonStyle={{ backgroundColor: 'white', borderWidth: 1, borderColor: 'black', borderRadius: 5, padding: 10 }}
 
-                        onPress={() => {
-
-                            consultar();
-
-
-                        }} /> */}
 
                 </View>
 
