@@ -12,6 +12,7 @@ import { ListItem, Icon } from '@rneui/themed';
 import firebase from 'firebase/app';
 import 'firebase/firestore';
 import { TouchableOpacity } from "react-native-gesture-handler";
+import { DropDawn } from "../Componentes/DropDawn.js";
 
 
 
@@ -26,7 +27,8 @@ export const CotizacionScreen = () => {
     const [expandedCampañas, setExpandedCampañas] = useState(false);
     const [expandedLinkedin, setExpandedLinkedin] = useState(false);
     const [expandedNewsletter, setExpandedNewsletter] = useState(false);
-    const [expandedGoogleMiNegocio, setExpandedGoogleMiNegocio] = useState(false);
+
+
 
 
 
@@ -413,31 +415,6 @@ export const CotizacionScreen = () => {
     }
     const newsletter3Valor = newsletter3 ? 12.000 : '';
 
-    // Drop Google Mi Negocio
-    const [googleMiNegocio1, setGoogleMiNegocio1] = useState(false);
-    const [googleMiNegocio2, setGoogleMiNegocio2] = useState(false);
-    const [googleMiNegocio3, setGoogleMiNegocio3] = useState(false);
-
-    const googleMiNegocio1Button = () => {
-        setGoogleMiNegocio1(!googleMiNegocio1);
-        setGoogleMiNegocio2(false);
-        setGoogleMiNegocio3(false);
-    }
-    const googleMiNegocio1Valor = googleMiNegocio1 ? 10.000 : '';
-
-    const googleMiNegocio2Button = () => {
-        setGoogleMiNegocio1(false);
-        setGoogleMiNegocio2(!googleMiNegocio2);
-        setGoogleMiNegocio3(false);
-    }
-    const googleMiNegocio2Valor = googleMiNegocio2 ? 11.000 : '';
-
-    const googleMiNegocio3Button = () => {
-        setGoogleMiNegocio1(false);
-        setGoogleMiNegocio2(false);
-        setGoogleMiNegocio3(!googleMiNegocio3);
-    }
-    const googleMiNegocio3Valor = googleMiNegocio3 ? 12.000 : '';
 
 
     //DropDawn Identidad
@@ -866,7 +843,8 @@ export const CotizacionScreen = () => {
                             )}
                         </View>
                     </ListItem.Accordion>
-                    <ListItem.Accordion
+                    <DropDawn ></DropDawn>
+                    {/* <ListItem.Accordion
                         content={
                             <ListItem.Content>
                                 <ListItem.Title>Google Mi Negocio</ListItem.Title>
@@ -901,11 +879,7 @@ export const CotizacionScreen = () => {
                                 </View>
                             )}
                         </View>
-                    </ListItem.Accordion>
-
-
-
-
+                    </ListItem.Accordion> */}
 
                     <Text style={styles.titleNegro}>Stylim + Diseño</Text>
 
