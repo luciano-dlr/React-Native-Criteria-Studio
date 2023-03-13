@@ -12,13 +12,25 @@ import { ListItem, Icon } from '@rneui/themed';
 import firebase from 'firebase/app';
 import 'firebase/firestore';
 import { TouchableOpacity } from "react-native-gesture-handler";
+import { googleMiNegocio3Valor } from "../Componentes/DropDawn.js";
+import { useRoute } from "@react-navigation/native";
+//valores del formulario
 import { DropDawn } from "../Componentes/DropDawn.js";
 
 
 
+
+import MyContext from './ValorContext.js';
+
+
 export const CotizacionScreen = () => {
 
-    //Constantes para expandir dropdawns
+
+
+
+
+
+
     const [expanded, setExpanded] = useState(false);
     const [expandedRDS, setExpandedRDS] = useState(false);
     const [expandedAnuncios, setExpandedAnuncios] = useState(false);
@@ -32,9 +44,9 @@ export const CotizacionScreen = () => {
 
 
 
-
     // Objeto pusheado a la base de datos en firestore
     const enviarFormulario = () => {
+
 
         const formData = addDoc(collection(db, "cotizaciones"), {
             localTime,
@@ -843,7 +855,7 @@ export const CotizacionScreen = () => {
                             )}
                         </View>
                     </ListItem.Accordion>
-                    <DropDawn ></DropDawn>
+                    <DropDawn />
                     {/* <ListItem.Accordion
                         content={
                             <ListItem.Content>
