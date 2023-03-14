@@ -14,8 +14,6 @@ export const DropDawnGoogle = () => {
 
     const { valorGoogle } = Context();
 
-    console.log(valorGoogle);
-
     const [expandedGoogleMiNegocio, setExpandedGoogleMiNegocio] = useState(false);
 
     // Drop Google Mi Negocio
