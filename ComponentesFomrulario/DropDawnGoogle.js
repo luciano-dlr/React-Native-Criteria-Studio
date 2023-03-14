@@ -1,22 +1,20 @@
 import React from "react";
 import styles from "../Styles/Styles";
 import { useState } from "react";
-import { useNavigation } from "@react-navigation/native";
 import { CheckBox, Input } from '@rneui/themed';
-import { Text, View, SafeAreaView, ScrollView, Alert, TextInput } from 'react-native';
-import { ListItem, Icon } from '@rneui/themed';
-import 'firebase/firestore';
-
-import ValorContext from "./ValorContext.js";
+import { View } from 'react-native';
+import { ListItem } from '@rneui/themed';
 
 
+//custom hook 
+import Context from "../Hooks/Context";
 
 
+export const DropDawnGoogle = () => {
 
+    const { valorGoogle } = Context();
 
-export const DropDawn = () => {
-
-
+    console.log(valorGoogle);
 
     const [expandedGoogleMiNegocio, setExpandedGoogleMiNegocio] = useState(false);
 
