@@ -8,11 +8,15 @@ import { LoginScreen } from './Screens/LoginScreen.js';
 import { RegisterScreen } from "./Screens/RegisterScreen.js";
 import { CotizacionScreen } from './Screens/CotizacionScreen.js'
 
+// Context 
+import ValoresContext from "./Context/ValoresContext.js";
+
 
 const App = () => {
 
   const Stack = createNativeStackNavigator();
 
+<<<<<<< HEAD
 <<<<<<< HEAD
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
@@ -41,18 +45,25 @@ const App = () => {
 
 =======
 >>>>>>> second
+=======
+  const valoresContext = {
+    valorGoogle: 'pepe',
+  }
+
+>>>>>>> second
   return (
 
-    <NavigationContainer>
-      <Stack.Navigator Container initialRouteName="login">
+    <ValoresContext.Provider value={valoresContext}>
+      <NavigationContainer>
+        <Stack.Navigator Container initialRouteName="login">
+          <Stack.Screen name="login" component={LoginScreen} options={{ headerShown: false, }} />
+          <Stack.Screen name="registerScreen" component={RegisterScreen} />
+          <Stack.Screen name="home" component={HomeScreen} />
+          <Stack.Screen name="cotizacion" component={CotizacionScreen} />
+        </Stack.Navigator>
+      </NavigationContainer >
+    </ValoresContext.Provider>
 
-        <Stack.Screen name="login" component={LoginScreen} options={{ headerShown: false, }} />
-        <Stack.Screen name="registerScreen" component={RegisterScreen} />
-        <Stack.Screen name="home" component={HomeScreen} />
-        <Stack.Screen name="cotizacion" component={CotizacionScreen} />
-
-      </Stack.Navigator>
-    </NavigationContainer >
   )
 };
 

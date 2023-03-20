@@ -37,6 +37,11 @@ const styles = StyleSheet.create({
         marginBottom: 30,
 
     },
+    containerDropDawn: {
+        backgroundColor: '#fff',
+        marginTop: 30,
+        marginBottom: 30,
+    },
     containerSwitch: {
         backgroundColor: '#fff',
         paddingBottom: 40,
