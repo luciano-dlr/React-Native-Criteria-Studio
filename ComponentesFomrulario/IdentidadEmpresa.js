@@ -1,9 +1,9 @@
 import React from "react";
-import styles from "../Styles/Styles";
 import { useState } from "react";
-import { CheckBox, Input } from '@rneui/themed';
 import { View, } from 'react-native';
-import { ListItem, Icon } from '@rneui/themed';
+import styles from "../Styles/Styles";
+import { ListItem } from '@rneui/themed';
+import { CheckBox, Input } from '@rneui/themed';
 
 
 export const IdentidadEmpresa = () => {

@@ -1,11 +1,12 @@
 import React from "react";
-import styles from "../Styles/Styles";
 import { useState } from "react";
+import styles from "../Styles/Styles";
 import { Input } from '@rneui/themed';
+
+// Input para almacenar Las Fotos a entregar 
 
 export const FotosAEntregar = () => {
 
-    // Input Numerico de Cantidad de fotos a entregar
     const [fotosAEntregar, setFotosAEntregar] = useState('');
 
     return (

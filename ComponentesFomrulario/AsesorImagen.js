@@ -4,10 +4,14 @@ import { useState, useEffect } from "react";
 import { Switch } from '@rneui/themed';
 import { Text, View } from 'react-native';
 
-export const AsesorImagen = () => {
-    //Switch Asesor de imagen 
-    const [asesorImagen, setAsesorImagen] = useState('');
+// Switch Asesor de imagen 
 
+export const AsesorImagen = () => {
+
+    // Estado del switch
+    const [asesorImagen, setAsesorImagen] = useState(false);
+
+    // Funcion true o false para activar y desactivar switch
     const asesorImagenSwitch = () => {
         setAsesorImagen(!asesorImagen);
     }
@@ -17,8 +21,8 @@ export const AsesorImagen = () => {
             <Text style={styles.titleHome}>Incluye asesor/a de imagen ? </Text>
 
             <Switch
-                title="Limpiar"
-                label='texto'
+                title=''
+                label=''
                 value={asesorImagen}
                 onValueChange={asesorImagenSwitch}
             />

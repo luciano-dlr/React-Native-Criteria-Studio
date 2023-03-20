@@ -1,32 +1,35 @@
 import React from "react";
-import styles from "../Styles/Styles";
 import { useState } from "react";
-import { CheckBox, Input } from '@rneui/themed';
 import { View } from 'react-native';
+import styles from "../Styles/Styles";
 import { ListItem } from '@rneui/themed';
+import { CheckBox, Input } from '@rneui/themed';
 
+// Checkbox en dropdawn de Parametros Inicial RDS
 
 export const DropDawnRDS = () => {
 
+    // Estado para expandir los checkbox 
     const [expandedRDS, setExpandedRDS] = useState(false);
-    //Check-Box dentro de dropdawn 'RDS'
+
+    // Estado de los checkbox
     const [pirdBasica, setPirdBasica] = useState(false)
     const [pirdCompleja, setPirdCompleja] = useState(false)
 
-
-    //funciones para que una vez clickeada una opcion de PirdBasica o PirdCompleja la otra se desactive Social Media
+    // Funciones para que una vez clickeado un checkbox desactive al otro
     const pirdBasicaButton = () => {
         setPirdCompleja(false);
         setPirdBasica(!pirdBasica);
     };
-    const pirdBasicaValor = pirdBasica ? 9.120 : '';
 
-    //funciones para que una vez clickeada una opcion de PirdBasica o PirdCompleja la otra se desactive Social Media
     const pirdComplejaButton = () => {
         setPirdBasica(false);
         setPirdCompleja(!pirdCompleja)
     }
+
+    // Valores finales, donde cambia al valor numerico final  o '' segun el cambio de estado de la variable seleccionada 
     const pirdComplejaValor = pirdCompleja ? 14.592 : '';
+    const pirdBasicaValor = pirdBasica ? 9.120 : '';
 
     return (
         <>
@@ -47,12 +50,12 @@ export const DropDawnRDS = () => {
                     <CheckBox title="PIRD Básica" checkedIcon="dot-circle-o" uncheckedIcon="circle-o" checked={pirdBasica} onPress={pirdBasicaButton} />
                     <CheckBox title="PIRD Compleja" checkedIcon="dot-circle-o" uncheckedIcon="circle-o" checked={pirdCompleja} onPress={pirdComplejaButton} />
                     {pirdBasica === true && (
-                        <View>
+                        <View style={styles.imputsCotizacion}>
                             <Input disabled label={'Resultado de PIRD Básica '} type='text' id='text' style={styles.imputsCotizacion} placeholder='9.120' />
                         </View>
                     )}
                     {pirdCompleja === true && (
-                        <View>
+                        <View style={styles.imputsCotizacion}>
                             <Input disabled label={'Resultado de PIRD Compleja'} type='text' id='text' style={styles.imputsCotizacion} placeholder='14.592' />
                         </View>
                     )}

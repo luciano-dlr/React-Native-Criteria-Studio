@@ -13,9 +13,8 @@ import firebase from 'firebase/app';
 import 'firebase/firestore';
 import { TouchableOpacity } from "react-native-gesture-handler";
 
-import { useRoute } from "@react-navigation/native";
 
-// Componentes 
+// Componentes Informacion General
 import { Marca } from "../ComponentesFomrulario/Marca";
 import { Rubro } from "../ComponentesFomrulario/Rubro";
 import { NombreContacto } from "../ComponentesFomrulario/NombreContacto";
@@ -25,6 +24,7 @@ import { EmailContacto } from "../ComponentesFomrulario/EmailContacto";
 import { TelefonoContacto } from "../ComponentesFomrulario/TelefonoContacto";
 import { TipoEmpresa } from "../ComponentesFomrulario/TipoEmpresa";
 import { PrecioDolar } from "../ComponentesFomrulario/PrecioDolar";
+//Componentes Social Media
 import { DropDawnRDS } from "../ComponentesFomrulario/DropDawnRDS";
 import { AdministracionAnuncios } from "../ComponentesFomrulario/AdministracionAnuncios";
 import { AdministracionIntegralRedes } from "../ComponentesFomrulario/AdministracionIntegralRedes";
@@ -34,30 +34,29 @@ import { MontoSugeridoRDS } from "../ComponentesFomrulario/MontoSugeridoRDS";
 import { DiseñoLinkedin } from "../ComponentesFomrulario/DiseñoLinkedin";
 import { Newsletter } from "../ComponentesFomrulario/Newsletter";
 import { DropDawnGoogle } from "../ComponentesFomrulario/DropDawnGoogle";
+//Componentes Stylim + Diseño
 import { HorasSesionFotos } from "../ComponentesFomrulario/HorasSesionFotos";
 import { AsesorImagen } from "../ComponentesFomrulario/AsesorImagen";
 import { ContenidoEditado } from "../ComponentesFomrulario/ContenidoEditado";
 import { ProduccionFotografica } from "../ComponentesFomrulario/ProduccionFotografica";
 import { FotosAEntregar } from "../ComponentesFomrulario/FotosAEntregar";
 import { IdentidadEmpresa } from "../ComponentesFomrulario/IdentidadEmpresa";
+import { SocialMedia } from "../ComponentesFomrulario/SocialMedia";
+//Componentes Pagina WEB
+import { PaginaWeb } from "../ComponentesFomrulario/PaginaWeb";
+import { EtoqWeb } from "../ComponentesFomrulario/EToqWeb";
+import { Hosting } from "../ComponentesFomrulario/Hosting";
+import { MantenimientoWeb } from "../ComponentesFomrulario/MantenimientoWeb";
+import { Mensaje } from "../ComponentesFomrulario/Mnesaje";
+import { PrecioFinal } from "../ComponentesFomrulario/PrecioFinal";
 
 
+// Setear los valores en el formulario , que sean modificados por los componentes
 
-
-
-// import MyContext from './ValorContext.js';
+// Luego consultar esos datos del formulario en otra pantalla 
 
 
 export const CotizacionScreen = () => {
-
-    // const [expanded, setExpanded] = useState(false);
-    // const [expandedRDS, setExpandedRDS] = useState(false);
-    // const [expandedAnuncios, setExpandedAnuncios] = useState(false);
-    // const [expandedRedesAds, setExpandedRedesAds] = useState(false);
-    // const [expandedDiseñoRedes, setExpandedDiseñoRedes] = useState(false);
-    // const [expandedCampañas, setExpandedCampañas] = useState(false);
-    // const [expandedLinkedin, setExpandedLinkedin] = useState(false);
-    // const [expandedNewsletter, setExpandedNewsletter] = useState(false);
 
 
     // Objeto pusheado a la base de datos en firestore
@@ -92,22 +91,6 @@ export const CotizacionScreen = () => {
 
     }
 
-    //Funcion para mostrar el horario cuando fue realizado el formulario
-    const [localTime, setLocalTime] = useState('');
-    const months = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre',];
-    useEffect(() => {
-        const intervalId = setInterval(() => {
-            const now = new Date();
-            const minuto = now.getMinutes();
-            const hora = now.getHours();
-            const day = now.getDate();
-            const month = months[now.getMonth()];
-            const year = now.getFullYear();
-            setLocalTime(`${day}-${month}-${year}-${hora + ':' + minuto + ' horas'}`);
-        }, 1000);
-        return () => clearInterval(intervalId);
-    }, []);
-
     //Navigation para pasar de pantalla
     const navigation = useNavigation();
 
@@ -129,12 +112,12 @@ export const CotizacionScreen = () => {
         setIntegralRDS(value);
     }
 
-
     return (
         <SafeAreaView  >
             <ScrollView style={styles.scrollView}>
 
                 <View style={styles.containerCoti}>
+                    {/* <Text style={styles.titleNegro}>{localTime}</Text> */}
 
                     <Text style={styles.titleNegro}>Informacion General</Text>
 
@@ -241,6 +224,24 @@ export const CotizacionScreen = () => {
 
                     {/* DropDown Identidad */}
                     <IdentidadEmpresa />
+
+                    <SocialMedia />
+
+                    <Text style={styles.titleNegro}>WEB</Text>
+
+                    <PaginaWeb />
+
+                    <EtoqWeb />
+
+                    <Hosting />
+
+                    <MantenimientoWeb />
+
+                    <Text style={styles.titleNegro}> Resumen </Text>
+
+                    <Mensaje />
+
+                    <PrecioFinal />
 
                     <Button
                         title='Cotizar'

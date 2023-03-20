@@ -1,22 +1,25 @@
 import React from "react";
-import styles from "../Styles/Styles";
 import { useState } from "react";
-import { CheckBox, Input } from '@rneui/themed';
 import { View } from 'react-native';
+import styles from "../Styles/Styles";
 import { ListItem } from '@rneui/themed';
+import { CheckBox, Input } from '@rneui/themed';
+
+// Checkbox en dropdawn de Administracion General Redes
 
 export const DiseñoAdministracionRedes = () => {
 
+    // Estado para expandir los checkbox 
     const [expandedDiseñoRedes, setExpandedDiseñoRedes] = useState(false);
 
-    //DropDawn diseño administracion redes sociales
+    // Estado de los checkbox
     const [fbIg3post2historias, setFbIg3post2historias] = useState(false);
     const [fbIg4post3historias, setFbIg4post3historias] = useState(false);
     const [fbIg5post4historias, setFbIg5post4historias] = useState(false);
     const [instagramCard15, setInstagramCard15] = useState(false);
     const [instagramCard18, setInstagramCard18] = useState(false);
 
-
+    // Funciones para que una vez clickeado un checkbox desactive al otro
     const fbIg3post2historiasButton = () => {
         setFbIg3post2historias(!fbIg3post2historias);
         setFbIg4post3historias(false);
@@ -24,7 +27,6 @@ export const DiseñoAdministracionRedes = () => {
         setInstagramCard15(false);
         setInstagramCard18(false);
     }
-    const fbIg3post2historiasValor = fbIg3post2historias ? 10.000 : '';
 
     const fbIg4post3historiasButton = () => {
         setFbIg3post2historias(false);
@@ -33,7 +35,6 @@ export const DiseñoAdministracionRedes = () => {
         setInstagramCard15(false);
         setInstagramCard18(false);
     }
-    const fbIg4post3historiasValor = fbIg4post3historias ? 11.000 : '';
 
     const fbIg5post4historiasButton = () => {
         setFbIg3post2historias(false);
@@ -42,8 +43,6 @@ export const DiseñoAdministracionRedes = () => {
         setInstagramCard15(false);
         setInstagramCard18(false);
     }
-    const fbIg5post4historiasValor = fbIg5post4historias ? 12.000 : '';
-
 
     const instagramCard15Button = () => {
         setFbIg3post2historias(false);
@@ -52,8 +51,6 @@ export const DiseñoAdministracionRedes = () => {
         setInstagramCard15(!instagramCard15);
         setInstagramCard18(false);
     }
-    const instagramCard15Valor = instagramCard15 ? 13.000 : '';
-
 
     const instagramCard18Button = () => {
         setFbIg3post2historias(false);
@@ -62,10 +59,15 @@ export const DiseñoAdministracionRedes = () => {
         setInstagramCard15(false);
         setInstagramCard18(!instagramCard18);
     }
+
+    // Valores finales, donde cambia al valor numerico final  o '' segun el cambio de estado de la variable seleccionada 
+    const fbIg4post3historiasValor = fbIg4post3historias ? 11.000 : '';
+    const fbIg5post4historiasValor = fbIg5post4historias ? 12.000 : '';
+    const fbIg3post2historiasValor = fbIg3post2historias ? 10.000 : '';
+    const instagramCard15Valor = instagramCard15 ? 13.000 : '';
     const instagramCard18Valor = instagramCard18 ? 14.000 : '';
 
     return (
-
         <View>
             <ListItem.Accordion
                 content={
@@ -88,36 +90,32 @@ export const DiseñoAdministracionRedes = () => {
                     <CheckBox title="Instagram Business Card ( 18 Posteos + Historias Mensules )" checkedIcon="dot-circle-o" uncheckedIcon="circle-o" checked={instagramCard18} onPress={instagramCard18Button} />
 
                     {fbIg3post2historias === true && (
-                        <View>
+                        <View style={styles.imputsCotizacion}>
                             <Input disabled label={'Resultado Administracion Integral Redes'} type='text' id='text' style={styles.imputsCotizacion} placeholder='10.000' />
                         </View>
                     )}
-
                     {fbIg4post3historias === true && (
-                        <View>
+                        <View style={styles.imputsCotizacion}>
                             <Input disabled label={'Resultado Administracion Integral Redes'} type='text' id='text' style={styles.imputsCotizacion} placeholder='11.000' />
                         </View>
                     )}
-
                     {fbIg5post4historias === true && (
-                        <View>
+                        <View style={styles.imputsCotizacion}>
                             <Input disabled label={'Resultado Administracion Integral Redes'} type='text' id='text' style={styles.imputsCotizacion} placeholder='12.000' />
                         </View>
                     )}
                     {instagramCard15 === true && (
-                        <View>
+                        <View style={styles.imputsCotizacion}>
                             <Input disabled label={'Resultado Administracion Integral Redes'} type='text' id='text' style={styles.imputsCotizacion} placeholder='13.000' />
                         </View>
                     )}
                     {instagramCard18 === true && (
-                        <View>
+                        <View style={styles.imputsCotizacion}>
                             <Input disabled label={'Resultado Administracion Integral Redes'} type='text' id='text' style={styles.imputsCotizacion} placeholder='14.000' />
                         </View>
                     )}
                 </View>
             </ListItem.Accordion>
         </View>
-
     )
-
 }

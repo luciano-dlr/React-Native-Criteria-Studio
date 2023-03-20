@@ -1,8 +1,9 @@
 import React from "react";
-import styles from "../Styles/Styles";
 import { useState } from "react";
+import styles from "../Styles/Styles";
 import { Input } from '@rneui/themed';
 
+// Input para almacenar el Email ingresado
 
 export const EmailContacto = () => {
 

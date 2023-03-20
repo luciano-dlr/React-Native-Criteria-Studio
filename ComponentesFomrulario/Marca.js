@@ -14,8 +14,8 @@ export const Marca = () => {
 
             label={'Marca'}
             type='marca'
-            id='marca' s
-            tyle={styles.imputsCotizacion}
+            id='marca'
+            style={styles.imputsCotizacion}
             placeholder='Ingresar marca'
             value={marca}
             onChangeText={(text) => setMarca(text)} />

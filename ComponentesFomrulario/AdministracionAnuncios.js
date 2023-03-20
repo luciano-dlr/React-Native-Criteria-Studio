@@ -1,32 +1,34 @@
 import React from "react";
-import styles from "../Styles/Styles";
 import { useState } from "react";
-import { CheckBox, Input } from '@rneui/themed';
 import { View } from 'react-native';
+import styles from "../Styles/Styles";
 import { ListItem } from '@rneui/themed';
+import { CheckBox, Input } from '@rneui/themed';
 
+// Checkbox en dropdawn de Administracion Anuncios
 
 export const AdministracionAnuncios = () => {
 
-    //Expanded de los checkboxes
+    // Estado para expandir los checkbox 
     const [expandedAnuncios, setExpandedAnuncios] = useState(false);
 
-    //Estado de los checkbox
+    // Estado de los checkbox
     const [anuncioBasicos, setAnunciosBasicos] = useState(false);
     const [anunciosComplejos, setAnunciosComplejos] = useState(false)
 
-    //funciones para que una vez clickeada una opcion de PirdBasica o PirdCompleja la otra se desactive Social Media
+    // Funciones para que una vez clickeado un checkbox desactive al otro
     const anunciosBasicaButton = () => {
         setAnunciosComplejos(false)
         setAnunciosBasicos(!anuncioBasicos);
-
     }
-    const anuncioBasicosValor = anuncioBasicos ? 6.384 : '';
 
     const anunciosComplejaButton = () => {
         setAnunciosBasicos(false)
         setAnunciosComplejos(!anunciosComplejos);
     }
+
+    // Valores finales, donde cambia a valor numerico final  o '' segun el cambio de estado de la variable seleccionada 
+    const anuncioBasicosValor = anuncioBasicos ? 6.384 : '';
     const anunciosComplejosValor = anunciosComplejos ? 9.780 : '';
 
     return (
@@ -49,7 +51,7 @@ export const AdministracionAnuncios = () => {
 
                 {anuncioBasicos === true && (
 
-                    <View>
+                    <View style={styles.imputsCotizacion}>
                         <Input disabled label={'Monto CBM'} type='text' id='text' style={styles.imputsCotizacion} placeholder='6.384' />
                     </View>
 
@@ -57,7 +59,7 @@ export const AdministracionAnuncios = () => {
 
                 {anunciosComplejos === true && (
 
-                    <View>
+                    <View style={styles.imputsCotizacion}>
                         <Input disabled label={'Monto CBM'} type='text' id='text' style={styles.imputsCotizacion} placeholder='9.780' />
                     </View>
                 )}
