@@ -5,7 +5,7 @@ import { useState, useEffect } from "react";
 export const Fecha = () => {
     //Funcion para mostrar el horario cuando fue realizado el formulario
     const [localTime, setLocalTime] = useState('');
-    const months = [' Enero', ' Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre',];
+    const months = [' Enero', ' Febrero', ' Marzo', ' Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre',];
     useEffect(() => {
         const intervalId = setInterval(() => {
             const now = new Date();
